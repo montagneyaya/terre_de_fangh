@@ -3,9 +3,8 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class Save {
-  Save(String directory) {
-    this.directory = directory;
-    this.fileName = directory + this.i.toString();
+  Save(this.directory) {
+    fileName = directory + i.toString();
   }
 
   String directory = '';
@@ -47,8 +46,8 @@ class Save {
             });
           }
           if (fileTest == true) {
-            this.i++;
-            this.fileName = directory + i.toString();
+            i++;
+            fileName = directory + i.toString();
             writeNewJson(jsonSave);
           }
         });
@@ -76,7 +75,7 @@ class Load {
   String fileName;
 
   Future<File> get _localFile async {
-    return File('$fileName');
+    return File(fileName);
   }
 
   Future<String> readJson() async {

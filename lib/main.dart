@@ -4,5 +4,5 @@ import 'package:terre_de_fangh/src/app.dart';
 
 void main() {
   usePathUrlStrategy();
-  runApp(TerreDeFanghApp());
+  runApp(const TerreDeFanghApp());
 }

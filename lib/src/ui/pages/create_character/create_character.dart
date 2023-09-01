@@ -8,13 +8,15 @@ import 'package:terre_de_fangh/src/ui/pages/create_character/create_character_an
 import 'package:terre_de_fangh/src/ui/pages/create_character/create_character_web.dart';
 
 class CreateCharacterPage extends StatelessWidget {
+  const CreateCharacterPage({super.key});
+
   Widget _content(BuildContext context) {
     final Device device = Device();
     switch (device.device(context)) {
       case Devices.web:
-        return CreateCharacterWeb();
+        return const CreateCharacterWeb();
       case Devices.androidHandset:
-        return CreateCharacterAndroid();
+        return const CreateCharacterAndroid();
       case Devices.iOSHandset:
         // TODO: Handle this case.
         break;
@@ -37,9 +39,9 @@ class CreateCharacterPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 
   Widget _createCharacterBase(BuildContext context) {
@@ -71,9 +73,9 @@ class CreateCharacterPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 
   @override
@@ -106,8 +108,8 @@ class CreateCharacterPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 }

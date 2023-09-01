@@ -1,16 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'add-spell-damages.dart';
+part of 'add_natural_damages.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddSpellDamages _$AddSpellDamagesFromJson(Map<String, dynamic> json) => AddSpellDamages(
+AddNaturalDamages _$AddNaturalDamagesFromJson(Map<String, dynamic> json) => AddNaturalDamages(
       json['damages'] as int,
     )..txtDamages = json['txt_damages'] as String;
 
-Map<String, dynamic> _$AddSpellDamagesToJson(AddSpellDamages instance) => <String, dynamic>{
+Map<String, dynamic> _$AddNaturalDamagesToJson(AddNaturalDamages instance) => <String, dynamic>{
       'txt_damages': instance.txtDamages,
       'damages': instance.damages,
     };

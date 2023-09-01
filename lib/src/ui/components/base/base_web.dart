@@ -8,7 +8,7 @@ class BaseWeb extends StatelessWidget {
   final Widget content;
   final BoxDecoration backgroundContent;
 
-  BaseWeb(this.content, this.backgroundContent);
+  const BaseWeb(this.content, this.backgroundContent, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class BaseWeb extends StatelessWidget {
       drawer: buildNavigation(context),
       body: Center(
         child: Container(
-          constraints: BoxConstraints.expand(),
+          constraints: const BoxConstraints.expand(),
           decoration: backgroundContent,
           child: Column(
             children: [
@@ -25,9 +25,9 @@ class BaseWeb extends StatelessWidget {
               appBarWeb(context),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: SingleChildScrollView(
-                    child: this.content,
+                    child: content,
                   ),
                 ),
               ),
@@ -44,19 +44,20 @@ class BaseWeb extends StatelessWidget {
     if (device.device(context) == Devices.web) {
       switch (breakpoint.breakpoint(context)) {
         case Breakpoints.xsmall:
-          return AssetImage('assets/images/decor/web/banner-xs.webp');
+          return const AssetImage('assets/images/decor/web/banner-xs.webp');
         case Breakpoints.small:
-          return AssetImage('assets/images/decor/web/banner-s.webp');
+          return const AssetImage('assets/images/decor/web/banner-s.webp');
         case Breakpoints.medium:
-          return AssetImage('assets/images/decor/web/banner-m.webp');
+          return const AssetImage('assets/images/decor/web/banner-m.webp');
         case Breakpoints.large:
-          return AssetImage('assets/images/decor/web/banner-l.webp');
+          return const AssetImage('assets/images/decor/web/banner-l.webp');
         case Breakpoints.xlarge:
-          return AssetImage('assets/images/decor/web/banner-xl.webp');
+          return const AssetImage('assets/images/decor/web/banner-xl.webp');
         case null:
-          return AssetImage('assets/images/decor/web/banner-l.webp');
+          return const AssetImage('assets/images/decor/web/banner-l.webp');
       }
-    } else
-      return AssetImage('assets/images/decor/web/banner-l.webp');
+    } else {
+      return const AssetImage('assets/images/decor/web/banner-l.webp');
+    }
   }
 }

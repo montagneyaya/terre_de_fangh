@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'add-spell-damages.g.dart';
+part 'add_spell_damages.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class AddSpellDamages {
@@ -10,7 +10,7 @@ class AddSpellDamages {
 
   @override
   String toString() {
-    return '$txtDamages';
+    return txtDamages;
   }
 
   factory AddSpellDamages.fromJson(Map<String, dynamic> json) => _$AddSpellDamagesFromJson(json);

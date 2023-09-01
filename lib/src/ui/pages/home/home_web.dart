@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeWeb extends StatelessWidget {
+  const HomeWeb({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 24),
+          padding: const EdgeInsets.symmetric(vertical: 24),
           child: Text(
             'Bienvenue sur la terre de Fangh',
             style: Theme.of(context).textTheme.displayMedium,

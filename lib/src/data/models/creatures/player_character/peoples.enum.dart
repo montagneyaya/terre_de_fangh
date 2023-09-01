@@ -1,8 +1,8 @@
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/people.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/jobs.enum.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/skills.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/people.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/jobs.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/skills.enum.dart';
 
-final People peopleHuman = new People(
+final People peopleHuman = People(
     'Humain',
     [8, 20],
     [8, 20],
@@ -82,7 +82,7 @@ final People peopleHuman = new People(
       skillPainIsForTheWeak
     ]);
 
-final People peopleBarbarian = new People(
+final People peopleBarbarian = People(
     'Barbare',
     [12, 20],
     [8, 20],
@@ -108,7 +108,7 @@ final People peopleBarbarian = new People(
       skillPainIsForTheWeak
     ]);
 
-final People peopleDwarf = new People(
+final People peopleDwarf = People(
     'Nain',
     [11, 20],
     [8, 20],
@@ -146,7 +146,7 @@ final People peopleDwarf = new People(
       skillPainIsForTheWeak
     ]);
 
-final People peopleHighElf = new People(
+final People peopleHighElf = People(
     'Haut Elfe',
     [8, 20],
     [11, 20],
@@ -184,7 +184,7 @@ final People peopleHighElf = new People(
       skillShootProperly
     ]);
 
-final People peopleHalfElf = new People(
+final People peopleHalfElf = People(
     'Demi Elfe',
     [8, 20],
     [8, 20],
@@ -225,7 +225,7 @@ final People peopleHalfElf = new People(
       skillShootProperly
     ]);
 
-final People peopleSilvanElf = new People(
+final People peopleSilvanElf = People(
     'Elfe Sylvain',
     [8, 20],
     [8, 20],
@@ -262,7 +262,7 @@ final People peopleSilvanElf = new People(
       skillHollowHead
     ]);
 
-final People peopleDarkElf = new People(
+final People peopleDarkElf = People(
     'Elfe Noir',
     [8, 20],
     [12, 20],
@@ -303,7 +303,7 @@ final People peopleDarkElf = new People(
       skillWeirdRunes
     ]);
 
-final People peopleOrc = new People(
+final People peopleOrc = People(
     'Orque',
     [8, 20],
     [8, 8],
@@ -333,7 +333,7 @@ final People peopleOrc = new People(
       skillPainIsForTheWeak
     ]);
 
-final People peopleHalfOrc = new People(
+final People peopleHalfOrc = People(
     'Demi Orque',
     [8, 20],
     [8, 10],
@@ -358,7 +358,7 @@ final People peopleHalfOrc = new People(
       skillPainIsForTheWeak
     ]);
 
-final People peopleGoblin = new People(
+final People peopleGoblin = People(
     'Gobelin',
     [8, 10],
     [8, 10],
@@ -383,7 +383,7 @@ final People peopleGoblin = new People(
     ],
     [skillAmateurHandyman, skillDefuse, skillClimb, skillBlacksmith]);
 
-final People peopleOgre = new People(
+final People peopleOgre = People(
     'Ogre',
     [8, 20],
     [8, 9],
@@ -413,7 +413,7 @@ final People peopleOgre = new People(
       skillPainIsForTheWeak
     ]);
 
-final People peopleHobbit = new People(
+final People peopleHobbit = People(
     'Semi-Homme',
     [12, 20],
     [10, 20],
@@ -453,7 +453,7 @@ final People peopleHobbit = new People(
       skillShootProperly
     ]);
 
-final People peopleGnome = new People(
+final People peopleGnome = People(
     'Gnome',
     [8, 20],
     [10, 20],
@@ -485,7 +485,7 @@ final People peopleGnome = new People(
       skillLocksmith
     ]);
 
-final People peopleMafiaDwarf = new People(
+final People peopleMafiaDwarf = People(
     'Nain de la Mafia',
     [10, 20],
     [11, 20],
@@ -522,7 +522,7 @@ final People peopleMafiaDwarf = new People(
       skillShootProperly
     ]);
 
-final People peopleSylderianAmazon = new People(
+final People peopleSylderianAmazon = People(
     'Amazone Sylderienne',
     [12, 20],
     [8, 20],
@@ -549,7 +549,7 @@ final People peopleSylderianAmazon = new People(
     ],
     [skillClimb, skillSurvivalInstinct, skillIntimidate, skillSwim, skillTrack, skillShootProperly]);
 
-final People peopleMonster = new People(
+final People peopleMonster = People(
     'Monstre',
     [0, 0],
     [0, 0],

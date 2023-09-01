@@ -1,6 +1,6 @@
 # terre_de_fangh
 
-"Terre de Fangh est une application pour le jeu de rôle dans l'univeres de Naheulbeuk créé par POK (http://www.naheulbeuk.com/)"
+"Terre de Fangh est une application pour le jeu de rôle dans l'univers de Naheulbeuk créé par POK (http://www.naheulbeuk.com/)"
 
 ## Getting Started
 

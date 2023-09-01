@@ -13,7 +13,7 @@ class Item {
 
   @override
   String toString() {
-    return this.nameItem;
+    return nameItem;
   }
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

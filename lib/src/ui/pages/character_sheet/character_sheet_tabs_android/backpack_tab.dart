@@ -16,7 +16,7 @@ Widget _backpackTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -28,17 +28,17 @@ Widget _backpackTab(BuildContext context) {
                       terreDeFanghTextBodyMedium(context, Lang.maxLoadCharacter),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: terreDeFanghTextBodyMedium(context, Lang.totalLoadCharacter),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
@@ -51,7 +51,7 @@ Widget _backpackTab(BuildContext context) {
                 Expanded(
                   child: terreDeFanghLabelTextField(context, Lang.backPackWeightCharacter),
                 ),
-                Spacer(),
+                const Spacer(),
                 Expanded(
                   child: Row(
                     textBaseline: TextBaseline.alphabetic,
@@ -61,13 +61,13 @@ Widget _backpackTab(BuildContext context) {
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),

@@ -9,8 +9,9 @@ class BaseAndroid extends StatelessWidget {
   final TabBar? bottomAndroid;
   final NavigationBar? navigationBar;
 
-  BaseAndroid(
-      this.content, this.backgroundContent, this.needDrawer, this.bottomAndroid, this.navigationBar);
+  const BaseAndroid(
+      this.content, this.backgroundContent, this.needDrawer, this.bottomAndroid, this.navigationBar,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +22,11 @@ class BaseAndroid extends StatelessWidget {
       bottomNavigationBar: navigationBar,
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Container(
-            constraints: BoxConstraints.expand(),
+            constraints: const BoxConstraints.expand(),
             decoration: backgroundContent,
-            child: this.content,
+            child: content,
           ),
         ),
       ),

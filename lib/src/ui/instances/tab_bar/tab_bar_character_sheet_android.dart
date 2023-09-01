@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:terre_de_fangh/src/lang/lang.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/lang.dart';
 
 List<Tab> mainTab = [
-  Tab(text: Lang.sheetCharacter),
-  Tab(text: Lang.statisticsCharacter),
-  Tab(text: Lang.skillsCharacter),
+  const Tab(text: Lang.sheetCharacter),
+  const Tab(text: Lang.statisticsCharacter),
+  const Tab(text: Lang.skillsCharacter),
 ];
 
 List<Tab> fightTab = [
-  Tab(text: Lang.weaponsCharacter),
-  Tab(text: Lang.armorsCharacter),
-  Tab(text: Lang.fightCharacter),
+  const Tab(text: Lang.weaponsCharacter),
+  const Tab(text: Lang.armorsCharacter),
+  const Tab(text: Lang.fightCharacter),
 ];
 
 List<Tab> equipmentTab = [
-  Tab(text: Lang.backpackCharacter),
-  Tab(text: Lang.campingCharacter),
-  Tab(text: Lang.treasuresCharacter),
+  const Tab(text: Lang.backpackCharacter),
+  const Tab(text: Lang.campingCharacter),
+  const Tab(text: Lang.treasuresCharacter),
 ];
 
 List<Tab> jobEquipmentTab = [
-  Tab(
+  const Tab(
     child: Column(
       children: [
         Expanded(child: Text(Lang.itemsMagics1Character)),
@@ -28,7 +28,7 @@ List<Tab> jobEquipmentTab = [
       ],
     ),
   ),
-  Tab(
+  const Tab(
     child: Column(
       children: [
         Expanded(child: Text(Lang.potionsAmmo1Character)),
@@ -36,7 +36,7 @@ List<Tab> jobEquipmentTab = [
       ],
     ),
   ),
-  Tab(
+  const Tab(
     child: Column(
       children: [
         Expanded(child: Text(Lang.ingredientsBooks1Character)),
@@ -47,5 +47,5 @@ List<Tab> jobEquipmentTab = [
 ];
 
 List<Tab> pouchTab = [
-  Tab(text: Lang.purseCharacter),
+  const Tab(text: Lang.purseCharacter),
 ];

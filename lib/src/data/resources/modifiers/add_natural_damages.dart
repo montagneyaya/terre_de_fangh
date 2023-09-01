@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'add-natural-damages.g.dart';
+part 'add_natural_damages.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class AddNaturalDamages {
@@ -10,7 +10,7 @@ class AddNaturalDamages {
 
   @override
   String toString() {
-    return '$txtDamages';
+    return txtDamages;
   }
 
   factory AddNaturalDamages.fromJson(Map<String, dynamic> json) => _$AddNaturalDamagesFromJson(json);

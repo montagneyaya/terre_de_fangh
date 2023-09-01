@@ -13,6 +13,7 @@ class Weapon extends Item {
       : super(nameItem, price, weight, type);
 
   factory Weapon.fromJson(Map<String, dynamic> json) => _$WeaponFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$WeaponToJson(this);
 }
 
@@ -24,7 +25,7 @@ class Impact {
   Impact(this.nbD, this.addDamages);
 
   int impact() {
-    return Dices().d6() * this.nbD + this.addDamages;
+    return Dices().d6() * nbD + addDamages;
   }
 
   @override

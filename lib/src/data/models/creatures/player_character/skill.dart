@@ -9,13 +9,13 @@ class Skill {
   String described;
   bool selected;
 
-  void isSelect(bool _check) {
-    this.selected = _check;
+  void isSelect(bool check) {
+    selected = check;
   }
 
   @override
   String toString() {
-    return this.skill;
+    return skill;
   }
 
   factory Skill.fromJson(Map<String, dynamic> json) => _$SkillFromJson(json);

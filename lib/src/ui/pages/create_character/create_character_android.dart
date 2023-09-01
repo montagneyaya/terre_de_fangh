@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/job.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/jobs.enum.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/people.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/peoples.enum.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/player-character.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/skill.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/skills.enum.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/specialization.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/specializations.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/job.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/jobs.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/people.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/peoples.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/player_character.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/skill.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/skills.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/specialization.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/specializations.enum.dart';
 import 'package:terre_de_fangh/src/data/resources/services/dices.service.dart';
 import 'package:terre_de_fangh/src/data/resources/services/save.dart';
 import 'package:terre_de_fangh/src/ui/components/background/background.dart';
@@ -18,11 +18,14 @@ import 'package:terre_de_fangh/src/ui/instances/background/background.dart';
 import 'package:terre_de_fangh/src/ui/themes/icons_dices.dart';
 
 class CreateCharacterAndroid extends StatefulWidget {
+  const CreateCharacterAndroid({super.key});
+
   @override
-  _CreateCharacterAndroidState createState() => _CreateCharacterAndroidState();
+  State<CreateCharacterAndroid> createState() => _CreateCharacterAndroidState();
 }
 
-class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with SingleTickerProviderStateMixin {
+class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
+    with SingleTickerProviderStateMixin {
   final GlobalKey<FormState> _statisticsForm = GlobalKey<FormState>();
   final GlobalKey<FormState> _characterForm = GlobalKey<FormState>();
   final GlobalKey<FormState> _skillsForm = GlobalKey<FormState>();
@@ -118,9 +121,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
       _dexterityController,
       _strengthController
     ];
-    _statisticsController.forEach((element) {
+    for (var element in _statisticsController) {
       element.text = '8';
-    });
+    }
 
     //step 2
     _peopleController = peopleMonster;
@@ -171,9 +174,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
       _goldController,
       _silverController,
     ];
-    _wealthController.forEach((element) {
+    for (var element in _wealthController) {
       element.text = '0';
-    });
+    }
     _nameController.text = '';
     _genderController.text = '';
     _isBourgeois = false;
@@ -188,12 +191,12 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
   @override
   void dispose() {
     //step 1
-    _statisticsController.forEach((element) {
+    for (var element in _statisticsController) {
       element.dispose();
-    });
-    _wealthController.forEach((element) {
+    }
+    for (var element in _wealthController) {
       element.dispose();
-    });
+    }
     _fateController.dispose();
     _nameController.dispose();
     _genderController.dispose();
@@ -207,7 +210,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
       children: [
         Expanded(
           child: TabBarView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _controller,
             children: <Widget>[
               //step 1
               Container(
@@ -243,25 +247,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                       flex: 2,
                                       child: Text(
                                         'Courage (COU)',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[0],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
-                                        keyboardType: TextInputType.numberWithOptions(),
+                                        keyboardType: const TextInputType.numberWithOptions(),
                                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           counterText: '',
                                         ),
                                         validator: (value) {
@@ -274,9 +274,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32.0),
                                         child: IconButton(
-                                          icon: Icon(IconsDices.dice6),
+                                          icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             int value = Dices().d6() + 7;
@@ -295,25 +295,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                       flex: 2,
                                       child: Text(
                                         'Intelligence (INT)',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[1],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
-                                        keyboardType: TextInputType.numberWithOptions(),
+                                        keyboardType: const TextInputType.numberWithOptions(),
                                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           counterText: '',
                                         ),
                                         validator: (value) {
@@ -326,9 +322,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32.0),
                                         child: IconButton(
-                                          icon: Icon(IconsDices.dice6),
+                                          icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             int value = Dices().d6() + 7;
@@ -347,25 +343,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                       flex: 2,
                                       child: Text(
                                         'Charisme (CHA)',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[2],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
-                                        keyboardType: TextInputType.numberWithOptions(),
+                                        keyboardType: const TextInputType.numberWithOptions(),
                                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           counterText: '',
                                         ),
                                         validator: (value) {
@@ -378,9 +370,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32.0),
                                         child: IconButton(
-                                          icon: Icon(IconsDices.dice6),
+                                          icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             int value = Dices().d6() + 7;
@@ -399,25 +391,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                       flex: 2,
                                       child: Text(
                                         'Adresse (AD)',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[3],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
-                                        keyboardType: TextInputType.numberWithOptions(),
+                                        keyboardType: const TextInputType.numberWithOptions(),
                                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           counterText: '',
                                         ),
                                         validator: (value) {
@@ -430,9 +418,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32.0),
                                         child: IconButton(
-                                          icon: Icon(IconsDices.dice6),
+                                          icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             int value = Dices().d6() + 7;
@@ -451,25 +439,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                       flex: 2,
                                       child: Text(
                                         'Force (FO)',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[4],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
-                                        keyboardType: TextInputType.numberWithOptions(),
+                                        keyboardType: const TextInputType.numberWithOptions(),
                                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           counterText: '',
                                         ),
                                         validator: (value) {
@@ -482,9 +466,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32.0),
                                         child: IconButton(
-                                          icon: Icon(IconsDices.dice6),
+                                          icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             int value = Dices().d6() + 7;
@@ -500,10 +484,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                 child: TextButton(
                                   child: SvgPicture.asset('assets/images/decor/dice20.svg'),
                                   onPressed: () {
-                                    _statisticsController.forEach((element) {
+                                    for (var element in _statisticsController) {
                                       int value = Dices().d6() + 7;
                                       element.text = value.toString();
-                                    });
+                                    }
                                   },
                                 ),
                               ),
@@ -564,7 +548,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                             for (int i = 0; i < 5; i++) {
                                               test = int.parse(_statisticsController[i].text) >
                                                       job.statistics()[i][0] - 1 &&
-                                                  int.parse(_statisticsController[i].text) < job.statistics()[i][1] + 1;
+                                                  int.parse(_statisticsController[i].text) <
+                                                      job.statistics()[i][1] + 1;
                                               if (!test) break;
                                             }
                                             if (test) _jobsList.add(job);
@@ -720,27 +705,36 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                             return ListTile(
                                               title: Text(
                                                 _skillsObtain[index].skill,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
                                               onTap: () {
                                                 showDialog(
                                                   context: context,
                                                   builder: (context) {
                                                     return AlertDialog(
-                                                      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+                                                      backgroundColor:
+                                                          Theme.of(context).colorScheme.surfaceVariant,
                                                       title: Text(
                                                         _skillsObtain[index].skill,
-                                                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                                            color: Theme.of(context).colorScheme.onSurfaceVariant),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleLarge
+                                                            ?.copyWith(
+                                                                color: Theme.of(context)
+                                                                    .colorScheme
+                                                                    .onSurfaceVariant),
                                                       ),
                                                       content: SingleChildScrollView(
                                                         child: Text(
                                                           _skillsObtain[index].described,
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onSurfaceVariant),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onSurfaceVariant),
                                                         ),
                                                       ),
                                                     );
@@ -800,21 +794,31 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                     child: ListTile(
                                                       title: Text(
                                                         _skillsChoose[index].skill,
-                                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                            color: Theme.of(context).colorScheme.onBackground),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyLarge
+                                                            ?.copyWith(
+                                                                color: Theme.of(context)
+                                                                    .colorScheme
+                                                                    .onBackground),
                                                       ),
                                                       onTap: () {
                                                         showDialog(
                                                           context: context,
                                                           builder: (context) {
                                                             return AlertDialog(
-                                                              backgroundColor:
-                                                                  Theme.of(context).colorScheme.surfaceVariant,
+                                                              backgroundColor: Theme.of(context)
+                                                                  .colorScheme
+                                                                  .surfaceVariant,
                                                               title: Text(
                                                                 _skillsChoose[index].skill,
-                                                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                                                    color:
-                                                                        Theme.of(context).colorScheme.onSurfaceVariant),
+                                                                style: Theme.of(context)
+                                                                    .textTheme
+                                                                    .titleLarge
+                                                                    ?.copyWith(
+                                                                        color: Theme.of(context)
+                                                                            .colorScheme
+                                                                            .onSurfaceVariant),
                                                               ),
                                                               content: SingleChildScrollView(
                                                                 child: Text(
@@ -841,21 +845,22 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                         );
                                       },
                                       validator: (skillsSelected) {
-                                        skillsSelected = _skillsController.where((element) => element == true).length;
+                                        skillsSelected =
+                                            _skillsController.where((element) => element == true).length;
                                         if (_isHuman && skillsSelected == 4) return null;
                                         if (!_isHuman && skillsSelected == 2) return null;
                                         if (_isHuman && skillsSelected != 4) {
                                           ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(
-                                              content: const Text('Selectionner 4 competences'),
+                                            const SnackBar(
+                                              content: Text('Selectionner 4 competences'),
                                             ),
                                           );
                                           return 'Selectionner 4 competences';
                                         }
                                         if (!_isHuman && skillsSelected != 2) {
                                           ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(
-                                              content: const Text('Selectionner 2 competences'),
+                                            const SnackBar(
+                                              content: Text('Selectionner 2 competences'),
                                             ),
                                           );
                                           return 'Selectionner 2 competences';
@@ -901,10 +906,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                       children: [
                                         Text(
                                           'Il n\'y a pas de modificateurs pour votre selection. Vous pouvez passer à l\'étape finale',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                              color: Theme.of(context).colorScheme.onBackground),
                                         ),
                                       ],
                                     ),
@@ -927,34 +930,31 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
                                             'Vous êtes un ogre',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                                color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
                                           'L\'ogre peut obtenir la compétence "Super Bourrin" s\'il retrancher jusqu\'à 3 points à son score de base en ATTAQUE et/ou en PARADE pour en faire un bonus de dégâts. Ainsi il peut avoir +3 en dégâts en plus de ses autres bonus de FORCE, mais son côté bourrin le rend maladroit. En outre, un malus de PRD -5 s\'applique à celui qui tente de parer une attaque de l\'ogre.',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                              color: Theme.of(context).colorScheme.onBackground),
                                         ),
                                         Expanded(
                                           child: Row(
                                             children: [
                                               IconButton(
-                                                icon: Icon(Icons.keyboard_arrow_down),
+                                                icon: const Icon(Icons.keyboard_arrow_down),
                                                 color: Theme.of(context).colorScheme.onBackground,
                                                 onPressed: () {
                                                   setState(() {
                                                     if (_count1 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
-                                                        SnackBar(
-                                                          content: const Text('Vous avez deja utiliser les 3 points'),
+                                                        const SnackBar(
+                                                          content: Text(
+                                                              'Vous avez deja utiliser les 3 points'),
                                                         ),
                                                       );
                                                     } else {
@@ -968,21 +968,20 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                               ),
                                               Text(
                                                 '$_attackTemp AT',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
-                                              Spacer(),
+                                              const Spacer(),
                                               IconButton(
-                                                icon: Icon(Icons.keyboard_arrow_down),
+                                                icon: const Icon(Icons.keyboard_arrow_down),
                                                 color: Theme.of(context).colorScheme.onBackground,
                                                 onPressed: () {
                                                   setState(() {
                                                     if (_count1 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
-                                                        SnackBar(
-                                                          content: const Text('Vous avez deja utiliser les 3 points'),
+                                                        const SnackBar(
+                                                          content: Text(
+                                                              'Vous avez deja utiliser les 3 points'),
                                                         ),
                                                       );
                                                     } else {
@@ -996,10 +995,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                               ),
                                               Text(
                                                 '$_parryTemp PRD',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
                                             ],
                                           ),
@@ -1025,28 +1022,24 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
                                             'Vous etes un guerrier',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                                color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
                                           'Vous pouvez echanger 1 point d\'AT et 1 point de PRD',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                              color: Theme.of(context).colorScheme.onBackground),
                                         ),
                                         Expanded(
                                           child: Row(
                                             children: [
                                               if (_count2Down)
                                                 IconButton(
-                                                  icon: Icon(Icons.keyboard_arrow_down),
+                                                  icon: const Icon(Icons.keyboard_arrow_down),
                                                   color: Theme.of(context).colorScheme.onBackground,
                                                   onPressed: () {
                                                     setState(() {
@@ -1059,7 +1052,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                 ),
                                               if (_count2Up)
                                                 IconButton(
-                                                  icon: Icon(Icons.keyboard_arrow_up),
+                                                  icon: const Icon(Icons.keyboard_arrow_up),
                                                   color: Theme.of(context).colorScheme.onBackground,
                                                   onPressed: () {
                                                     setState(() {
@@ -1072,15 +1065,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                 ),
                                               Text(
                                                 '$_attackTemp AT',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
-                                              Spacer(),
+                                              const Spacer(),
                                               if (_count2Down)
                                                 IconButton(
-                                                  icon: Icon(Icons.keyboard_arrow_down),
+                                                  icon: const Icon(Icons.keyboard_arrow_down),
                                                   color: Theme.of(context).colorScheme.onBackground,
                                                   onPressed: () {
                                                     setState(() {
@@ -1093,7 +1084,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                 ),
                                               if (_count2Up)
                                                 IconButton(
-                                                  icon: Icon(Icons.keyboard_arrow_up),
+                                                  icon: const Icon(Icons.keyboard_arrow_up),
                                                   color: Theme.of(context).colorScheme.onBackground,
                                                   onPressed: () {
                                                     setState(() {
@@ -1106,10 +1097,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                 ),
                                               Text(
                                                 '$_parryTemp PRD',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
                                             ],
                                           ),
@@ -1124,8 +1113,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                           validator: (fighterModify) {
                             if (_count2 == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('Vous devez remettre le point en AT ou PRD'),
+                                const SnackBar(
+                                  content: Text('Vous devez remettre le point en AT ou PRD'),
                                 ),
                               );
                               return 'Vous devez remettre le point en AT ou PRD';
@@ -1143,21 +1132,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
                                             'Vous etes un ranger',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                                color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
                                           'Vous pouvez echanger 1 point entre 2 characteristiques',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                              color: Theme.of(context).colorScheme.onBackground),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1170,8 +1155,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                       children: [
                                                         if (_count2Down)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_down),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_down),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
@@ -1183,8 +1170,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                           ),
                                                         if (_count2Up)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_up),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_up),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
@@ -1196,14 +1185,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                           ),
                                                         Text(
                                                           '$_courageTemp COU',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         if (_count2Down)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_down),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_down),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
@@ -1215,8 +1211,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                           ),
                                                         if (_count2Up)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_up),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_up),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
@@ -1228,14 +1226,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                           ),
                                                         Text(
                                                           '$_intellectTemp INT',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         if (_count2Down)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_down),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_down),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
@@ -1247,8 +1252,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                           ),
                                                         if (_count2Up)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_up),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_up),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
@@ -1260,8 +1267,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                           ),
                                                         Text(
                                                           '$_charismaTemp CHA',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
                                                       ],
                                                     ),
@@ -1269,44 +1281,63 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                       children: [
                                                         if (_count2Down)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_down),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_down),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
                                                                 _count2Up = true;
                                                                 _count2Down = false;
                                                                 _dexterityTemp--;
-                                                                if (_dexterityTemp < 13) _highDexterity = false;
-                                                                if (_dexterityTemp < 9) _lowDexterity = true;
+                                                                if (_dexterityTemp < 13) {
+                                                                  _highDexterity = false;
+                                                                }
+                                                                if (_dexterityTemp < 9) {
+                                                                  _lowDexterity = true;
+                                                                }
                                                               });
                                                             },
                                                           ),
                                                         if (_count2Up)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_up),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_up),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
                                                                 _count2Up = false;
                                                                 _count2Down = false;
                                                                 _dexterityTemp++;
-                                                                if (_dexterityTemp > 12) _highDexterity = true;
-                                                                if (_dexterityTemp > 8) _lowDexterity = false;
+                                                                if (_dexterityTemp > 12) {
+                                                                  _highDexterity = true;
+                                                                }
+                                                                if (_dexterityTemp > 8) {
+                                                                  _lowDexterity = false;
+                                                                }
                                                               });
                                                             },
                                                           ),
                                                         Text(
                                                           '$_dexterityTemp AD',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         if (_count2Down)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_down),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_down),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
@@ -1318,8 +1349,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                           ),
                                                         if (_count2Up)
                                                           IconButton(
-                                                            icon: Icon(Icons.keyboard_arrow_up),
-                                                            color: Theme.of(context).colorScheme.onBackground,
+                                                            icon: const Icon(Icons.keyboard_arrow_up),
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground,
                                                             onPressed: () {
                                                               setState(() {
                                                                 _count2--;
@@ -1331,8 +1364,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                           ),
                                                         Text(
                                                           '$_strengthTemp FO',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
                                                       ],
                                                     ),
@@ -1352,8 +1390,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                           validator: (rangerModify) {
                             if (_count2 == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('Vous devez remettre le point sur une characteristique'),
+                                const SnackBar(
+                                  content: Text('Vous devez remettre le point sur une characteristique'),
                                 ),
                               );
                               return 'Vous devez remettre le point une characteristique';
@@ -1371,21 +1409,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
                                             'Vous etes un marchant',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                                color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
                                           'Vous devez retirer 1 point en AT ou PRD et mettre 1 point en INT ou CHA',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                              color: Theme.of(context).colorScheme.onBackground),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1397,22 +1431,25 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                     Row(
                                                       children: [
                                                         IconButton(
-                                                          icon: Icon(Icons.keyboard_arrow_down),
-                                                          color: Theme.of(context).colorScheme.onBackground,
+                                                          icon: const Icon(Icons.keyboard_arrow_down),
+                                                          color:
+                                                              Theme.of(context).colorScheme.onBackground,
                                                           onPressed: () {
                                                             setState(() {
                                                               if (_count2 < 1) {
-                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                  SnackBar(
-                                                                    content:
-                                                                        const Text('Vous avez deja echange vos points'),
+                                                                ScaffoldMessenger.of(context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
+                                                                        'Vous avez deja echange vos points'),
                                                                   ),
                                                                 );
                                                               } else {
                                                                 if (_count2 == 1) {
-                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                    SnackBar(
-                                                                      content: const Text(
+                                                                  ScaffoldMessenger.of(context)
+                                                                      .showSnackBar(
+                                                                    const SnackBar(
+                                                                      content: Text(
                                                                           'Vous avez deja enleve 1 point, vous devez le mettre ailleur ...'),
                                                                     ),
                                                                   );
@@ -1426,27 +1463,35 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                         ),
                                                         Text(
                                                           '$_attackTemp AT',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         IconButton(
-                                                          icon: Icon(Icons.keyboard_arrow_down),
-                                                          color: Theme.of(context).colorScheme.onBackground,
+                                                          icon: const Icon(Icons.keyboard_arrow_down),
+                                                          color:
+                                                              Theme.of(context).colorScheme.onBackground,
                                                           onPressed: () {
                                                             setState(() {
                                                               if (_count2 < 1) {
-                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                  SnackBar(
-                                                                    content:
-                                                                        const Text('Vous avez deja echange vos points'),
+                                                                ScaffoldMessenger.of(context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
+                                                                        'Vous avez deja echange vos points'),
                                                                   ),
                                                                 );
                                                               } else {
                                                                 if (_count2 == 1) {
-                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                    SnackBar(
-                                                                      content: const Text(
+                                                                  ScaffoldMessenger.of(context)
+                                                                      .showSnackBar(
+                                                                    const SnackBar(
+                                                                      content: Text(
                                                                           'Vous avez deja enleve 1 point, vous devez le mettre ailleur ...'),
                                                                     ),
                                                                   );
@@ -1460,22 +1505,29 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                         ),
                                                         Text(
                                                           '$_parryTemp PRD',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
                                                       ],
                                                     ),
                                                     Row(
                                                       children: [
                                                         IconButton(
-                                                          icon: Icon(Icons.keyboard_arrow_up),
-                                                          color: Theme.of(context).colorScheme.onBackground,
+                                                          icon: const Icon(Icons.keyboard_arrow_up),
+                                                          color:
+                                                              Theme.of(context).colorScheme.onBackground,
                                                           onPressed: () {
                                                             setState(() {
                                                               if (_count2 == 2) {
-                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                  SnackBar(
-                                                                    content: const Text(
+                                                                ScaffoldMessenger.of(context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
                                                                         'Vous devez d\'abord enlever 1 point avant de le mettre ailleur ...'),
                                                                   ),
                                                                 );
@@ -1488,19 +1540,26 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                         ),
                                                         Text(
                                                           '$_intellectTemp INT',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         IconButton(
-                                                          icon: Icon(Icons.keyboard_arrow_up),
-                                                          color: Theme.of(context).colorScheme.onBackground,
+                                                          icon: const Icon(Icons.keyboard_arrow_up),
+                                                          color:
+                                                              Theme.of(context).colorScheme.onBackground,
                                                           onPressed: () {
                                                             setState(() {
                                                               if (_count2 == 2) {
-                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                  SnackBar(
-                                                                    content: const Text(
+                                                                ScaffoldMessenger.of(context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
                                                                         'Vous devez d\'abord enlever 1 point avant de le mettre ailleur ...'),
                                                                   ),
                                                                 );
@@ -1513,8 +1572,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                         ),
                                                         Text(
                                                           '$_charismaTemp CHA',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
                                                       ],
                                                     ),
@@ -1534,16 +1598,16 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                           validator: (dealerModify) {
                             if (_count2 == 2) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('Vous devez faire les modifications indiquees'),
+                                const SnackBar(
+                                  content: Text('Vous devez faire les modifications indiquees'),
                                 ),
                               );
                               return 'Vous devez faire les modifications indiquees';
                             }
                             if (_count2 == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('Vous devez remettre le point sur une characteristique'),
+                                const SnackBar(
+                                  content: Text('Vous devez remettre le point sur une characteristique'),
                                 ),
                               );
                               return 'Vous devez remettre le point une characteristique';
@@ -1561,21 +1625,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
                                             'Vous etes un ingenieur',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                                color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
                                           'Vous devez retirer 1 point en AT ou PRD et mettre 1 point en INT ou AD',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                              color: Theme.of(context).colorScheme.onBackground),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1587,22 +1647,25 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                     Row(
                                                       children: [
                                                         IconButton(
-                                                          icon: Icon(Icons.keyboard_arrow_down),
-                                                          color: Theme.of(context).colorScheme.onBackground,
+                                                          icon: const Icon(Icons.keyboard_arrow_down),
+                                                          color:
+                                                              Theme.of(context).colorScheme.onBackground,
                                                           onPressed: () {
                                                             setState(() {
                                                               if (_count2 < 1) {
-                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                  SnackBar(
-                                                                    content:
-                                                                        const Text('Vous avez deja echange vos points'),
+                                                                ScaffoldMessenger.of(context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
+                                                                        'Vous avez deja echange vos points'),
                                                                   ),
                                                                 );
                                                               } else {
                                                                 if (_count2 == 1) {
-                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                    SnackBar(
-                                                                      content: const Text(
+                                                                  ScaffoldMessenger.of(context)
+                                                                      .showSnackBar(
+                                                                    const SnackBar(
+                                                                      content: Text(
                                                                           'Vous avez deja enleve 1 point, vous devez le mettre ailleur ...'),
                                                                     ),
                                                                   );
@@ -1616,27 +1679,35 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                         ),
                                                         Text(
                                                           '$_attackTemp AT',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         IconButton(
-                                                          icon: Icon(Icons.keyboard_arrow_down),
-                                                          color: Theme.of(context).colorScheme.onBackground,
+                                                          icon: const Icon(Icons.keyboard_arrow_down),
+                                                          color:
+                                                              Theme.of(context).colorScheme.onBackground,
                                                           onPressed: () {
                                                             setState(() {
                                                               if (_count2 < 1) {
-                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                  SnackBar(
-                                                                    content:
-                                                                        const Text('Vous avez deja echange vos points'),
+                                                                ScaffoldMessenger.of(context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
+                                                                        'Vous avez deja echange vos points'),
                                                                   ),
                                                                 );
                                                               } else {
                                                                 if (_count2 == 1) {
-                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                    SnackBar(
-                                                                      content: const Text(
+                                                                  ScaffoldMessenger.of(context)
+                                                                      .showSnackBar(
+                                                                    const SnackBar(
+                                                                      content: Text(
                                                                           'Vous avez deja enleve 1 point, vous devez le mettre ailleur ...'),
                                                                     ),
                                                                   );
@@ -1650,22 +1721,29 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                         ),
                                                         Text(
                                                           '$_parryTemp PRD',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
                                                       ],
                                                     ),
                                                     Row(
                                                       children: [
                                                         IconButton(
-                                                          icon: Icon(Icons.keyboard_arrow_up),
-                                                          color: Theme.of(context).colorScheme.onBackground,
+                                                          icon: const Icon(Icons.keyboard_arrow_up),
+                                                          color:
+                                                              Theme.of(context).colorScheme.onBackground,
                                                           onPressed: () {
                                                             setState(() {
                                                               if (_count2 == 2) {
-                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                  SnackBar(
-                                                                    content: const Text(
+                                                                ScaffoldMessenger.of(context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
                                                                         'Vous devez d\'abord enlever 1 point avant de le mettre ailleur ...'),
                                                                   ),
                                                                 );
@@ -1678,35 +1756,51 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                         ),
                                                         Text(
                                                           '$_intellectTemp INT',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         IconButton(
-                                                          icon: Icon(Icons.keyboard_arrow_up),
-                                                          color: Theme.of(context).colorScheme.onBackground,
+                                                          icon: const Icon(Icons.keyboard_arrow_up),
+                                                          color:
+                                                              Theme.of(context).colorScheme.onBackground,
                                                           onPressed: () {
                                                             setState(() {
                                                               if (_count2 == 2) {
-                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                  SnackBar(
-                                                                    content: const Text(
+                                                                ScaffoldMessenger.of(context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
                                                                         'Vous devez d\'abord enlever 1 point avant de le mettre ailleur ...'),
                                                                   ),
                                                                 );
                                                               } else {
                                                                 _count2--;
                                                                 _dexterityTemp++;
-                                                                if (_dexterityTemp > 12) _highDexterity = true;
-                                                                if (_dexterityTemp > 8) _lowDexterity = false;
+                                                                if (_dexterityTemp > 12) {
+                                                                  _highDexterity = true;
+                                                                }
+                                                                if (_dexterityTemp > 8) {
+                                                                  _lowDexterity = false;
+                                                                }
                                                               }
                                                             });
                                                           },
                                                         ),
                                                         Text(
                                                           '$_dexterityTemp AD',
-                                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                              color: Theme.of(context).colorScheme.onBackground),
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyLarge
+                                                              ?.copyWith(
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onBackground),
                                                         ),
                                                       ],
                                                     ),
@@ -1726,16 +1820,16 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                           validator: (engineerModify) {
                             if (_count2 == 2) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('Vous devez faire les modifications indiquees'),
+                                const SnackBar(
+                                  content: Text('Vous devez faire les modifications indiquees'),
                                 ),
                               );
                               return 'Vous devez faire les modifications indiquees';
                             }
                             if (_count2 == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('Vous devez remettre le point sur une characteristique'),
+                                const SnackBar(
+                                  content: Text('Vous devez remettre le point sur une characteristique'),
                                 ),
                               );
                               return 'Vous devez remettre le point une characteristique';
@@ -1753,34 +1847,30 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
                                             'Votre adresse est faible',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                                color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
                                           'Vous devez retirer un point d\'AT ou de PRD',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                              color: Theme.of(context).colorScheme.onBackground),
                                         ),
                                         Expanded(
                                           child: Row(
                                             children: [
                                               IconButton(
-                                                icon: Icon(Icons.keyboard_arrow_down),
+                                                icon: const Icon(Icons.keyboard_arrow_down),
                                                 color: Theme.of(context).colorScheme.onBackground,
                                                 onPressed: () {
                                                   setState(() {
                                                     if (_count3 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
-                                                        SnackBar(
-                                                          content: const Text(
+                                                        const SnackBar(
+                                                          content: Text(
                                                               'Vous avez deja modifie cette caracteristique'),
                                                         ),
                                                       );
@@ -1794,21 +1884,19 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                               ),
                                               Text(
                                                 '$_attackTemp AT',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
-                                              Spacer(),
+                                              const Spacer(),
                                               IconButton(
-                                                icon: Icon(Icons.keyboard_arrow_down),
+                                                icon: const Icon(Icons.keyboard_arrow_down),
                                                 color: Theme.of(context).colorScheme.onBackground,
                                                 onPressed: () {
                                                   setState(() {
                                                     if (_count3 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
-                                                        SnackBar(
-                                                          content: const Text(
+                                                        const SnackBar(
+                                                          content: Text(
                                                               'Vous avez deja modifie cette caracteristique'),
                                                         ),
                                                       );
@@ -1822,10 +1910,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                               ),
                                               Text(
                                                 '$_parryTemp PRD',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
                                             ],
                                           ),
@@ -1840,8 +1926,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                           validator: (lowDexterityModify) {
                             if (_count3 > 0) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('Vous devez enlever 1 point en AT ou en PRD'),
+                                const SnackBar(
+                                  content: Text('Vous devez enlever 1 point en AT ou en PRD'),
                                 ),
                               );
                               return 'Vous devez enlever 1 point en AT ou en PRD';
@@ -1859,34 +1945,30 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
                                             'Votre adresse est eleve',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelLarge
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                                color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
                                           'Vous devez mettre 1 point en AT ou PRD',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                              color: Theme.of(context).colorScheme.onBackground),
                                         ),
                                         Expanded(
                                           child: Row(
                                             children: [
                                               IconButton(
-                                                icon: Icon(Icons.keyboard_arrow_up),
+                                                icon: const Icon(Icons.keyboard_arrow_up),
                                                 color: Theme.of(context).colorScheme.onBackground,
                                                 onPressed: () {
                                                   setState(() {
                                                     if (_count3 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
-                                                        SnackBar(
-                                                          content: const Text(
+                                                        const SnackBar(
+                                                          content: Text(
                                                               'Vous avez deja modifie cette caracteristique'),
                                                         ),
                                                       );
@@ -1900,21 +1982,19 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                               ),
                                               Text(
                                                 '$_attackTemp AT',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
-                                              Spacer(),
+                                              const Spacer(),
                                               IconButton(
-                                                icon: Icon(Icons.keyboard_arrow_up),
+                                                icon: const Icon(Icons.keyboard_arrow_up),
                                                 color: Theme.of(context).colorScheme.onBackground,
                                                 onPressed: () {
                                                   setState(() {
                                                     if (_count3 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
-                                                        SnackBar(
-                                                          content: const Text(
+                                                        const SnackBar(
+                                                          content: Text(
                                                               'Vous avez deja modifie cette caracteristique'),
                                                         ),
                                                       );
@@ -1928,10 +2008,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                               ),
                                               Text(
                                                 '$_parryTemp PRD',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge
-                                                    ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                                    color: Theme.of(context).colorScheme.onBackground),
                                               ),
                                             ],
                                           ),
@@ -1946,8 +2024,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                           validator: (highDexterityModify) {
                             if (_count3 > 0) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text('Vous devez ajouter 1 point en AT ou en PRD'),
+                                const SnackBar(
+                                  content: Text('Vous devez ajouter 1 point en AT ou en PRD'),
                                 ),
                               );
                               return 'Vous devez ajouter 1 point en AT ou en PRD';
@@ -2004,8 +2082,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                   if (_jobController == jobDealer) _isDealer = true;
                                   if (_jobController == jobEngineer) _isEngineer = true;
                                   if (int.parse(_statisticsController[3].text) < 9) _lowDexterity = true;
-                                  if (int.parse(_statisticsController[3].text) > 12 && _jobController != jobNinja)
-                                    _highDexterity = true;
+                                  if (int.parse(_statisticsController[3].text) > 12 &&
+                                      _jobController != jobNinja) _highDexterity = true;
                                   if (_isOgre ||
                                       _isFighter ||
                                       _isRanger ||
@@ -2028,11 +2106,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                       _parryTemp = _peopleController.fight()[1];
                                     }
                                   }
-                                  if (_courageTemp < 0) _courageTemp = int.parse(_statisticsController[0].text);
-                                  if (_intellectTemp < 0) _intellectTemp = int.parse(_statisticsController[1].text);
-                                  if (_charismaTemp < 0) _charismaTemp = int.parse(_statisticsController[2].text);
-                                  if (_dexterityTemp < 0) _dexterityTemp = int.parse(_statisticsController[3].text);
-                                  if (_strengthTemp < 0) _strengthTemp = int.parse(_statisticsController[4].text);
+                                  if (_courageTemp < 0) {
+                                    _courageTemp = int.parse(_statisticsController[0].text);
+                                  }
+                                  if (_intellectTemp < 0) {
+                                    _intellectTemp = int.parse(_statisticsController[1].text);
+                                  }
+                                  if (_charismaTemp < 0) {
+                                    _charismaTemp = int.parse(_statisticsController[2].text);
+                                  }
+                                  if (_dexterityTemp < 0) {
+                                    _dexterityTemp = int.parse(_statisticsController[3].text);
+                                  }
+                                  if (_strengthTemp < 0) {
+                                    _strengthTemp = int.parse(_statisticsController[4].text);
+                                  }
 
                                   if (_strengthTemp > 12) {
                                     _damageOgre = _strengthTemp - 12;
@@ -2083,25 +2171,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                       flex: 2,
                                       child: Text(
                                         'Points de destin',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _fateController,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 1,
-                                        keyboardType: TextInputType.numberWithOptions(),
+                                        keyboardType: const TextInputType.numberWithOptions(),
                                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           counterText: '',
                                         ),
                                         validator: (value) {
@@ -2114,9 +2198,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32.0),
                                         child: IconButton(
-                                          icon: Icon(IconsDices.dice4),
+                                          icon: const Icon(IconsDices.dice4),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             setState(() {
@@ -2147,7 +2231,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .labelLarge
-                                                        ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                        ?.copyWith(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground),
                                                   ),
                                                 ),
                                                 Expanded(
@@ -2156,22 +2243,30 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyLarge
-                                                        ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                        ?.copyWith(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground),
                                                     textAlignVertical: TextAlignVertical.bottom,
                                                     textAlign: TextAlign.center,
                                                     maxLength: 2,
-                                                    keyboardType: TextInputType.numberWithOptions(),
-                                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                                    decoration: InputDecoration(
+                                                    keyboardType:
+                                                        const TextInputType.numberWithOptions(),
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter.digitsOnly
+                                                    ],
+                                                    decoration: const InputDecoration(
                                                       counterText: '',
                                                     ),
                                                     validator: (value) {
                                                       if (!_isBourgeois &&
-                                                          (int.parse(value!) < 20 || int.parse(value) > 120)) {
+                                                          (int.parse(value!) < 20 ||
+                                                              int.parse(value) > 120)) {
                                                         return 'entre 20 et 120';
                                                       }
                                                       if (_isBourgeois &&
-                                                          (int.parse(value!) < 40 || int.parse(value) > 240)) {
+                                                          (int.parse(value!) < 40 ||
+                                                              int.parse(value) > 240)) {
                                                         return 'entre 40 et 240';
                                                       }
                                                       return null;
@@ -2191,7 +2286,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .labelLarge
-                                                        ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                        ?.copyWith(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground),
                                                   ),
                                                 ),
                                                 Expanded(
@@ -2200,22 +2298,30 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyLarge
-                                                        ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                                        ?.copyWith(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onBackground),
                                                     textAlignVertical: TextAlignVertical.bottom,
                                                     textAlign: TextAlign.center,
                                                     maxLength: 3,
-                                                    keyboardType: TextInputType.numberWithOptions(),
-                                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                                    decoration: InputDecoration(
+                                                    keyboardType:
+                                                        const TextInputType.numberWithOptions(),
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter.digitsOnly
+                                                    ],
+                                                    decoration: const InputDecoration(
                                                       counterText: '',
                                                     ),
                                                     validator: (value) {
                                                       if (!_isBourgeois &&
-                                                          (int.parse(value!) < 0 || int.parse(value) > 99)) {
+                                                          (int.parse(value!) < 0 ||
+                                                              int.parse(value) > 99)) {
                                                         return 'entre 0 et 99';
                                                       }
                                                       if (_isBourgeois &&
-                                                          (int.parse(value!) < 0 || int.parse(value) > 198)) {
+                                                          (int.parse(value!) < 0 ||
+                                                              int.parse(value) > 198)) {
                                                         return 'entre 0 et 198';
                                                       }
                                                       return null;
@@ -2230,9 +2336,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32.0),
                                         child: IconButton(
-                                          icon: Icon(IconsDices.dice6_2),
+                                          icon: const Icon(IconsDices.dice6_2),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             setState(() {
@@ -2260,20 +2366,16 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     Expanded(
                                       child: Text(
                                         'Nom',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                       ),
                                     ),
                                     Expanded(
                                       flex: 3,
                                       child: TextFormField(
                                         controller: _nameController,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         validator: (nameCharacter) {
                                           return null;
@@ -2289,20 +2391,16 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                     Expanded(
                                       child: Text(
                                         'Genre',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                       ),
                                     ),
                                     Expanded(
                                       flex: 3,
                                       child: TextFormField(
                                         controller: _genderController,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+                                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            color: Theme.of(context).colorScheme.onBackground),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         validator: (gender) {
                                           return null;
@@ -2321,29 +2419,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                 ),
               ),
             ],
-            controller: _controller,
           ),
         ),
         Row(
           children: [
             _controller.index == 0
-                ? Spacer()
+                ? const Spacer()
                 : TextButton(
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        Text(
-                          'Precedent',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(color: Theme.of(context).colorScheme.primary),
-                        ),
-                      ],
-                    ),
                     onPressed: _controller.index > 0
                         ? () {
                             //step 5 to step 4
@@ -2353,9 +2435,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                 _goldController,
                                 _silverController,
                               ];
-                              _wealthController.forEach((element) {
+                              for (var element in _wealthController) {
                                 element.text = '0';
-                              });
+                              }
                               _nameController.text = '';
                               _genderController.text = '';
                               _isBourgeois = false;
@@ -2398,8 +2480,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                               if (_jobController == jobDealer) _isDealer = true;
                               if (_jobController == jobEngineer) _isEngineer = true;
                               if (int.parse(_statisticsController[3].text) < 9) _lowDexterity = true;
-                              if (int.parse(_statisticsController[3].text) > 12 && _jobController != jobNinja)
-                                _highDexterity = true;
+                              if (int.parse(_statisticsController[3].text) > 12 &&
+                                  _jobController != jobNinja) _highDexterity = true;
                               if (_isOgre ||
                                   _isFighter ||
                                   _isRanger ||
@@ -2422,11 +2504,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                                   _parryTemp = _peopleController.fight()[1];
                                 }
                               }
-                              if (_courageTemp < 0) _courageTemp = int.parse(_statisticsController[0].text);
-                              if (_intellectTemp < 0) _intellectTemp = int.parse(_statisticsController[1].text);
-                              if (_charismaTemp < 0) _charismaTemp = int.parse(_statisticsController[2].text);
-                              if (_dexterityTemp < 0) _dexterityTemp = int.parse(_statisticsController[3].text);
-                              if (_strengthTemp < 0) _strengthTemp = int.parse(_statisticsController[4].text);
+                              if (_courageTemp < 0) {
+                                _courageTemp = int.parse(_statisticsController[0].text);
+                              }
+                              if (_intellectTemp < 0) {
+                                _intellectTemp = int.parse(_statisticsController[1].text);
+                              }
+                              if (_charismaTemp < 0) {
+                                _charismaTemp = int.parse(_statisticsController[2].text);
+                              }
+                              if (_dexterityTemp < 0) {
+                                _dexterityTemp = int.parse(_statisticsController[3].text);
+                              }
+                              if (_strengthTemp < 0) {
+                                _strengthTemp = int.parse(_statisticsController[4].text);
+                              }
 
                               if (_strengthTemp > 12) {
                                 _damageOgre = _strengthTemp - 12;
@@ -2437,31 +2529,31 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
 
                             //step 3 to step 2
                             if (_controller.index == 2) {
-                              List<Skill> _skillsPeopleObtain = [];
-                              List<Skill> _skillsPeopleChoose = [];
-                              List<Skill> _skillsJobObtain = [];
-                              List<Skill> _skillsJobChoose = [];
+                              List<Skill> skillsPeopleObtain = [];
+                              List<Skill> skillsPeopleChoose = [];
+                              List<Skill> skillsJobObtain = [];
+                              List<Skill> skillsJobChoose = [];
                               _skillsController = [];
                               _skillsObtain = [];
                               _skillsChoose = [];
                               _isHuman = false;
-                              skillEnum.forEach((element) {
+                              for (var element in skillEnum) {
                                 element.isSelect(false);
-                              });
-                              if (_peopleController != peopleHuman) {
-                                _skillsPeopleObtain = _peopleController.birthSkills;
-                                _skillsPeopleChoose = _peopleController.optionalSkills;
                               }
-                              _skillsJobObtain = _jobController.inheritedSkills;
-                              _skillsJobChoose = _jobController.optionalSkills;
+                              if (_peopleController != peopleHuman) {
+                                skillsPeopleObtain = _peopleController.birthSkills;
+                                skillsPeopleChoose = _peopleController.optionalSkills;
+                              }
+                              skillsJobObtain = _jobController.inheritedSkills;
+                              skillsJobChoose = _jobController.optionalSkills;
 
-                              _skillsObtain = [..._skillsPeopleObtain, ..._skillsJobObtain];
+                              _skillsObtain = [...skillsPeopleObtain, ...skillsJobObtain];
                               _skillsObtain = _skillsObtain.toSet().toList();
                               _skillsObtain.sort((a, b) => a.skill.compareTo(b.skill));
-                              Set<Skill> _skillsObtainSet = Set.from(_skillsObtain);
-                              _skillsChoose = [..._skillsPeopleChoose, ..._skillsJobChoose];
-                              Set<Skill> _skillsChooseSet = Set.from(_skillsChoose);
-                              _skillsChoose = List.from(_skillsChooseSet.difference(_skillsObtainSet));
+                              Set<Skill> skillsObtainSet = Set.from(_skillsObtain);
+                              _skillsChoose = [...skillsPeopleChoose, ...skillsJobChoose];
+                              Set<Skill> skillsChooseSet = Set.from(_skillsChoose);
+                              _skillsChoose = List.from(skillsChooseSet.difference(skillsObtainSet));
                               _skillsChoose = _skillsChoose.toSet().toList();
                               _skillsChoose.sort((a, b) => a.skill.compareTo(b.skill));
                               if (_skillsObtain.isEmpty && _skillsChoose.isEmpty) {
@@ -2483,8 +2575,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                               for (People people in peopleEnum) {
                                 bool test = false;
                                 for (int i = 0; i < 5; i++) {
-                                  test = int.parse(_statisticsController[i].text) > people.statistics()[i][0] - 1 &&
-                                      int.parse(_statisticsController[i].text) < people.statistics()[i][1] + 1;
+                                  test = int.parse(_statisticsController[i].text) >
+                                          people.statistics()[i][0] - 1 &&
+                                      int.parse(_statisticsController[i].text) <
+                                          people.statistics()[i][1] + 1;
                                   if (!test) break;
                                 }
                                 if (test) _peoplesList.add(people);
@@ -2494,8 +2588,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                               for (Job job in _peopleController.jobs) {
                                 bool test = false;
                                 for (int i = 0; i < 5; i++) {
-                                  test = int.parse(_statisticsController[i].text) > job.statistics()[i][0] - 1 &&
-                                      int.parse(_statisticsController[i].text) < job.statistics()[i][1] + 1;
+                                  test = int.parse(_statisticsController[i].text) >
+                                          job.statistics()[i][0] - 1 &&
+                                      int.parse(_statisticsController[i].text) <
+                                          job.statistics()[i][1] + 1;
                                   if (!test) break;
                                 }
                                 if (test) _jobsList.add(job);
@@ -2508,6 +2604,21 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                             _controller.animateTo(_controller.index - 1);
                           }
                         : null,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        Text(
+                          'Precedent',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ],
+                    ),
                   ),
             Expanded(
               child: Center(
@@ -2555,8 +2666,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                     for (People people in peopleEnum) {
                       bool test = false;
                       for (int i = 0; i < 5; i++) {
-                        test = int.parse(_statisticsController[i].text) > people.statistics()[i][0] - 1 &&
-                            int.parse(_statisticsController[i].text) < people.statistics()[i][1] + 1;
+                        test =
+                            int.parse(_statisticsController[i].text) > people.statistics()[i][0] - 1 &&
+                                int.parse(_statisticsController[i].text) < people.statistics()[i][1] + 1;
                         if (!test) break;
                       }
                       if (test) _peoplesList.add(people);
@@ -2583,31 +2695,31 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                 //step 2 to step 3
                 if (_characterForm.currentState != null) {
                   if (_controller.index == 1 && _characterForm.currentState!.validate()) {
-                    List<Skill> _skillsPeopleObtain = [];
-                    List<Skill> _skillsPeopleChoose = [];
-                    List<Skill> _skillsJobObtain = [];
-                    List<Skill> _skillsJobChoose = [];
+                    List<Skill> skillsPeopleObtain = [];
+                    List<Skill> skillsPeopleChoose = [];
+                    List<Skill> skillsJobObtain = [];
+                    List<Skill> skillsJobChoose = [];
                     _skillsController = [];
                     _skillsObtain = [];
                     _skillsChoose = [];
                     _isHuman = false;
-                    skillEnum.forEach((element) {
+                    for (var element in skillEnum) {
                       element.isSelect(false);
-                    });
-                    if (_peopleController != peopleHuman) {
-                      _skillsPeopleObtain = _peopleController.birthSkills;
-                      _skillsPeopleChoose = _peopleController.optionalSkills;
                     }
-                    _skillsJobObtain = _jobController.inheritedSkills;
-                    _skillsJobChoose = _jobController.optionalSkills;
+                    if (_peopleController != peopleHuman) {
+                      skillsPeopleObtain = _peopleController.birthSkills;
+                      skillsPeopleChoose = _peopleController.optionalSkills;
+                    }
+                    skillsJobObtain = _jobController.inheritedSkills;
+                    skillsJobChoose = _jobController.optionalSkills;
 
-                    _skillsObtain = [..._skillsPeopleObtain, ..._skillsJobObtain];
+                    _skillsObtain = [...skillsPeopleObtain, ...skillsJobObtain];
                     _skillsObtain = _skillsObtain.toSet().toList();
                     _skillsObtain.sort((a, b) => a.skill.compareTo(b.skill));
-                    Set<Skill> _skillsObtainSet = Set.from(_skillsObtain);
-                    _skillsChoose = [..._skillsPeopleChoose, ..._skillsJobChoose];
-                    Set<Skill> _skillsChooseSet = Set.from(_skillsChoose);
-                    _skillsChoose = List.from(_skillsChooseSet.difference(_skillsObtainSet));
+                    Set<Skill> skillsObtainSet0 = Set.from(_skillsObtain);
+                    _skillsChoose = [...skillsPeopleChoose, ...skillsJobChoose];
+                    Set<Skill> skillsChooseSet0 = Set.from(_skillsChoose);
+                    _skillsChoose = List.from(skillsChooseSet0.difference(skillsObtainSet0));
                     _skillsChoose = _skillsChoose.toSet().toList();
                     _skillsChoose.sort((a, b) => a.skill.compareTo(b.skill));
                     if (_skillsObtain.isEmpty && _skillsChoose.isEmpty) {
@@ -2666,8 +2778,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                     if (_jobController == jobDealer) _isDealer = true;
                     if (_jobController == jobEngineer) _isEngineer = true;
                     if (int.parse(_statisticsController[3].text) < 9) _lowDexterity = true;
-                    if (int.parse(_statisticsController[3].text) > 12 && _jobController != jobNinja)
+                    if (int.parse(_statisticsController[3].text) > 12 && _jobController != jobNinja) {
                       _highDexterity = true;
+                    }
                     if (_isOgre ||
                         _isFighter ||
                         _isRanger ||
@@ -2714,9 +2827,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                       _goldController,
                       _silverController,
                     ];
-                    _wealthController.forEach((element) {
+                    for (var element in _wealthController) {
                       element.text = '0';
-                    });
+                    }
                     _nameController.text = '';
                     _genderController.text = '';
                     _isBourgeois = false;
@@ -2745,18 +2858,22 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
                       if (_peopleController == peopleHuman) {
                         _healthPoints = 20;
                       } else {
-                        _healthPoints = (_peopleController.hp - (_peopleController.hp * 30 / 100)).ceil().toInt();
+                        _healthPoints =
+                            (_peopleController.hp - (_peopleController.hp * 30 / 100)).ceil().toInt();
                       }
                     }
-                    if (_jobController == jobPaladin && _peopleController == peopleHuman) _healthPoints = 32;
+                    if (_jobController == jobPaladin && _peopleController == peopleHuman) {
+                      _healthPoints = 32;
+                    }
 
                     _astralPoints = 0;
-                    if (_jobController == jobCleric || _jobController == jobWizard || _jobController == jobPaladin)
-                      _astralPoints = _jobController.points()[1];
+                    if (_jobController == jobCleric ||
+                        _jobController == jobWizard ||
+                        _jobController == jobPaladin) _astralPoints = _jobController.points()[1];
 
                     _maxLoad = _peopleController.load;
-                    if (_jobController == jobWizard && (_peopleController.load > 10 || _peopleController.load == 0))
-                      _maxLoad = 10;
+                    if (_jobController == jobWizard &&
+                        (_peopleController.load > 10 || _peopleController.load == 0)) _maxLoad = 10;
 
                     _maxNaturalPR = 0;
                     if (_jobController.pr != 0) _maxNaturalPR = _jobController.pr;
@@ -2808,21 +2925,30 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid> with Si
         value: value,
         child: Text(
           value.people,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
         ),
       );
   DropdownMenuItem<Job> buildMenuJob(Job value) => DropdownMenuItem(
         value: value,
         child: Text(
           value.job,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
         ),
       );
   DropdownMenuItem<Specialization> buildMenuSpecialization(Specialization value) => DropdownMenuItem(
         value: value,
         child: Text(
           value.specialization,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
         ),
       );
 }

@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:terre_de_fangh/src/data/resources/notifier/theme_mode.notifier.dart';
 
 class SettingAndroid extends StatefulWidget {
+  const SettingAndroid({super.key});
+
   @override
-  _SettingAndroidState createState() => _SettingAndroidState();
+  State<SettingAndroid> createState() => _SettingAndroidState();
 }
 
 class _SettingAndroidState extends State<SettingAndroid> {
@@ -34,7 +36,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
               .headlineLarge
               ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
         ),
-        Divider(),
+        const Divider(),
         Row(
           children: [
             Text(

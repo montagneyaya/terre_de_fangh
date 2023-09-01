@@ -16,5 +16,6 @@ class Armor extends Item {
   int breakFight = 6;
 
   factory Armor.fromJson(Map<String, dynamic> json) => _$ArmorFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$ArmorToJson(this);
 }

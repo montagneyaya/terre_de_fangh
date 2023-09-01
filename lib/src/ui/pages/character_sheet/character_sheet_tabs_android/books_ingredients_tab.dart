@@ -16,7 +16,7 @@ Widget _booksIngredientsTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -60,7 +60,7 @@ Widget _booksIngredientsTab(BuildContext context) {
                       Expanded(
                         flex: 3,
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: Column(
                             children: [
                               Expanded(
@@ -97,7 +97,7 @@ Widget _booksIngredientsTab(BuildContext context) {
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Expanded(
                   flex: 7,
                   child: Row(

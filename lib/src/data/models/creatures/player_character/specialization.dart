@@ -9,7 +9,7 @@ class Specialization {
 
   @override
   String toString() {
-    return this.specialization;
+    return specialization;
   }
 
   factory Specialization.fromJson(Map<String, dynamic> json) => _$SpecializationFromJson(json);

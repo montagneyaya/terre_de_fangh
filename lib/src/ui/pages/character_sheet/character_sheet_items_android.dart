@@ -4,14 +4,16 @@ import 'package:terre_de_fangh/src/ui/components/background/background.dart';
 import 'package:terre_de_fangh/src/ui/components/text/text.dart';
 import 'package:terre_de_fangh/src/ui/components/text/text_field.dart';
 import 'package:terre_de_fangh/src/ui/instances/background/background.dart';
-import 'package:terre_de_fangh/src/lang/lang.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/lang.dart';
 part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/items_tab.dart';
 part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/potions_munitions_tab.dart';
 part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/books_ingredients_tab.dart';
 
 class CharacterSheetItemsAndroid extends StatefulWidget {
+  const CharacterSheetItemsAndroid({super.key});
+
   @override
-  _CharacterSheetItemsAndroidState createState() => _CharacterSheetItemsAndroidState();
+  State<CharacterSheetItemsAndroid> createState() => _CharacterSheetItemsAndroidState();
 }
 
 class _CharacterSheetItemsAndroidState extends State<CharacterSheetItemsAndroid> {

@@ -1,8 +1,8 @@
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/job.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/specializations.enum.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/skills.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/job.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/specializations.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/skills.enum.dart';
 
-final Job jobFighter = new Job(
+final Job jobFighter = Job(
     'Guerrier',
     [12, 20],
     [8, 20],
@@ -26,7 +26,7 @@ final Job jobFighter = new Job(
       skillPainIsForTheWeak
     ]);
 
-final Job jobNinja = new Job(
+final Job jobNinja = Job(
     'Assassin',
     [8, 20],
     [8, 20],
@@ -51,7 +51,7 @@ final Job jobNinja = new Job(
       skillLikeNothing
     ]);
 
-final Job jobRogue = new Job(
+final Job jobRogue = Job(
     'Voleur',
     [8, 20],
     [8, 20],
@@ -76,7 +76,7 @@ final Job jobRogue = new Job(
       skillLikeNothing
     ]);
 
-final Job jobCleric = new Job(
+final Job jobCleric = Job(
     'Prêtre',
     [8, 20],
     [8, 20],
@@ -106,7 +106,7 @@ final Job jobCleric = new Job(
       skillWeirdRunes
     ]);
 
-final Job jobWizard = new Job(
+final Job jobWizard = Job(
     'Mage',
     [8, 20],
     [12, 20],
@@ -141,7 +141,7 @@ final Job jobWizard = new Job(
       skillFirstAid
     ]);
 
-final Job jobPaladin = new Job(
+final Job jobPaladin = Job(
     'Paladin',
     [12, 20],
     [10, 20],
@@ -157,7 +157,7 @@ final Job jobPaladin = new Job(
     [skillRide, skillIntimidate, skillRecovery],
     [skillStuffingWeapons, skillMessUp, skillErudition, skillPoppycock, skillFirstAid]);
 
-final Job jobRanger = new Job(
+final Job jobRanger = Job(
     'Ranger',
     [8, 20],
     [8, 20],
@@ -183,7 +183,7 @@ final Job jobRanger = new Job(
       skillShootProperly
     ]);
 
-final Job jobBard = new Job(
+final Job jobBard = Job(
     'Menestrel',
     [8, 20],
     [8, 20],
@@ -206,7 +206,7 @@ final Job jobBard = new Job(
     ],
     [skillMistrust, skillBeggingAndWhining, skillFirstAid, skillWeirdRunes, skillShootProperly]);
 
-final Job jobDealer = new Job(
+final Job jobDealer = Job(
     'Marchant',
     [8, 20],
     [12, 20],
@@ -222,7 +222,7 @@ final Job jobDealer = new Job(
     [skillCallForReinforcements, skillScamAndSwindling, skillErudition, skillPoppycock, skillMistrust],
     [skillGroupLeader, skillRide, skillCook, skillBlacksmith, skillTreasureInstinct, skillWeirdRunes]);
 
-final Job jobEngineer = new Job(
+final Job jobEngineer = Job(
     'Ingénieur',
     [8, 20],
     [8, 20],
@@ -249,7 +249,7 @@ final Job jobEngineer = new Job(
     [skillAmateurHandyman, skillDefuse, skillBlacksmith, skillLikeNothing, skillLocksmith],
     [skillCallForReinforcements, skillRide, skillCook, skillErudition, skillSwim, skillFirstAid]);
 
-final Job jobPirate = new Job(
+final Job jobPirate = Job(
     'Pirate',
     [11, 20],
     [8, 20],
@@ -279,7 +279,7 @@ final Job jobPirate = new Job(
       skillShootProperly
     ]);
 
-final Job jobBourgeois = new Job(
+final Job jobBourgeois = Job(
     'Bourgeois',
     [8, 20],
     [10, 20],
@@ -303,7 +303,7 @@ final Job jobBourgeois = new Job(
     ]);
 
 /*
-final Job jobOfficer = new Job(
+final Job jobOfficer = Job(
     'Officier',
     [11, 20],
     [8, 20],
@@ -441,7 +441,7 @@ final Job jobOfficer = new Job(
       skillSurviving
     ]);
 
-final Job jobScout = new Job(
+final Job jobScout = Job(
     'Eclaireur',
     [8, 20],
     [8, 20],
@@ -579,7 +579,7 @@ final Job jobScout = new Job(
       skillSurviving
     ]);
 
-final Job jobHeavySoldier = new Job(
+final Job jobHeavySoldier = Job(
     'Soldat Lourd',
     [11, 20],
     [8, 20],
@@ -717,7 +717,7 @@ final Job jobHeavySoldier = new Job(
       skillSurviving
     ]);
 
-final Job jobDoctor = new Job(
+final Job jobDoctor = Job(
     'Medecin',
     [8, 20],
     [12, 20],
@@ -855,7 +855,7 @@ final Job jobDoctor = new Job(
       skillSurviving
     ]);
 
-final Job jobGunsmith = new Job(
+final Job jobGunsmith = Job(
     'Armurier',
     [8, 20],
     [12, 20],
@@ -994,7 +994,7 @@ final Job jobGunsmith = new Job(
     ]);
 */
 
-final Job jobTorturer = new Job(
+final Job jobTorturer = Job(
     'Bourreau',
     [8, 20],
     [8, 20],
@@ -1031,7 +1031,7 @@ final Job jobTorturer = new Job(
       skillPainIsForTheWeak
     ]);
 
-final Job jobMyrmidon = new Job(
+final Job jobMyrmidon = Job(
     'Sbire',
     [8, 10],
     [8, 11],
@@ -1100,5 +1100,5 @@ final Job jobMyrmidon = new Job(
       skillTormentor
     ]);
 
-final Job jobAny = new Job(
+final Job jobAny = Job(
     'Aucun', [8, 20], [8, 20], [8, 20], [8, 20], [8, 20], 0, 0, 0, 0, 0, [specializationAny], [], []);

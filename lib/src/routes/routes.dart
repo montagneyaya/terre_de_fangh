@@ -9,7 +9,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/home',
-      builder: (context, state) => HomePage(),
+      builder: (context, state) => const HomePage(),
     ),
     GoRoute(
       path: '/character-sheet',
@@ -17,35 +17,35 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/character-sheet/main',
-      builder: (context, state) => CharacterSheetPage(),
+      builder: (context, state) => const CharacterSheetPage(),
     ),
     GoRoute(
       path: '/character-sheet/fight',
-      builder: (context, state) => CharacterSheetFightPage(),
+      builder: (context, state) => const CharacterSheetFightPage(),
     ),
     GoRoute(
       path: '/character-sheet/items',
-      builder: (context, state) => CharacterSheetItemsPage(),
+      builder: (context, state) => const CharacterSheetItemsPage(),
     ),
     GoRoute(
       path: '/character-sheet/backpack',
-      builder: (context, state) => CharacterSheetBackPackPage(),
+      builder: (context, state) => const CharacterSheetBackPackPage(),
     ),
     GoRoute(
       path: '/character-sheet/purse',
-      builder: (context, state) => CharacterSheetPursePage(),
+      builder: (context, state) => const CharacterSheetPursePage(),
     ),
     GoRoute(
       path: '/create-character',
-      builder: (context, state) => CreateCharacterPage(),
+      builder: (context, state) => const CreateCharacterPage(),
     ),
     GoRoute(
       path: '/setting',
-      builder: (context, sate) => SettingPage(),
+      builder: (context, sate) => const SettingPage(),
     ),
     GoRoute(
       path: '/test',
-      builder: (context, state) => TestPage(),
+      builder: (context, state) => const TestPage(),
     )
   ],
 );

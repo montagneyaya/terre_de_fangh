@@ -10,13 +10,15 @@ import 'package:terre_de_fangh/src/ui/responsive/device.dart';
 import 'package:terre_de_fangh/src/ui/pages/home/home_android.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   Widget _content(BuildContext context) {
     final Device device = Device();
     switch (device.device(context)) {
       case Devices.web:
-        return HomeWeb();
+        return const HomeWeb();
       case Devices.androidHandset:
-        return HomeAndroid();
+        return const HomeAndroid();
       case Devices.iOSHandset:
         // TODO: Handle this case.
         break;
@@ -39,9 +41,9 @@ class HomePage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 
   Widget _homeBase(BuildContext context) {
@@ -73,9 +75,9 @@ class HomePage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 
   @override
@@ -108,8 +110,8 @@ class HomePage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 }

@@ -57,8 +57,8 @@ class Lang {
   static const String weapon4CharacterFight = 'Arme 4';
   static const String weapon5CharacterFight = 'Arme 5';
   static const String bonusMalusWeaponArmor = 'Bonus/Malus';
-  static const String addNaturalsDamages = 'Dégats naturels spplèmentaires';
-  static const String addSpellsDamages = 'Dégats magiques supplémentaires';
+  static const String addNaturalsDamages = 'Dégâts naturels supplémentaires';
+  static const String addSpellsDamages = 'Dégâts magiques supplémentaires';
   static const String naturalProtectionArmor = 'PR Nat.';
   static const String spellProtectionArmor = 'PR Mag.';
   static const String headCharacter = 'Tête';
@@ -72,7 +72,7 @@ class Lang {
   static const String modifierFight = 'Modif.';
   static const String attackATCharacter = 'Attaque (AT)';
   static const String throwTHCharacter = 'Jet (JET)      ';
-  static const String parryPACharacter = 'Parrade (PRD)';
+  static const String parryPACharacter = 'Parade (PRD)';
   static const String dodgeDOCharacter = 'Esquive (ESQ)';
   static const String naturalProtectionFight = 'PR Naturel';
   static const String spellProtectionFight = 'PR Magique';

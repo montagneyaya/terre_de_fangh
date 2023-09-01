@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:terre_de_fangh/src/ui/themes/icons_rpg.dart';
-import 'package:terre_de_fangh/src/lang/lang.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/lang.dart';
 import 'package:go_router/go_router.dart';
 
 NavigationBar homeNavigation(int index, BuildContext context) {
   return NavigationBar(
     selectedIndex: index,
-    destinations: [
+    destinations: const [
       NavigationDestination(
         icon: Icon(IconsRPG.dwarf),
         label: Lang.hero,

@@ -1,8 +1,10 @@
 part of 'package:terre_de_fangh/src/ui/pages/home/home_android.dart';
 
 class CharacterTab extends StatefulWidget {
+  const CharacterTab({super.key});
+
   @override
-  _CharacterTabState createState() => _CharacterTabState();
+  State<CharacterTab> createState() => _CharacterTabState();
 }
 
 class _CharacterTabState extends State<CharacterTab> {
@@ -18,25 +20,25 @@ class _CharacterTabState extends State<CharacterTab> {
             onPressed: () {
               context.push('/create-character');
             },
-            label: Text('Ajouter un personnage'),
-            icon: Icon(Icons.add),
+            label: const Text('Ajouter un personnage'),
+            icon: const Icon(Icons.add),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: FutureBuilder(
               future: Save('characters').readAllFile(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 } else if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
                     charactersFiles = snapshot.data;
-                    charactersFiles.forEach((fileElement) {
+                    for (var fileElement in charactersFiles) {
                       Widget character = FutureBuilder(
                         future: Load(fileElement).readJson(),
                         builder: (BuildContext context, AsyncSnapshot snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           } else if (snapshot.connectionState == ConnectionState.done) {
                             Map jsonValue = jsonDecode(snapshot.data);
                             return InkWell(
@@ -45,7 +47,7 @@ class _CharacterTabState extends State<CharacterTab> {
                                 elevation: 0.0,
                                 color: Theme.of(context).colorScheme.surfaceVariant,
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: const EdgeInsets.all(4.0),
                                   child: Row(
                                     children: [
                                       Text(
@@ -77,7 +79,7 @@ class _CharacterTabState extends State<CharacterTab> {
                                             ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
                                       ),
                                       Text(
-                                        jsonValue['level'].toString() + ' ',
+                                        '${jsonValue['level']} ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyLarge
@@ -95,7 +97,7 @@ class _CharacterTabState extends State<CharacterTab> {
                         },
                       );
                       charactersList.add(character);
-                    });
+                    }
                     return ListView(
                       shrinkWrap: true,
                       children: charactersList,

@@ -7,6 +7,8 @@ import 'package:terre_de_fangh/src/ui/pages/setting/setting_android.dart';
 import 'package:terre_de_fangh/src/ui/responsive/device.dart';
 
 class SettingPage extends StatelessWidget {
+  const SettingPage({super.key});
+
   Widget _content(BuildContext context) {
     final Device device = Device();
     switch (device.device(context)) {
@@ -14,7 +16,7 @@ class SettingPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case Devices.androidHandset:
-        return SettingAndroid();
+        return const SettingAndroid();
       case Devices.iOSHandset:
         // TODO: Handle this case.
         break;
@@ -37,9 +39,9 @@ class SettingPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 
   Widget _settingBase(BuildContext context) {
@@ -71,9 +73,9 @@ class SettingPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 
   @override
@@ -106,8 +108,8 @@ class SettingPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 }

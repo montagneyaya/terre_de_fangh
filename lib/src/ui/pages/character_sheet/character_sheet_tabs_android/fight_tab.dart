@@ -9,25 +9,25 @@ Widget _fightTable(BuildContext context, String label) {
         terreDeFanghTextBodyMedium(context, label),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 8),
             child: terreDeFanghTextField(context),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 8),
             child: terreDeFanghTextField(context),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 8),
             child: terreDeFanghTextField(context),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 8),
             child: terreDeFanghTextField(context),
           ),
         ),
@@ -45,19 +45,19 @@ Widget _fightTable2(BuildContext context, String label) {
         terreDeFanghTextBodyMedium(context, label),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 8),
             child: terreDeFanghTextField(context),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 8),
             child: terreDeFanghTextField(context),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 8),
             child: terreDeFanghTextField(context),
           ),
         ),
@@ -82,13 +82,13 @@ Widget _fightTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Spacer(flex: 2),
+                    const Spacer(flex: 2),
                     Expanded(
                       child: terreDeFanghTextBodyMedium(context, Lang.baseFight),
                     ),
@@ -103,12 +103,12 @@ Widget _fightTab(BuildContext context) {
                     ),
                   ],
                 ),
-                    _fightTable(context, Lang.attackATCharacter),
-                    _fightTable(context, Lang.throwTHCharacter),
-                    _fightTable(context, Lang.parryPACharacter),
+                _fightTable(context, Lang.attackATCharacter),
+                _fightTable(context, Lang.throwTHCharacter),
+                _fightTable(context, Lang.parryPACharacter),
                 Row(
                   children: [
-                    Spacer(flex: 3),
+                    const Spacer(flex: 3),
                     Expanded(
                       flex: 2,
                       child: terreDeFanghTextBodyMedium(context, Lang.weapon3CharacterFight),
@@ -123,9 +123,9 @@ Widget _fightTab(BuildContext context) {
                     ),
                   ],
                 ),
-                    _fightTable2(context, Lang.attackATCharacter),
-                    _fightTable2(context, Lang.throwTHCharacter),
-                    _fightTable2(context, Lang.parryPACharacter),
+                _fightTable2(context, Lang.attackATCharacter),
+                _fightTable2(context, Lang.throwTHCharacter),
+                _fightTable2(context, Lang.parryPACharacter),
                 Expanded(
                   child: Row(
                     textBaseline: TextBaseline.alphabetic,
@@ -133,22 +133,22 @@ Widget _fightTab(BuildContext context) {
                     children: [
                       terreDeFanghTextBodyMedium(context, Lang.dodgeDOCharacter),
                       Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: terreDeFanghTextBodyMedium(context, Lang.baseFight),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 16),
+                          padding: const EdgeInsets.only(left: 16),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: terreDeFanghTextBodyMedium(context, Lang.modifierFight),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 16),
+                          padding: const EdgeInsets.only(left: 16),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
@@ -185,7 +185,7 @@ Widget _fightTab(BuildContext context) {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: 8),
+                                      padding: const EdgeInsets.only(left: 8),
                                       child: terreDeFanghTextField(context),
                                     ),
                                   ),
@@ -200,7 +200,7 @@ Widget _fightTab(BuildContext context) {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 16),
+                          padding: const EdgeInsets.only(left: 16),
                           child: Column(
                             children: [
                               Expanded(

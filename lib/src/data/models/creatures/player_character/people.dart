@@ -1,5 +1,5 @@
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/job.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player-character/skill.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/job.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/skill.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'people.g.dart';
 
@@ -37,16 +37,16 @@ class People {
   List<Skill> optionalSkills;
 
   List<List<int>> statistics() {
-    return [this.courage, this.intellect, this.charisma, this.dexterity, this.strength];
+    return [courage, intellect, charisma, dexterity, strength];
   }
 
   List<int> fight() {
-    return [this.attack, this.parry];
+    return [attack, parry];
   }
 
   @override
   String toString() {
-    return this.people;
+    return people;
   }
 
   factory People.fromJson(Map<String, dynamic> json) => _$PeopleFromJson(json);

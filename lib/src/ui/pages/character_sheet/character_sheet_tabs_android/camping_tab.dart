@@ -5,7 +5,7 @@ Widget _campingTable(BuildContext context, String label) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Spacer(),
+        const Spacer(),
         Expanded(
           flex: 5,
           child: terreDeFanghTextBodyMedium(context, label),
@@ -20,13 +20,13 @@ Widget _campingTable(BuildContext context, String label) {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 8),
                   child: terreDeFanghTextField(context),
                 ),
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 8),
                   child: terreDeFanghTextField(context),
                 ),
               ),
@@ -54,7 +54,7 @@ Widget _campingTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -76,7 +76,7 @@ Widget _campingTab(BuildContext context) {
                 _campingTable(context, Lang.tentCharacter),
                 _campingTable(context, Lang.mattressCharacter),
                 _campingTable(context, Lang.blanketCharacter),
-                Spacer(),
+                const Spacer(),
                 terreDeFanghTextBodyMedium(context, Lang.foodDrinkCharacter),
                 Expanded(
                   child: terreDeFanghTextField(context),

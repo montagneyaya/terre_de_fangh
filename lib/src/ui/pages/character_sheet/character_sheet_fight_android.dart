@@ -5,14 +5,16 @@ import 'package:terre_de_fangh/src/ui/components/text/label_text_field.dart';
 import 'package:terre_de_fangh/src/ui/components/text/text.dart';
 import 'package:terre_de_fangh/src/ui/components/text/text_field.dart';
 import 'package:terre_de_fangh/src/ui/instances/background/background.dart';
-import 'package:terre_de_fangh/src/lang/lang.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/lang.dart';
 part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/fight_tab.dart';
 part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/weapons_tab.dart';
 part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/armors_tab.dart';
 
 class CharacterSheetFightAndroid extends StatefulWidget {
+  const CharacterSheetFightAndroid({super.key});
+
   @override
-  _CharacterSheetFightAndroidState createState() => _CharacterSheetFightAndroidState();
+  State<CharacterSheetFightAndroid> createState() => _CharacterSheetFightAndroidState();
 }
 
 class _CharacterSheetFightAndroidState extends State<CharacterSheetFightAndroid> {

@@ -16,7 +16,7 @@ Widget _itemsTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,7 +53,7 @@ Widget _itemsTab(BuildContext context) {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: Column(
                             children: [
                               Expanded(
@@ -84,7 +84,7 @@ Widget _itemsTab(BuildContext context) {
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Expanded(
                   flex: 7,
                   child: Row(
@@ -119,7 +119,7 @@ Widget _itemsTab(BuildContext context) {
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: Column(
                             children: [
                               Expanded(
@@ -150,7 +150,7 @@ Widget _itemsTab(BuildContext context) {
                       Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: Column(
                             children: [
                               Expanded(

@@ -16,25 +16,25 @@ Widget _armorsTable(BuildContext context, String label) {
                     Expanded(
                       flex: 3,
                       child: Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: terreDeFanghTextField(context),
                       ),
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: terreDeFanghTextField(context),
                       ),
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: terreDeFanghTextField(context),
                       ),
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: terreDeFanghTextField(context),
                       ),
                     ),
@@ -46,11 +46,11 @@ Widget _armorsTable(BuildContext context, String label) {
                   textBaseline: TextBaseline.alphabetic,
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   children: [
-                    Checkbox(value: false, onChanged: null),
+                    const Checkbox(value: false, onChanged: null),
                     terreDeFanghTextBodyMedium(context, Lang.bonusMalusWeaponArmor),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: terreDeFanghTextField(context),
                       ),
                     ),
@@ -81,13 +81,13 @@ Widget _armorsTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Expanded(
                       flex: 4,
                       child: terreDeFanghTextBodyMedium(context, Lang.armorsCharacter),

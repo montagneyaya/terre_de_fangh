@@ -16,7 +16,7 @@ Widget _statisticsTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -36,7 +36,7 @@ Widget _statisticsTab(BuildContext context) {
                 Expanded(
                   child: terreDeFanghLabelTextField(context, Lang.astralPointsCharacter),
                 ),
-                Spacer(),
+                const Spacer(),
                 Expanded(
                   child: terreDeFanghLabelTextField(context, Lang.spellResistanceCharacter),
                 ),
@@ -49,7 +49,7 @@ Widget _statisticsTab(BuildContext context) {
                 Expanded(
                   child: terreDeFanghLabelTextField(context, Lang.engineerCharacter),
                 ),
-                Spacer(),
+                const Spacer(),
                 Expanded(
                   child: terreDeFanghLabelTextField(context, Lang.courageCOUCharacter),
                 ),

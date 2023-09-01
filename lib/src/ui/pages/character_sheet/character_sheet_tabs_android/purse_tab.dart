@@ -16,7 +16,7 @@ Widget _purseTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -29,13 +29,13 @@ Widget _purseTab(BuildContext context) {
                       Expanded(
                         flex: 3,
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
@@ -55,7 +55,7 @@ Widget _purseTab(BuildContext context) {
                 Expanded(
                   child: terreDeFanghLabelTextField(context, Lang.argentCoinsCharacter),
                 ),
-                Spacer(),
+                const Spacer(),
                 Expanded(
                   child: Row(
                     children: [
@@ -78,7 +78,7 @@ Widget _purseTab(BuildContext context) {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
@@ -94,7 +94,7 @@ Widget _purseTab(BuildContext context) {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
@@ -110,7 +110,7 @@ Widget _purseTab(BuildContext context) {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
@@ -126,7 +126,7 @@ Widget _purseTab(BuildContext context) {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
@@ -142,14 +142,14 @@ Widget _purseTab(BuildContext context) {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: terreDeFanghTextField(context),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Expanded(
                   child: terreDeFanghLabelTextField(context, Lang.otherMoney),
                 ),

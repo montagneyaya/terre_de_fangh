@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:terre_de_fangh/src/ui/components/base/base_android_handset.dart';
 
-import '../../lang/lang.dart';
+import '../../lang/FR_fr/lang.dart';
 import '../components/background/background.dart';
 import '../components/text/text.dart';
 import '../components/text/text_field.dart';
 import '../instances/background/background.dart';
 
 class TestPage extends StatelessWidget {
+  const TestPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return BaseAndroid(
+    return const BaseAndroid(
       TestContent(),
       null,
       false,
@@ -22,8 +24,10 @@ class TestPage extends StatelessWidget {
 }
 
 class TestContent extends StatefulWidget {
+  const TestContent({super.key});
+
   @override
-  _TestContentState createState() => _TestContentState();
+  State<TestContent> createState() => _TestContentState();
 }
 
 class _TestContentState extends State<TestContent> {
@@ -68,7 +72,7 @@ class _TestContentState extends State<TestContent> {
                     terreDeFanghTextBodyMedium(context, Lang.nameCharacter),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 16),
+                        padding: const EdgeInsets.only(left: 16),
                         child: terreDeFanghTextField(context),
                       ),
                     ),

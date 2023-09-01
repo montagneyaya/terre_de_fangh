@@ -16,7 +16,7 @@ Widget _mainTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -33,7 +33,7 @@ Widget _mainTab(BuildContext context) {
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Expanded(
                   child: terreDeFanghLabelTextField(context, Lang.nameCharacter),
                 ),

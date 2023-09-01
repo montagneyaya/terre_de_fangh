@@ -7,6 +7,8 @@ import 'package:terre_de_fangh/src/ui/instances/bottom_nav_bar/bottom_navigation
 import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_items_android.dart';
 
 class CharacterSheetItemsPage extends StatelessWidget {
+  const CharacterSheetItemsPage({super.key});
+
   Widget _content(BuildContext context) {
     final Device device = Device();
     switch (device.device(context)) {
@@ -14,7 +16,7 @@ class CharacterSheetItemsPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case Devices.androidHandset:
-        return CharacterSheetItemsAndroid();
+        return const CharacterSheetItemsAndroid();
       case Devices.iOSHandset:
         // TODO: Handle this case.
         break;
@@ -37,9 +39,9 @@ class CharacterSheetItemsPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 
   Widget _characterSheetBase(BuildContext context) {
@@ -73,9 +75,9 @@ class CharacterSheetItemsPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 
   @override
@@ -109,8 +111,8 @@ class CharacterSheetItemsPage extends StatelessWidget {
         // TODO: Handle this case.
         break;
       case null:
-        return Scaffold();
+        return const Scaffold();
     }
-    return Scaffold();
+    return const Scaffold();
   }
 }
