@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:terre_de_fangh/src/data/resources/notifier/theme_mode.notifier.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/ui.dart';
 
 class SettingAndroid extends StatefulWidget {
   const SettingAndroid({super.key});
@@ -30,7 +31,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
     return Column(
       children: <Widget>[
         Text(
-          'Parametres',
+          LangUI.settings,
           style: Theme.of(context)
               .textTheme
               .headlineLarge
@@ -40,7 +41,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
         Row(
           children: [
             Text(
-              'Theme',
+              LangUI.theme,
               style: Theme.of(context)
                   .textTheme
                   .titleLarge
@@ -52,7 +53,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
                   children: [
                     RadioListTile<ThemeMode>(
                       title: Text(
-                        'Clair',
+                        LangUI.light,
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge
@@ -72,7 +73,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
                     RadioListTile<ThemeMode>(
                       activeColor: Theme.of(context).colorScheme.primary,
                       title: Text(
-                        'Sombre',
+                        LangUI.dark,
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge
@@ -92,7 +93,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
                     RadioListTile<ThemeMode>(
                       activeColor: Theme.of(context).colorScheme.primary,
                       title: Text(
-                        'Systeme',
+                        LangUI.system,
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge

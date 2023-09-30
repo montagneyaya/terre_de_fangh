@@ -28,7 +28,8 @@ Widget _itemsTab(BuildContext context) {
                         child: Column(
                           children: [
                             Expanded(
-                              child: terreDeFanghTextBodyMedium(context, Lang.specialsItemsCharacter),
+                              child: terreDeFanghTextBodyMedium(
+                                  context, LangCharacterSheet.specialsItemsCharacter),
                             ),
                             Expanded(
                               child: terreDeFanghTextField(context),
@@ -57,7 +58,8 @@ Widget _itemsTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghTextBodyMedium(context, Lang.bonusEffectsItem),
+                                child: terreDeFanghTextBodyMedium(
+                                    context, LangCharacterSheet.bonusEffectsItem),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -93,7 +95,7 @@ Widget _itemsTab(BuildContext context) {
                         child: Column(
                           children: [
                             Expanded(
-                              child: terreDeFanghTextBodyMedium(context, Lang.loadsItem),
+                              child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.loadsItem),
                             ),
                             Expanded(
                               child: terreDeFanghTextField(context),
@@ -123,7 +125,8 @@ Widget _itemsTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghTextBodyMedium(context, Lang.loadingItemsCharacter),
+                                child: terreDeFanghTextBodyMedium(
+                                    context, LangCharacterSheet.loadingItemsCharacter),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -154,7 +157,8 @@ Widget _itemsTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghTextBodyMedium(context, Lang.effectsItemAmmoPotion),
+                                child: terreDeFanghTextBodyMedium(
+                                    context, LangCharacterSheet.effectsItemAmmoPotion),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),

@@ -1,4 +1,4 @@
-package com.montagneyaya.terre_de_fangh
+package com.example.terre_de_fangh
 
 import io.flutter.embedding.android.FlutterActivity
 

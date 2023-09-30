@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:terre_de_fangh/src/lang/fr_FR/system.dart';
 
 class Save {
   Save(this.directory) {
@@ -84,7 +85,7 @@ class Load {
       final jsonString = await file.readAsString();
       return jsonString;
     } catch (e) {
-      return 'Erreur de fichier';
+      return LangSystem.fileError;
     }
   }
 }

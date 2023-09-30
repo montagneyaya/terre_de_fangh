@@ -28,7 +28,7 @@ Widget _potionsMunitionsTab(BuildContext context) {
                         child: Column(
                           children: [
                             Expanded(
-                              child: terreDeFanghTextBodyMedium(context, Lang.numberAmmo),
+                              child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.numberAmmo),
                             ),
                             Expanded(
                               child: terreDeFanghTextField(context),
@@ -58,7 +58,8 @@ Widget _potionsMunitionsTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghTextBodyMedium(context, Lang.ammoCharacter),
+                                child: terreDeFanghTextBodyMedium(
+                                    context, LangCharacterSheet.ammoCharacter),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -89,7 +90,8 @@ Widget _potionsMunitionsTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghTextBodyMedium(context, Lang.effectsItemAmmoPotion),
+                                child: terreDeFanghTextBodyMedium(
+                                    context, LangCharacterSheet.effectsItemAmmoPotion),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -125,7 +127,7 @@ Widget _potionsMunitionsTab(BuildContext context) {
                         child: Column(
                           children: [
                             Expanded(
-                              child: terreDeFanghTextBodyMedium(context, Lang.dosesPotion),
+                              child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.dosesPotion),
                             ),
                             Expanded(
                               child: terreDeFanghTextField(context),
@@ -161,7 +163,8 @@ Widget _potionsMunitionsTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghTextBodyMedium(context, Lang.potionsPoisonsCharacter),
+                                child: terreDeFanghTextBodyMedium(
+                                    context, LangCharacterSheet.potionsPoisonsCharacter),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -198,7 +201,8 @@ Widget _potionsMunitionsTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghTextBodyMedium(context, Lang.effectsItemAmmoPotion),
+                                child: terreDeFanghTextBodyMedium(
+                                    context, LangCharacterSheet.effectsItemAmmoPotion),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),

@@ -90,51 +90,56 @@ Widget _fightTab(BuildContext context) {
                   children: [
                     const Spacer(flex: 2),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.baseFight),
+                      child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.baseFight),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.modifierFight),
+                      child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.modifierFight),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.weapon1CharacterFight),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.weapon1CharacterFight),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.weapon2CharacterFight),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.weapon2CharacterFight),
                     ),
                   ],
                 ),
-                _fightTable(context, Lang.attackATCharacter),
-                _fightTable(context, Lang.throwTHCharacter),
-                _fightTable(context, Lang.parryPACharacter),
+                _fightTable(context, LangCharacterSheet.attackATCharacter),
+                _fightTable(context, LangCharacterSheet.throwTHCharacter),
+                _fightTable(context, LangCharacterSheet.parryPACharacter),
                 Row(
                   children: [
                     const Spacer(flex: 3),
                     Expanded(
                       flex: 2,
-                      child: terreDeFanghTextBodyMedium(context, Lang.weapon3CharacterFight),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.weapon3CharacterFight),
                     ),
                     Expanded(
                       flex: 2,
-                      child: terreDeFanghTextBodyMedium(context, Lang.weapon4CharacterFight),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.weapon4CharacterFight),
                     ),
                     Expanded(
                       flex: 2,
-                      child: terreDeFanghTextBodyMedium(context, Lang.weapon5CharacterFight),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.weapon5CharacterFight),
                     ),
                   ],
                 ),
-                _fightTable2(context, Lang.attackATCharacter),
-                _fightTable2(context, Lang.throwTHCharacter),
-                _fightTable2(context, Lang.parryPACharacter),
+                _fightTable2(context, LangCharacterSheet.attackATCharacter),
+                _fightTable2(context, LangCharacterSheet.throwTHCharacter),
+                _fightTable2(context, LangCharacterSheet.parryPACharacter),
                 Expanded(
                   child: Row(
                     textBaseline: TextBaseline.alphabetic,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
-                      terreDeFanghTextBodyMedium(context, Lang.dodgeDOCharacter),
+                      terreDeFanghTextBodyMedium(context, LangCharacterSheet.dodgeDOCharacter),
                       Padding(
                         padding: const EdgeInsets.only(left: 8),
-                        child: terreDeFanghTextBodyMedium(context, Lang.baseFight),
+                        child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.baseFight),
                       ),
                       Expanded(
                         child: Padding(
@@ -144,7 +149,7 @@ Widget _fightTab(BuildContext context) {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8),
-                        child: terreDeFanghTextBodyMedium(context, Lang.modifierFight),
+                        child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.modifierFight),
                       ),
                       Expanded(
                         child: Padding(
@@ -163,10 +168,12 @@ Widget _fightTab(BuildContext context) {
                         child: Column(
                           children: [
                             Expanded(
-                              child: terreDeFanghLabelTextField(context, Lang.naturalProtectionFight),
+                              child: terreDeFanghLabelTextField(
+                                  context, LangCharacterSheet.naturalProtectionFight),
                             ),
                             Expanded(
-                              child: terreDeFanghLabelTextField(context, Lang.spellProtectionFight),
+                              child: terreDeFanghLabelTextField(
+                                  context, LangCharacterSheet.spellProtectionFight),
                             ),
                             Expanded(
                               child: Row(
@@ -174,12 +181,12 @@ Widget _fightTab(BuildContext context) {
                                   Column(
                                     children: [
                                       Expanded(
-                                        child:
-                                            terreDeFanghTextBodyMedium(context, Lang.painForWeak1Fight),
+                                        child: terreDeFanghTextBodyMedium(
+                                            context, LangCharacterSheet.painForWeak1Fight),
                                       ),
                                       Expanded(
-                                        child:
-                                            terreDeFanghTextBodyMedium(context, Lang.painForWeak2Fight),
+                                        child: terreDeFanghTextBodyMedium(
+                                            context, LangCharacterSheet.painForWeak2Fight),
                                       ),
                                     ],
                                   ),
@@ -193,7 +200,8 @@ Widget _fightTab(BuildContext context) {
                               ),
                             ),
                             Expanded(
-                              child: terreDeFanghLabelTextField(context, Lang.totalProtectionFight),
+                              child: terreDeFanghLabelTextField(
+                                  context, LangCharacterSheet.totalProtectionFight),
                             ),
                           ],
                         ),
@@ -204,25 +212,32 @@ Widget _fightTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghLabelTextField(context, Lang.headCharacter),
+                                child: terreDeFanghLabelTextField(
+                                    context, LangCharacterSheet.headCharacter),
                               ),
                               Expanded(
-                                child: terreDeFanghLabelTextField(context, Lang.chestCharacter),
+                                child: terreDeFanghLabelTextField(
+                                    context, LangCharacterSheet.chestCharacter),
                               ),
                               Expanded(
-                                child: terreDeFanghLabelTextField(context, Lang.armsCharacter),
+                                child: terreDeFanghLabelTextField(
+                                    context, LangCharacterSheet.armsCharacter),
                               ),
                               Expanded(
-                                child: terreDeFanghLabelTextField(context, Lang.handsCharacter),
+                                child: terreDeFanghLabelTextField(
+                                    context, LangCharacterSheet.handsCharacter),
                               ),
                               Expanded(
-                                child: terreDeFanghLabelTextField(context, Lang.shieldCharacter),
+                                child: terreDeFanghLabelTextField(
+                                    context, LangCharacterSheet.shieldCharacter),
                               ),
                               Expanded(
-                                child: terreDeFanghLabelTextField(context, Lang.legsCharacter),
+                                child: terreDeFanghLabelTextField(
+                                    context, LangCharacterSheet.legsCharacter),
                               ),
                               Expanded(
-                                child: terreDeFanghLabelTextField(context, Lang.feetCharacter),
+                                child: terreDeFanghLabelTextField(
+                                    context, LangCharacterSheet.feetCharacter),
                               ),
                             ],
                           ),

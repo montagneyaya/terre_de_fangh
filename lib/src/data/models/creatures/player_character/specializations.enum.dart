@@ -1,39 +1,42 @@
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/specialization.dart';
+import 'package:terre_de_fangh/src/lang/fr_FR/specializations.dart';
 
 //CLERIC PALADIN
-final Specialization specializationAdathie = Specialization('Adathie');
-final Specialization specializationMalgar = Specialization('Malgar');
-final Specialization specializationYouclidh = Specialization('Youclidh');
-final Specialization specializationDlul = Specialization('Dlul');
-final Specialization specializationSlanouch = Specialization('Slanouch');
-final Specialization specializationBraav = Specialization('Braav');
-final Specialization specializationKhornettoh = Specialization('Khornetto');
+final Specialization specializationAdathie = Specialization(LangSpecializations.adathie);
+final Specialization specializationMalgar = Specialization(LangSpecializations.malgar);
+final Specialization specializationYouclidh = Specialization(LangSpecializations.youclidh);
+final Specialization specializationDlul = Specialization(LangSpecializations.dlul);
+final Specialization specializationSlanouch = Specialization(LangSpecializations.slanouch);
+final Specialization specializationBraav = Specialization(LangSpecializations.braav);
+final Specialization specializationKhornettoh = Specialization(LangSpecializations.khornettoh);
 
 //WIZARD
-final Specialization specializationGeneral = Specialization('General');
-final Specialization specializationBattle = Specialization('Combat');
-final Specialization specializationFire = Specialization('Feu');
-final Specialization specializationMakeover = Specialization('Metamorphose');
-final Specialization specializationThermodynamic = Specialization('Thermodynamique');
-final Specialization specializationInvocation = Specialization('Invocation');
-final Specialization specializationNecromancy = Specialization('Necromancie');
-final Specialization specializationIllusion = Specialization('Illusion');
-final Specialization specializationWaterAndIce = Specialization('Eau et Glace');
-final Specialization specializationEarth = Specialization('Terre');
-final Specialization specializationAir = Specialization('Air');
-final Specialization specializationTzinntch = Specialization('Tzinntch');
+final Specialization specializationGeneral = Specialization(LangSpecializations.general);
+final Specialization specializationBattle = Specialization(LangSpecializations.battle);
+final Specialization specializationFire = Specialization(LangSpecializations.fire);
+final Specialization specializationMakeover = Specialization(LangSpecializations.makeover);
+final Specialization specializationThermodynamic = Specialization(LangSpecializations.thermodynamic);
+final Specialization specializationInvocation = Specialization(LangSpecializations.invocation);
+final Specialization specializationNecromancy = Specialization(LangSpecializations.necromancy);
+final Specialization specializationIllusion = Specialization(LangSpecializations.illusion);
+final Specialization specializationWaterAndIce = Specialization(LangSpecializations.waterAndIce);
+final Specialization specializationEarth = Specialization(LangSpecializations.earth);
+final Specialization specializationAir = Specialization(LangSpecializations.air);
+final Specialization specializationTzinntch = Specialization(LangSpecializations.tzinntch);
 
 //ENGINEER
-final Specialization specializationMechanic = Specialization('Mecanicien');
-final Specialization specializationDesignerBlacksmith = Specialization('Forgeron Concepteur');
-final Specialization specializationCabinetmaker = Specialization('Ebeniste');
-final Specialization specializationLeatherCraftsman = Specialization('Artisan du cuir');
-final Specialization specializationTailor = Specialization('Couturier');
-final Specialization specializationCook = Specialization('Cuisinier');
-final Specialization specializationAlchemist = Specialization('Alchimiste');
-final Specialization specializationDoctor = Specialization('Medecin');
-final Specialization specializationBasketMaker = Specialization('Vannier');
-final Specialization specializationGoblin = Specialization('Gobelin');
+final Specialization specializationMechanic = Specialization(LangSpecializations.mechanic);
+final Specialization specializationDesignerBlacksmith =
+    Specialization(LangSpecializations.designerBlacksmith);
+final Specialization specializationCabinetmaker = Specialization(LangSpecializations.cabinetmaker);
+final Specialization specializationLeatherCraftsman =
+    Specialization(LangSpecializations.leatherCraftsman);
+final Specialization specializationTailor = Specialization(LangSpecializations.tailor);
+final Specialization specializationCook = Specialization(LangSpecializations.cook);
+final Specialization specializationAlchemist = Specialization(LangSpecializations.alchemist);
+final Specialization specializationDoctor = Specialization(LangSpecializations.doctor);
+final Specialization specializationBasketMaker = Specialization(LangSpecializations.basketMaker);
+final Specialization specializationGoblin = Specialization(LangSpecializations.goblin);
 
 //ANY
-final Specialization specializationAny = Specialization('Aucune');
+final Specialization specializationAny = Specialization(LangSpecializations.any);

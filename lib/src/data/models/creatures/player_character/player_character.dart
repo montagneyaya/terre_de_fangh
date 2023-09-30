@@ -7,6 +7,9 @@ import 'package:terre_de_fangh/src/data/resources/modifiers/add_natural_damages.
 import 'package:terre_de_fangh/src/data/resources/modifiers/add_spell_damages.dart';
 import 'package:terre_de_fangh/src/data/models/items/item.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/character_sheet.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/jobs.dart';
+import 'package:terre_de_fangh/src/lang/fr_FR/specializations.dart';
 part 'player_character.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
@@ -51,8 +54,8 @@ class PlayerCharacter extends Creatures {
   }
 
   String gender = '';
-  String job = 'Aucun';
-  String specialization = 'Aucune';
+  String job = LangJobs.any;
+  String specialization = LangSpecializations.any;
   int fatePoints = 0;
   int level = 1;
   int currentLoad = 0;
@@ -129,7 +132,9 @@ class PlayerCharacter extends Creatures {
     }
     spellResistance = ((modifyCourage + value + modifyStrength) / 3).ceil();
     if (value > 12) {
-      addSpellDamages.where((element) => element.txtDamages == 'intelligence (INT)').forEach((element) {
+      addSpellDamages
+          .where((element) => element.txtDamages == LangCharacterSheet.intellectINTCharacter)
+          .forEach((element) {
         addSpellDamages.remove(element);
       });
       addSpellDamages.add(_intellectSup(value));
@@ -160,7 +165,9 @@ class PlayerCharacter extends Creatures {
     _modifyStrength = value;
     spellResistance = ((modifyCourage + modifyIntellect + value) / 3).ceil();
     if (value < 9 || value > 12) {
-      addNaturalDamages.where((element) => element.txtDamages == 'Force (FO)').forEach((element) {
+      addNaturalDamages
+          .where((element) => element.txtDamages == LangCharacterSheet.strengthSTRCharacter)
+          .forEach((element) {
         addNaturalDamages.remove(element);
       });
       addNaturalDamages.add(_strengthSup(value));
@@ -169,14 +176,14 @@ class PlayerCharacter extends Creatures {
 
   AddSpellDamages _intellectSup(int value) {
     AddSpellDamages? addIntellectDamages;
-    addIntellectDamages!.txtDamages = 'Intelligence (INT)';
+    addIntellectDamages!.txtDamages = LangCharacterSheet.intellectINTCharacter;
     addIntellectDamages.damages = value - 12;
     return addIntellectDamages;
   }
 
   AddNaturalDamages _strengthSup(int value) {
     AddNaturalDamages? addStrengthDamages;
-    addStrengthDamages!.txtDamages = 'Force (FO)';
+    addStrengthDamages!.txtDamages = LangCharacterSheet.strengthSTRCharacter;
     if (value > 12) addStrengthDamages.damages = value - 12;
     if (value < 9) addStrengthDamages.damages = -1;
     return addStrengthDamages;

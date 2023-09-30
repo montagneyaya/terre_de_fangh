@@ -47,7 +47,7 @@ Widget _armorsTable(BuildContext context, String label) {
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   children: [
                     const Checkbox(value: false, onChanged: null),
-                    terreDeFanghTextBodyMedium(context, Lang.bonusMalusWeaponArmor),
+                    terreDeFanghTextBodyMedium(context, LangCharacterSheet.bonusMalusWeaponArmor),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8),
@@ -90,26 +90,29 @@ Widget _armorsTab(BuildContext context) {
                     const Spacer(),
                     Expanded(
                       flex: 4,
-                      child: terreDeFanghTextBodyMedium(context, Lang.armorsCharacter),
+                      child: terreDeFanghTextBodyMedium(context, LangUI.armorsCharacter),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.naturalProtectionArmor),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.naturalProtectionArmor),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.spellProtectionArmor),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.spellProtectionArmor),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.breakPointsWeaponArmor),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.breakPointsWeaponArmor),
                     ),
                   ],
                 ),
-                _armorsTable(context, Lang.headCharacter),
-                _armorsTable(context, Lang.chestCharacter),
-                _armorsTable(context, Lang.armsCharacter),
-                _armorsTable(context, Lang.handsCharacter),
-                _armorsTable(context, Lang.shieldCharacter),
-                _armorsTable(context, Lang.legsCharacter),
-                _armorsTable(context, Lang.feetCharacter),
+                _armorsTable(context, LangCharacterSheet.headCharacter),
+                _armorsTable(context, LangCharacterSheet.chestCharacter),
+                _armorsTable(context, LangCharacterSheet.armsCharacter),
+                _armorsTable(context, LangCharacterSheet.handsCharacter),
+                _armorsTable(context, LangCharacterSheet.shieldCharacter),
+                _armorsTable(context, LangCharacterSheet.legsCharacter),
+                _armorsTable(context, LangCharacterSheet.feetCharacter),
               ],
             ),
           ),

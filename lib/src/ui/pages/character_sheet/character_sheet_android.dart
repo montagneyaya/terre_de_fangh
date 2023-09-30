@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:terre_de_fangh/src/lang/FR_fr/lang.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/character_sheet.dart';
 import 'package:terre_de_fangh/src/ui/components/background/background.dart';
 import 'package:terre_de_fangh/src/ui/components/text/label_text_field.dart';
 import 'package:terre_de_fangh/src/ui/components/text/text_field.dart';

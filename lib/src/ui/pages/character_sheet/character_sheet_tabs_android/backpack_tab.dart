@@ -25,7 +25,7 @@ Widget _backpackTab(BuildContext context) {
                     textBaseline: TextBaseline.alphabetic,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
-                      terreDeFanghTextBodyMedium(context, Lang.maxLoadCharacter),
+                      terreDeFanghTextBodyMedium(context, LangCharacterSheet.maxLoadCharacter),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8),
@@ -34,7 +34,8 @@ Widget _backpackTab(BuildContext context) {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8),
-                        child: terreDeFanghTextBodyMedium(context, Lang.totalLoadCharacter),
+                        child:
+                            terreDeFanghTextBodyMedium(context, LangCharacterSheet.totalLoadCharacter),
                       ),
                       Expanded(
                         child: Padding(
@@ -46,10 +47,11 @@ Widget _backpackTab(BuildContext context) {
                   ),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.equipmentWeightCharacter),
+                  child:
+                      terreDeFanghLabelTextField(context, LangCharacterSheet.equipmentWeightCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.backPackWeightCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.backPackWeightCharacter),
                 ),
                 const Spacer(),
                 Expanded(
@@ -57,7 +59,7 @@ Widget _backpackTab(BuildContext context) {
                     textBaseline: TextBaseline.alphabetic,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
-                      terreDeFanghTextBodyMedium(context, Lang.backpackCharacter),
+                      terreDeFanghTextBodyMedium(context, LangUI.backpackCharacter),
                       Expanded(
                         flex: 2,
                         child: Padding(
@@ -71,7 +73,7 @@ Widget _backpackTab(BuildContext context) {
                           child: terreDeFanghTextField(context),
                         ),
                       ),
-                      terreDeFanghTextBodyMedium(context, Lang.kgMaxBackpack),
+                      terreDeFanghTextBodyMedium(context, LangCharacterSheet.kgMaxBackpack),
                     ],
                   ),
                 ),
@@ -94,7 +96,7 @@ Widget _backpackTab(BuildContext context) {
                   child: terreDeFanghTextField(context),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.clothesCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.clothesCharacter),
                 ),
                 Expanded(
                   child: terreDeFanghTextField(context),

@@ -1,9 +1,10 @@
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/people.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/jobs.enum.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/skills.enum.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/peoples.dart';
 
 final People peopleHuman = People(
-    'Humain',
+    LangPeoples.human,
     [8, 20],
     [8, 20],
     [8, 20],
@@ -83,7 +84,7 @@ final People peopleHuman = People(
     ]);
 
 final People peopleBarbarian = People(
-    'Barbare',
+    LangPeoples.barbarian,
     [12, 20],
     [8, 20],
     [8, 20],
@@ -109,7 +110,7 @@ final People peopleBarbarian = People(
     ]);
 
 final People peopleDwarf = People(
-    'Nain',
+    LangPeoples.dwarf,
     [11, 20],
     [8, 20],
     [8, 20],
@@ -147,7 +148,7 @@ final People peopleDwarf = People(
     ]);
 
 final People peopleHighElf = People(
-    'Haut Elfe',
+    LangPeoples.highElf,
     [8, 20],
     [11, 20],
     [12, 20],
@@ -185,7 +186,7 @@ final People peopleHighElf = People(
     ]);
 
 final People peopleHalfElf = People(
-    'Demi Elfe',
+    LangPeoples.halfElf,
     [8, 20],
     [8, 20],
     [10, 20],
@@ -226,7 +227,7 @@ final People peopleHalfElf = People(
     ]);
 
 final People peopleSilvanElf = People(
-    'Elfe Sylvain',
+    LangPeoples.silvanElf,
     [8, 20],
     [8, 20],
     [12, 20],
@@ -263,7 +264,7 @@ final People peopleSilvanElf = People(
     ]);
 
 final People peopleDarkElf = People(
-    'Elfe Noir',
+    LangPeoples.darkElf,
     [8, 20],
     [12, 20],
     [8, 20],
@@ -304,7 +305,7 @@ final People peopleDarkElf = People(
     ]);
 
 final People peopleOrc = People(
-    'Orque',
+    LangPeoples.orc,
     [8, 20],
     [8, 8],
     [8, 10],
@@ -334,7 +335,7 @@ final People peopleOrc = People(
     ]);
 
 final People peopleHalfOrc = People(
-    'Demi Orque',
+    LangPeoples.halfOrc,
     [8, 20],
     [8, 10],
     [8, 20],
@@ -359,7 +360,7 @@ final People peopleHalfOrc = People(
     ]);
 
 final People peopleGoblin = People(
-    'Gobelin',
+    LangPeoples.goblin,
     [8, 10],
     [8, 10],
     [8, 8],
@@ -384,7 +385,7 @@ final People peopleGoblin = People(
     [skillAmateurHandyman, skillDefuse, skillClimb, skillBlacksmith]);
 
 final People peopleOgre = People(
-    'Ogre',
+    LangPeoples.ogre,
     [8, 20],
     [8, 9],
     [8, 10],
@@ -414,7 +415,7 @@ final People peopleOgre = People(
     ]);
 
 final People peopleHobbit = People(
-    'Semi-Homme',
+    LangPeoples.hobbit,
     [12, 20],
     [10, 20],
     [8, 20],
@@ -454,7 +455,7 @@ final People peopleHobbit = People(
     ]);
 
 final People peopleGnome = People(
-    'Gnome',
+    LangPeoples.gnome,
     [8, 20],
     [10, 20],
     [8, 20],
@@ -486,7 +487,7 @@ final People peopleGnome = People(
     ]);
 
 final People peopleMafiaDwarf = People(
-    'Nain de la Mafia',
+    LangPeoples.mafiaDwarf,
     [10, 20],
     [11, 20],
     [8, 20],
@@ -523,7 +524,7 @@ final People peopleMafiaDwarf = People(
     ]);
 
 final People peopleSylderianAmazon = People(
-    'Amazone Sylderienne',
+    LangPeoples.sylderianAmazon,
     [12, 20],
     [8, 20],
     [12, 20],
@@ -550,7 +551,7 @@ final People peopleSylderianAmazon = People(
     [skillClimb, skillSurvivalInstinct, skillIntimidate, skillSwim, skillTrack, skillShootProperly]);
 
 final People peopleMonster = People(
-    'Monstre',
+    LangPeoples.monster,
     [0, 0],
     [0, 0],
     [0, 0],

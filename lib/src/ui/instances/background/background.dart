@@ -1,33 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:terre_de_fangh/src/ui/assets/images.dart';
 
-ImageProvider<Object> imageArmors =
-    const AssetImage('assets/images/decor/mobile/background_armors.webp');
-ImageProvider<Object> imageBackpack =
-    const AssetImage('assets/images/decor/mobile/background_backpack.webp');
-ImageProvider<Object> imageBooks = const AssetImage('assets/images/decor/mobile/background_books.webp');
-ImageProvider<Object> imageCamping =
-    const AssetImage('assets/images/decor/mobile/background_camping.webp');
-ImageProvider<Object> imageDice =
-    const AssetImage('assets/images/decor/mobile/background_create_character.webp');
-ImageProvider<Object> imageFight = const AssetImage('assets/images/decor/mobile/background_fight.webp');
-ImageProvider<Object> imageMain = const AssetImage('assets/images/decor/mobile/background_main.webp');
-ImageProvider<Object> imageObjects =
-    const AssetImage('assets/images/decor/mobile/background_objects.webp');
-ImageProvider<Object> imagePotions =
-    const AssetImage('assets/images/decor/mobile/background_potion.webp');
-ImageProvider<Object> imagePouch = const AssetImage('assets/images/decor/mobile/background_pouch.webp');
-ImageProvider<Object> imageSkills =
-    const AssetImage('assets/images/decor/mobile/background_skills.webp');
-ImageProvider<Object> imageStatistics =
-    const AssetImage('assets/images/decor/mobile/background_statistics.webp');
-ImageProvider<Object> imageTreasures =
-    const AssetImage('assets/images/decor/mobile/background_treasures.webp');
-ImageProvider<Object> imageWeapons =
-    const AssetImage('assets/images/decor/mobile/background_weapons.webp');
-ImageProvider<Object> imageCharacters =
-    const AssetImage('assets/images/decor/mobile/background_characters.webp');
-ImageProvider<Object> imageAdventures =
-    const AssetImage('assets/images/decor/mobile/background_adventures.webp');
-ImageProvider<Object> imageAdventuresSolo =
-    const AssetImage('assets/images/decor/mobile/background_adventures_solo.webp');
-ImageProvider<Object> imageWeb = const AssetImage('assets/images/decor/web/background.webp');
+ImageProvider<Object> imageArmors = const AssetImage(AssetsImages.backgroundArmors);
+ImageProvider<Object> imageBackpack = const AssetImage(AssetsImages.backgroundBackpack);
+ImageProvider<Object> imageBooks = const AssetImage(AssetsImages.backgroundBooks);
+ImageProvider<Object> imageCamping = const AssetImage(AssetsImages.backgroundCamping);
+ImageProvider<Object> imageDice = const AssetImage(AssetsImages.backgroundCreateCharacter);
+ImageProvider<Object> imageFight = const AssetImage(AssetsImages.backgroundFight);
+ImageProvider<Object> imageMain = const AssetImage(AssetsImages.backgroundMain);
+ImageProvider<Object> imageObjects = const AssetImage(AssetsImages.backgroundObjects);
+ImageProvider<Object> imagePotions = const AssetImage(AssetsImages.backgroundPotion);
+ImageProvider<Object> imagePouch = const AssetImage(AssetsImages.backgroundPouch);
+ImageProvider<Object> imageSkills = const AssetImage(AssetsImages.backgroundSkills);
+ImageProvider<Object> imageStatistics = const AssetImage(AssetsImages.backgroundStatistics);
+ImageProvider<Object> imageTreasures = const AssetImage(AssetsImages.backgroundTreasures);
+ImageProvider<Object> imageWeapons = const AssetImage(AssetsImages.backgroundWeapons);
+ImageProvider<Object> imageCharacters = const AssetImage(AssetsImages.backgroundCharacters);
+ImageProvider<Object> imageAdventures = const AssetImage(AssetsImages.backgroundAdventures);
+ImageProvider<Object> imageAdventuresSolo = const AssetImage(AssetsImages.backgroundAdventuresSolo);
+ImageProvider<Object> imageWeb = const AssetImage(AssetsImages.backgroundWeb);

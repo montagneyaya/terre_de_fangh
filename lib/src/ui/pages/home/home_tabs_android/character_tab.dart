@@ -18,9 +18,9 @@ class _CharacterTabState extends State<CharacterTab> {
         children: [
           FloatingActionButton.extended(
             onPressed: () {
-              context.push('/create-character');
+              context.push(RoutesPath.createCharacter);
             },
-            label: const Text('Ajouter un personnage'),
+            label: const Text(LangComponents.addCharacter),
             icon: const Icon(Icons.add),
           ),
           Padding(
@@ -42,7 +42,7 @@ class _CharacterTabState extends State<CharacterTab> {
                           } else if (snapshot.connectionState == ConnectionState.done) {
                             Map jsonValue = jsonDecode(snapshot.data);
                             return InkWell(
-                              onTap: () => context.push('/character-sheet/main'),
+                              onTap: () => context.push(RoutesPath.characterSheet),
                               child: Card(
                                 elevation: 0.0,
                                 color: Theme.of(context).colorScheme.surfaceVariant,

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:terre_de_fangh/src/routes/routes_path.dart';
 import 'package:terre_de_fangh/src/ui/pages/test_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,7 @@ import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_item
 import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_backpack.dart';
 import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_fight.dart';
 import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_purse.dart';
-import 'package:terre_de_fangh/src/lang/FR_fr/lang.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/ui.dart';
 part 'package:terre_de_fangh/src/routes/routes.dart';
 
 class TerreDeFanghApp extends StatelessWidget {
@@ -54,7 +55,7 @@ class TerreDeFanghApp extends StatelessWidget {
             supportedLocales: const [
               Locale('fr', 'FR'),
             ],
-            title: Lang.appName,
+            title: LangUI.appName,
             routerConfig: _router,
             theme: themeDevice,
             darkTheme: themeDeviceDark,

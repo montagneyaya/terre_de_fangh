@@ -21,49 +21,50 @@ Widget _statisticsTab(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.levelCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.levelCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.experienceCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.experienceCharacter),
                 ),
                 Spacer(),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.fatePointsCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.fatePointsCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.healthPointsCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.healthPointsCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.astralPointsCharacter),
-                ),
-                const Spacer(),
-                Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.spellResistanceCharacter),
-                ),
-                Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.physicalSpellCharacter),
-                ),
-                Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.psychicSpellCharacter),
-                ),
-                Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.engineerCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.astralPointsCharacter),
                 ),
                 const Spacer(),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.courageCOUCharacter),
+                  child:
+                      terreDeFanghLabelTextField(context, LangCharacterSheet.spellResistanceCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.intellectINTCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.physicalSpellCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.charismaCHACharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.psychicSpellCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.dexterityDEXCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.engineerCharacter),
+                ),
+                const Spacer(),
+                Expanded(
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.courageCOUCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.strengthSTRCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.intellectINTCharacter),
+                ),
+                Expanded(
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.charismaCHACharacter),
+                ),
+                Expanded(
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.dexterityDEXCharacter),
+                ),
+                Expanded(
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.strengthSTRCharacter),
                 ),
               ],
             ),

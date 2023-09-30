@@ -35,19 +35,16 @@ Widget _mainTab(BuildContext context) {
                 ),
                 const Spacer(),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.nameCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.nameCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.genderCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.genderCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.peopleCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.peopleCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.jobCharacter),
-                ),
-                Expanded(
-                  child: terreDeFanghTextField(context),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.jobCharacter),
                 ),
                 Expanded(
                   child: terreDeFanghTextField(context),
@@ -56,7 +53,10 @@ Widget _mainTab(BuildContext context) {
                   child: terreDeFanghTextField(context),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.particularSigns),
+                  child: terreDeFanghTextField(context),
+                ),
+                Expanded(
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.particularSigns),
                 ),
                 Expanded(
                   child: terreDeFanghTextField(context),

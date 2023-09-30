@@ -1,9 +1,10 @@
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/job.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/specializations.enum.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/skills.enum.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/jobs.dart';
 
 final Job jobFighter = Job(
-    'Guerrier',
+    LangJobs.fighter,
     [12, 20],
     [8, 20],
     [8, 20],
@@ -27,7 +28,7 @@ final Job jobFighter = Job(
     ]);
 
 final Job jobNinja = Job(
-    'Assassin',
+    LangJobs.ninja,
     [8, 20],
     [8, 20],
     [8, 20],
@@ -52,7 +53,7 @@ final Job jobNinja = Job(
     ]);
 
 final Job jobRogue = Job(
-    'Voleur',
+    LangJobs.rogue,
     [8, 20],
     [8, 20],
     [8, 20],
@@ -77,7 +78,7 @@ final Job jobRogue = Job(
     ]);
 
 final Job jobCleric = Job(
-    'Prêtre',
+    LangJobs.cleric,
     [8, 20],
     [8, 20],
     [12, 20],
@@ -107,7 +108,7 @@ final Job jobCleric = Job(
     ]);
 
 final Job jobWizard = Job(
-    'Mage',
+    LangJobs.wizard,
     [8, 20],
     [12, 20],
     [8, 20],
@@ -142,7 +143,7 @@ final Job jobWizard = Job(
     ]);
 
 final Job jobPaladin = Job(
-    'Paladin',
+    LangJobs.paladin,
     [12, 20],
     [10, 20],
     [11, 20],
@@ -158,7 +159,7 @@ final Job jobPaladin = Job(
     [skillStuffingWeapons, skillMessUp, skillErudition, skillPoppycock, skillFirstAid]);
 
 final Job jobRanger = Job(
-    'Ranger',
+    LangJobs.ranger,
     [8, 20],
     [8, 20],
     [10, 20],
@@ -184,7 +185,7 @@ final Job jobRanger = Job(
     ]);
 
 final Job jobBard = Job(
-    'Menestrel',
+    LangJobs.bard,
     [8, 20],
     [8, 20],
     [12, 20],
@@ -207,7 +208,7 @@ final Job jobBard = Job(
     [skillMistrust, skillBeggingAndWhining, skillFirstAid, skillWeirdRunes, skillShootProperly]);
 
 final Job jobDealer = Job(
-    'Marchant',
+    LangJobs.dealer,
     [8, 20],
     [12, 20],
     [11, 20],
@@ -223,7 +224,7 @@ final Job jobDealer = Job(
     [skillGroupLeader, skillRide, skillCook, skillBlacksmith, skillTreasureInstinct, skillWeirdRunes]);
 
 final Job jobEngineer = Job(
-    'Ingénieur',
+    LangJobs.engineer,
     [8, 20],
     [8, 20],
     [8, 20],
@@ -250,7 +251,7 @@ final Job jobEngineer = Job(
     [skillCallForReinforcements, skillRide, skillCook, skillErudition, skillSwim, skillFirstAid]);
 
 final Job jobPirate = Job(
-    'Pirate',
+    LangJobs.pirate,
     [11, 20],
     [8, 20],
     [8, 20],
@@ -280,7 +281,7 @@ final Job jobPirate = Job(
     ]);
 
 final Job jobBourgeois = Job(
-    'Bourgeois',
+    LangJobs.bourgeois,
     [8, 20],
     [10, 20],
     [11, 20],
@@ -304,7 +305,7 @@ final Job jobBourgeois = Job(
 
 /*
 final Job jobOfficer = Job(
-    'Officier',
+    LangJobs.officer,
     [11, 20],
     [8, 20],
     [12, 20],
@@ -442,7 +443,7 @@ final Job jobOfficer = Job(
     ]);
 
 final Job jobScout = Job(
-    'Eclaireur',
+    LangJobs.scout,
     [8, 20],
     [8, 20],
     [8, 20],
@@ -580,7 +581,7 @@ final Job jobScout = Job(
     ]);
 
 final Job jobHeavySoldier = Job(
-    'Soldat Lourd',
+    LangJobs.heavySoldier,
     [11, 20],
     [8, 20],
     [8, 20],
@@ -718,7 +719,7 @@ final Job jobHeavySoldier = Job(
     ]);
 
 final Job jobDoctor = Job(
-    'Medecin',
+    LangJobs.doctor,
     [8, 20],
     [12, 20],
     [8, 20],
@@ -856,7 +857,7 @@ final Job jobDoctor = Job(
     ]);
 
 final Job jobGunsmith = Job(
-    'Armurier',
+    LangJobs.gunsmith,
     [8, 20],
     [12, 20],
     [8, 20],
@@ -995,7 +996,7 @@ final Job jobGunsmith = Job(
 */
 
 final Job jobTorturer = Job(
-    'Bourreau',
+    LangJobs.torturer,
     [8, 20],
     [8, 20],
     [8, 20],
@@ -1032,7 +1033,7 @@ final Job jobTorturer = Job(
     ]);
 
 final Job jobMyrmidon = Job(
-    'Sbire',
+    LangJobs.myrmidon,
     [8, 10],
     [8, 11],
     [8, 11],
@@ -1100,5 +1101,5 @@ final Job jobMyrmidon = Job(
       skillTormentor
     ]);
 
-final Job jobAny = Job(
-    'Aucun', [8, 20], [8, 20], [8, 20], [8, 20], [8, 20], 0, 0, 0, 0, 0, [specializationAny], [], []);
+final Job jobAny = Job(LangJobs.any, [8, 20], [8, 20], [8, 20], [8, 20], [8, 20], 0, 0, 0, 0, 0,
+    [specializationAny], [], []);

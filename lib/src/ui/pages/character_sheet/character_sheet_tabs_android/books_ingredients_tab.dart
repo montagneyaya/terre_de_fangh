@@ -28,7 +28,8 @@ Widget _booksIngredientsTab(BuildContext context) {
                         child: Column(
                           children: [
                             Expanded(
-                              child: terreDeFanghTextBodyMedium(context, Lang.quantityIngredient),
+                              child: terreDeFanghTextBodyMedium(
+                                  context, LangCharacterSheet.quantityIngredient),
                             ),
                             Expanded(
                               child: terreDeFanghTextField(context),
@@ -64,7 +65,8 @@ Widget _booksIngredientsTab(BuildContext context) {
                           child: Column(
                             children: [
                               Expanded(
-                                child: terreDeFanghTextBodyMedium(context, Lang.ingredientsCharacter),
+                                child: terreDeFanghTextBodyMedium(
+                                    context, LangCharacterSheet.ingredientsCharacter),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -106,7 +108,8 @@ Widget _booksIngredientsTab(BuildContext context) {
                         child: Column(
                           children: [
                             Expanded(
-                              child: terreDeFanghTextBodyMedium(context, Lang.booksCharacter),
+                              child:
+                                  terreDeFanghTextBodyMedium(context, LangCharacterSheet.booksCharacter),
                             ),
                             Expanded(
                               child: terreDeFanghTextField(context),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:terre_de_fangh/src/ui/components/base/base_android_handset.dart';
 
-import '../../lang/FR_fr/lang.dart';
+import '../../lang/FR_fr/character_sheet.dart';
 import '../components/background/background.dart';
 import '../components/text/text.dart';
 import '../components/text/text_field.dart';
@@ -69,7 +69,7 @@ class _TestContentState extends State<TestContent> {
                   textBaseline: TextBaseline.alphabetic,
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   children: [
-                    terreDeFanghTextBodyMedium(context, Lang.nameCharacter),
+                    terreDeFanghTextBodyMedium(context, LangCharacterSheet.nameCharacter),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16),

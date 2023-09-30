@@ -25,7 +25,7 @@ Widget _purseTab(BuildContext context) {
                     textBaseline: TextBaseline.alphabetic,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
-                      terreDeFanghTextBodyMedium(context, Lang.purseCharacter),
+                      terreDeFanghTextBodyMedium(context, LangUI.purseCharacter),
                       Expanded(
                         flex: 3,
                         child: Padding(
@@ -39,21 +39,21 @@ Widget _purseTab(BuildContext context) {
                           child: terreDeFanghTextField(context),
                         ),
                       ),
-                      terreDeFanghTextBodyMedium(context, Lang.maxPurse),
+                      terreDeFanghTextBodyMedium(context, LangCharacterSheet.maxPurse),
                     ],
                   ),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.beryliumCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.beryliumCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.thritilCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.thritilCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.goldCoinsCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.goldCoinsCharacter),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.argentCoinsCharacter),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.silverCoinsCharacter),
                 ),
                 const Spacer(),
                 Expanded(
@@ -61,10 +61,10 @@ Widget _purseTab(BuildContext context) {
                     children: [
                       Expanded(
                         flex: 4,
-                        child: terreDeFanghTextBodyMedium(context, Lang.gemsCharacter),
+                        child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.gemsCharacter),
                       ),
                       Expanded(
-                        child: terreDeFanghTextBodyMedium(context, Lang.ugCharacter),
+                        child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.ugCharacter),
                       ),
                     ],
                   ),
@@ -151,7 +151,7 @@ Widget _purseTab(BuildContext context) {
                 ),
                 const Spacer(),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.otherMoney),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.otherMoney),
                 ),
                 Expanded(
                   child: terreDeFanghTextField(context),

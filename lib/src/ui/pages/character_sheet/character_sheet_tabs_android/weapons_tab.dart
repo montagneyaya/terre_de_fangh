@@ -42,7 +42,7 @@ Widget _weaponsTable(BuildContext context, String label) {
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   children: [
                     const Checkbox(value: false, onChanged: null),
-                    terreDeFanghTextBodyMedium(context, Lang.bonusMalusWeaponArmor),
+                    terreDeFanghTextBodyMedium(context, LangCharacterSheet.bonusMalusWeaponArmor),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8),
@@ -85,27 +85,28 @@ Widget _weaponsTab(BuildContext context) {
                     const Spacer(),
                     Expanded(
                       flex: 4,
-                      child: terreDeFanghTextBodyMedium(context, Lang.weaponryCharacter),
+                      child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.weaponryCharacter),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.impactPointsWeapon),
+                      child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.impactPointsWeapon),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.breakPointsWeaponArmor),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.breakPointsWeaponArmor),
                     ),
                   ],
                 ),
-                _weaponsTable(context, Lang.weapon1CharacterFight),
-                _weaponsTable(context, Lang.weapon2CharacterFight),
-                _weaponsTable(context, Lang.weapon3CharacterFight),
-                _weaponsTable(context, Lang.weapon4CharacterFight),
-                _weaponsTable(context, Lang.weapon5CharacterFight),
+                _weaponsTable(context, LangCharacterSheet.weapon1CharacterFight),
+                _weaponsTable(context, LangCharacterSheet.weapon2CharacterFight),
+                _weaponsTable(context, LangCharacterSheet.weapon3CharacterFight),
+                _weaponsTable(context, LangCharacterSheet.weapon4CharacterFight),
+                _weaponsTable(context, LangCharacterSheet.weapon5CharacterFight),
                 const Spacer(),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.addNaturalsDamages),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.addNaturalsDamages),
                 ),
                 Expanded(
-                  child: terreDeFanghLabelTextField(context, Lang.addSpellsDamages),
+                  child: terreDeFanghLabelTextField(context, LangCharacterSheet.addSpellsDamages),
                 ),
               ],
             ),

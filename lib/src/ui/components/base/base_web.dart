@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terre_de_fangh/src/ui/Assets/images.dart';
 import 'package:terre_de_fangh/src/ui/responsive/breakpoint.dart';
 import 'package:terre_de_fangh/src/ui/responsive/device.dart';
 import 'package:terre_de_fangh/src/ui/instances/app_bar/app_bar_web.dart';
@@ -44,20 +45,20 @@ class BaseWeb extends StatelessWidget {
     if (device.device(context) == Devices.web) {
       switch (breakpoint.breakpoint(context)) {
         case Breakpoints.xsmall:
-          return const AssetImage('assets/images/decor/web/banner-xs.webp');
+          return const AssetImage(AssetsImages.bannerXS);
         case Breakpoints.small:
-          return const AssetImage('assets/images/decor/web/banner-s.webp');
+          return const AssetImage(AssetsImages.bannerS);
         case Breakpoints.medium:
-          return const AssetImage('assets/images/decor/web/banner-m.webp');
+          return const AssetImage(AssetsImages.bannerM);
         case Breakpoints.large:
-          return const AssetImage('assets/images/decor/web/banner-l.webp');
+          return const AssetImage(AssetsImages.bannerL);
         case Breakpoints.xlarge:
-          return const AssetImage('assets/images/decor/web/banner-xl.webp');
+          return const AssetImage(AssetsImages.bannerXL);
         case null:
-          return const AssetImage('assets/images/decor/web/banner-l.webp');
+          return const AssetImage(AssetsImages.bannerL);
       }
     } else {
-      return const AssetImage('assets/images/decor/web/banner-l.webp');
+      return const AssetImage(AssetsImages.bannerL);
     }
   }
 }

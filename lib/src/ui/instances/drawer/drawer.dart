@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:terre_de_fangh/src/lang/FR_fr/lang.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/ui.dart';
+import 'package:terre_de_fangh/src/routes/routes_path.dart';
 
 Widget menuApp(BuildContext context) {
   return ListView(
@@ -11,7 +12,7 @@ Widget menuApp(BuildContext context) {
           color: Theme.of(context).colorScheme.onSurface,
         ),
         title: Text(
-          Lang.home,
+          LangUI.home,
           style: Theme.of(context)
               .textTheme
               .bodyLarge
@@ -27,14 +28,14 @@ Widget menuApp(BuildContext context) {
           color: Theme.of(context).colorScheme.onSurface,
         ),
         title: Text(
-          Lang.parameters,
+          LangUI.settings,
           style: Theme.of(context)
               .textTheme
               .bodyLarge
               ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
         ),
         onTap: () {
-          context.go('/setting');
+          context.go(RoutesPath.setting);
         },
       ),
     ],

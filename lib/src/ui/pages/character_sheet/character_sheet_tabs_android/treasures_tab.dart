@@ -20,7 +20,7 @@ Widget _treasuresTab(BuildContext context) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                terreDeFanghTextBodyMedium(context, Lang.treasuresItemsQuestCharacter),
+                terreDeFanghTextBodyMedium(context, LangCharacterSheet.treasuresItemsQuestCharacter),
                 Expanded(
                   child: terreDeFanghTextField(context),
                 ),

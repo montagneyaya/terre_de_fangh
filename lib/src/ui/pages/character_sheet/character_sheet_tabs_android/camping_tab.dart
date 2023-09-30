@@ -62,22 +62,24 @@ Widget _campingTab(BuildContext context) {
                   children: [
                     Expanded(
                       flex: 3,
-                      child: terreDeFanghTextBodyMedium(context, Lang.bivouacEquipmentCharacter),
+                      child: terreDeFanghTextBodyMedium(
+                          context, LangCharacterSheet.bivouacEquipmentCharacter),
                     ),
                     Expanded(
                       flex: 2,
-                      child: terreDeFanghTextBodyMedium(context, Lang.recoveryCharacter),
+                      child: terreDeFanghTextBodyMedium(context, LangCharacterSheet.recoveryCharacter),
                     ),
                     Expanded(
-                      child: terreDeFanghTextBodyMedium(context, Lang.weightEquipmentBivouac),
+                      child:
+                          terreDeFanghTextBodyMedium(context, LangCharacterSheet.weightEquipmentBivouac),
                     ),
                   ],
                 ),
-                _campingTable(context, Lang.tentCharacter),
-                _campingTable(context, Lang.mattressCharacter),
-                _campingTable(context, Lang.blanketCharacter),
+                _campingTable(context, LangCharacterSheet.tentCharacter),
+                _campingTable(context, LangCharacterSheet.mattressCharacter),
+                _campingTable(context, LangCharacterSheet.blanketCharacter),
                 const Spacer(),
-                terreDeFanghTextBodyMedium(context, Lang.foodDrinkCharacter),
+                terreDeFanghTextBodyMedium(context, LangCharacterSheet.foodDrinkCharacter),
                 Expanded(
                   child: terreDeFanghTextField(context),
                 ),

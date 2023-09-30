@@ -1,46 +1,46 @@
 part of 'package:terre_de_fangh/src/app.dart';
 
 final _router = GoRouter(
-  initialLocation: '/home',
+  initialLocation: RoutesPath.home,
   routes: [
     GoRoute(
-      path: '/',
-      redirect: (context, state) => '/home',
+      path: RoutesPath.root,
+      redirect: (context, state) => RoutesPath.home,
     ),
     GoRoute(
-      path: '/home',
+      path: RoutesPath.home,
       builder: (context, state) => const HomePage(),
     ),
     GoRoute(
-      path: '/character-sheet',
-      redirect: (context, state) => '/character-sheet/main',
+      path: RoutesPath.characterSheet,
+      redirect: (context, state) => RoutesPath.characterSheetMain,
     ),
     GoRoute(
-      path: '/character-sheet/main',
+      path: RoutesPath.characterSheetMain,
       builder: (context, state) => const CharacterSheetPage(),
     ),
     GoRoute(
-      path: '/character-sheet/fight',
+      path: RoutesPath.characterSheetFight,
       builder: (context, state) => const CharacterSheetFightPage(),
     ),
     GoRoute(
-      path: '/character-sheet/items',
+      path: RoutesPath.characterSheetItems,
       builder: (context, state) => const CharacterSheetItemsPage(),
     ),
     GoRoute(
-      path: '/character-sheet/backpack',
+      path: RoutesPath.characterSheetBackPack,
       builder: (context, state) => const CharacterSheetBackPackPage(),
     ),
     GoRoute(
-      path: '/character-sheet/purse',
+      path: RoutesPath.characterSheetPurse,
       builder: (context, state) => const CharacterSheetPursePage(),
     ),
     GoRoute(
-      path: '/create-character',
+      path: RoutesPath.createCharacter,
       builder: (context, state) => const CreateCharacterPage(),
     ),
     GoRoute(
-      path: '/setting',
+      path: RoutesPath.setting,
       builder: (context, sate) => const SettingPage(),
     ),
     GoRoute(

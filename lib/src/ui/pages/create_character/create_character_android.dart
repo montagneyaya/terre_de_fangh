@@ -13,6 +13,10 @@ import 'package:terre_de_fangh/src/data/models/creatures/player_character/specia
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/specializations.enum.dart';
 import 'package:terre_de_fangh/src/data/resources/services/dices.service.dart';
 import 'package:terre_de_fangh/src/data/resources/services/save.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/character_sheet.dart';
+import 'package:terre_de_fangh/src/lang/fr_FR/create_character.dart';
+import 'package:terre_de_fangh/src/lang/fr_FR/system.dart';
+import 'package:terre_de_fangh/src/ui/Assets/images.dart';
 import 'package:terre_de_fangh/src/ui/components/background/background.dart';
 import 'package:terre_de_fangh/src/ui/instances/background/background.dart';
 import 'package:terre_de_fangh/src/ui/themes/icons_dices.dart';
@@ -234,7 +238,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                           child: Column(
                             children: [
                               Text(
-                                'Caracteristiques',
+                                LangCreateCharacter.statistics,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineLarge
@@ -246,7 +250,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        'Courage (COU)',
+                                        LangCharacterSheet.courageCOUCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                             color: Theme.of(context).colorScheme.onBackground),
                                       ),
@@ -266,7 +270,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         ),
                                         validator: (value) {
                                           if (int.parse(value!) < 8 || int.parse(value) > 20) {
-                                            return 'entre 8 et 20';
+                                            return LangCreateCharacter.between8And20;
                                           }
                                           return null;
                                         },
@@ -294,7 +298,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        'Intelligence (INT)',
+                                        LangCharacterSheet.intellectINTCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                             color: Theme.of(context).colorScheme.onBackground),
                                       ),
@@ -314,7 +318,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         ),
                                         validator: (value) {
                                           if (int.parse(value!) < 8 || int.parse(value) > 20) {
-                                            return 'entre 8 et 20';
+                                            return LangCreateCharacter.between8And20;
                                           }
                                           return null;
                                         },
@@ -342,7 +346,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        'Charisme (CHA)',
+                                        LangCharacterSheet.charismaCHACharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                             color: Theme.of(context).colorScheme.onBackground),
                                       ),
@@ -362,7 +366,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         ),
                                         validator: (value) {
                                           if (int.parse(value!) < 8 || int.parse(value) > 20) {
-                                            return 'entre 8 et 20';
+                                            return LangCreateCharacter.between8And20;
                                           }
                                           return null;
                                         },
@@ -390,7 +394,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        'Adresse (AD)',
+                                        LangCharacterSheet.dexterityDEXCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                             color: Theme.of(context).colorScheme.onBackground),
                                       ),
@@ -410,7 +414,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         ),
                                         validator: (value) {
                                           if (int.parse(value!) < 8 || int.parse(value) > 20) {
-                                            return 'entre 8 et 20';
+                                            return LangCreateCharacter.between8And20;
                                           }
                                           return null;
                                         },
@@ -438,7 +442,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        'Force (FO)',
+                                        LangCharacterSheet.strengthSTRCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                             color: Theme.of(context).colorScheme.onBackground),
                                       ),
@@ -458,7 +462,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         ),
                                         validator: (value) {
                                           if (int.parse(value!) < 8 || int.parse(value) > 20) {
-                                            return 'entre 8 et 20';
+                                            return LangCreateCharacter.between8And20;
                                           }
                                           return null;
                                         },
@@ -482,7 +486,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                               ),
                               Expanded(
                                 child: TextButton(
-                                  child: SvgPicture.asset('assets/images/decor/dice20.svg'),
+                                  child: SvgPicture.asset(AssetsImages.dice20),
                                   onPressed: () {
                                     for (var element in _statisticsController) {
                                       int value = Dices().d6() + 7;
@@ -509,7 +513,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                     children: [
                       Expanded(
                         child: Text(
-                          'Personnage',
+                          LangCreateCharacter.character,
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge
@@ -524,7 +528,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                               child: Column(
                                 children: [
                                   Text(
-                                    'Origine',
+                                    LangCharacterSheet.peopleCharacter,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge
@@ -562,7 +566,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       },
                                       validator: (value) {
                                         if (value == null) {
-                                          return 'faite une selection';
+                                          return LangCreateCharacter.makeAChoice;
                                         }
                                         return null;
                                       },
@@ -582,7 +586,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                               child: Column(
                                 children: [
                                   Text(
-                                    'Metier',
+                                    LangCharacterSheet.jobCharacter,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge
@@ -606,7 +610,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       },
                                       validator: (value) {
                                         if (value == null) {
-                                          return 'faite une selection';
+                                          return LangCreateCharacter.makeAChoice;
                                         }
                                         return null;
                                       },
@@ -626,7 +630,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                               child: Column(
                                 children: [
                                   Text(
-                                    'Specialisation',
+                                    LangCreateCharacter.specialization,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge
@@ -648,7 +652,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       },
                                       validator: (value) {
                                         if (value == null) {
-                                          return 'faite une selection';
+                                          return LangCreateCharacter.makeAChoice;
                                         }
                                         return null;
                                       },
@@ -673,7 +677,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                   child: Column(
                     children: [
                       Text(
-                        'Competences',
+                        LangCreateCharacter.skills,
                         style: Theme.of(context)
                             .textTheme
                             .headlineLarge
@@ -687,7 +691,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                 child: Column(
                                   children: [
                                     Text(
-                                      'Compétences acquise',
+                                      LangCreateCharacter.acquiredSkills,
                                       style: Theme.of(context)
                                           .textTheme
                                           .labelLarge
@@ -760,8 +764,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                 children: [
                                   Text(
                                     _isHuman
-                                        ? 'Compétences à sélectionner (en choisir 4)'
-                                        : 'Compétences à sélectionner (en choisir 2)',
+                                        ? LangCreateCharacter.selectSkills4
+                                        : LangCreateCharacter.selectSkills2,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge
@@ -852,20 +856,20 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         if (_isHuman && skillsSelected != 4) {
                                           ScaffoldMessenger.of(context).showSnackBar(
                                             const SnackBar(
-                                              content: Text('Selectionner 4 competences'),
+                                              content: Text(LangCreateCharacter.select4skills),
                                             ),
                                           );
-                                          return 'Selectionner 4 competences';
+                                          return LangCreateCharacter.select4skills;
                                         }
                                         if (!_isHuman && skillsSelected != 2) {
                                           ScaffoldMessenger.of(context).showSnackBar(
                                             const SnackBar(
-                                              content: Text('Selectionner 2 competences'),
+                                              content: Text(LangCreateCharacter.select2skills),
                                             ),
                                           );
-                                          return 'Selectionner 2 competences';
+                                          return LangCreateCharacter.select2skills;
                                         }
-                                        return 'erreur';
+                                        return LangSystem.error;
                                       },
                                     ),
                                   ),
@@ -888,7 +892,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                   child: Column(
                     children: [
                       Text(
-                        'Modificateur',
+                        LangCreateCharacter.modifier,
                         style: Theme.of(context)
                             .textTheme
                             .headlineLarge
@@ -905,7 +909,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Il n\'y a pas de modificateurs pour votre selection. Vous pouvez passer à l\'étape finale',
+                                          LangCreateCharacter.noModifier,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                               color: Theme.of(context).colorScheme.onBackground),
                                         ),
@@ -932,13 +936,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
-                                            'Vous êtes un ogre',
+                                            LangCreateCharacter.youAreAnOgre,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                                 color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
-                                          'L\'ogre peut obtenir la compétence "Super Bourrin" s\'il retrancher jusqu\'à 3 points à son score de base en ATTAQUE et/ou en PARADE pour en faire un bonus de dégâts. Ainsi il peut avoir +3 en dégâts en plus de ses autres bonus de FORCE, mais son côté bourrin le rend maladroit. En outre, un malus de PRD -5 s\'applique à celui qui tente de parer une attaque de l\'ogre.',
+                                          LangCreateCharacter.obtainSuperPowerful,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                               color: Theme.of(context).colorScheme.onBackground),
                                         ),
@@ -954,7 +958,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(
-                                                              'Vous avez deja utiliser les 3 points'),
+                                                              LangCreateCharacter.alreadyUsed3Points),
                                                         ),
                                                       );
                                                     } else {
@@ -981,7 +985,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(
-                                                              'Vous avez deja utiliser les 3 points'),
+                                                              LangCreateCharacter.alreadyUsed3Points),
                                                         ),
                                                       );
                                                     } else {
@@ -994,7 +998,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                 },
                                               ),
                                               Text(
-                                                '$_parryTemp PRD',
+                                                '$_parryTemp ${LangCreateCharacter.pa}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                                     color: Theme.of(context).colorScheme.onBackground),
                                               ),
@@ -1024,13 +1028,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
-                                            'Vous etes un guerrier',
+                                            LangCreateCharacter.youAreAFighter,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                                 color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
-                                          'Vous pouvez echanger 1 point d\'AT et 1 point de PRD',
+                                          LangCreateCharacter.canChanged1AtPa,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                               color: Theme.of(context).colorScheme.onBackground),
                                         ),
@@ -1064,7 +1068,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                   },
                                                 ),
                                               Text(
-                                                '$_attackTemp AT',
+                                                '$_attackTemp ${LangCreateCharacter.at}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                                     color: Theme.of(context).colorScheme.onBackground),
                                               ),
@@ -1096,7 +1100,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                   },
                                                 ),
                                               Text(
-                                                '$_parryTemp PRD',
+                                                '$_parryTemp ${LangCreateCharacter.pa}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                                     color: Theme.of(context).colorScheme.onBackground),
                                               ),
@@ -1114,10 +1118,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                             if (_count2 == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Vous devez remettre le point en AT ou PRD'),
+                                  content: Text(LangCreateCharacter.mustPutAtOrPa),
                                 ),
                               );
-                              return 'Vous devez remettre le point en AT ou PRD';
+                              return LangCreateCharacter.mustPutAtOrPa;
                             }
                             return null;
                           },
@@ -1134,13 +1138,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
-                                            'Vous etes un ranger',
+                                            LangCreateCharacter.youAreARanger,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                                 color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
-                                          'Vous pouvez echanger 1 point entre 2 characteristiques',
+                                          LangCreateCharacter.canChange2Statistics,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                               color: Theme.of(context).colorScheme.onBackground),
                                         ),
@@ -1184,7 +1188,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                             },
                                                           ),
                                                         Text(
-                                                          '$_courageTemp COU',
+                                                          '$_courageTemp ${LangCreateCharacter.cou}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1225,7 +1229,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                             },
                                                           ),
                                                         Text(
-                                                          '$_intellectTemp INT',
+                                                          '$_intellectTemp ${LangCreateCharacter.int}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1266,7 +1270,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                             },
                                                           ),
                                                         Text(
-                                                          '$_charismaTemp CHA',
+                                                          '$_charismaTemp ${LangCreateCharacter.cha}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1322,7 +1326,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                             },
                                                           ),
                                                         Text(
-                                                          '$_dexterityTemp AD',
+                                                          '$_dexterityTemp ${LangCreateCharacter.dex}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1363,7 +1367,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                             },
                                                           ),
                                                         Text(
-                                                          '$_strengthTemp FO',
+                                                          '$_strengthTemp ${LangCreateCharacter.str}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1391,10 +1395,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                             if (_count2 == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Vous devez remettre le point sur une characteristique'),
+                                  content: Text(LangCreateCharacter.mustPutStatistic),
                                 ),
                               );
-                              return 'Vous devez remettre le point une characteristique';
+                              return LangCreateCharacter.mustPutStatistic;
                             }
                             return null;
                           },
@@ -1411,13 +1415,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
-                                            'Vous etes un marchant',
+                                            LangCreateCharacter.youAreADealer,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                                 color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
-                                          'Vous devez retirer 1 point en AT ou PRD et mettre 1 point en INT ou CHA',
+                                          LangCreateCharacter.mustChangeFightIntCha,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                               color: Theme.of(context).colorScheme.onBackground),
                                         ),
@@ -1440,8 +1444,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                 ScaffoldMessenger.of(context)
                                                                     .showSnackBar(
                                                                   const SnackBar(
-                                                                    content: Text(
-                                                                        'Vous avez deja echange vos points'),
+                                                                    content: Text(LangCreateCharacter
+                                                                        .alreadyChangedPoints),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1449,8 +1453,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                   ScaffoldMessenger.of(context)
                                                                       .showSnackBar(
                                                                     const SnackBar(
-                                                                      content: Text(
-                                                                          'Vous avez deja enleve 1 point, vous devez le mettre ailleur ...'),
+                                                                      content: Text(LangCreateCharacter
+                                                                          .putThePoint),
                                                                     ),
                                                                   );
                                                                 } else {
@@ -1462,7 +1466,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                           },
                                                         ),
                                                         Text(
-                                                          '$_attackTemp AT',
+                                                          '$_attackTemp ${LangCreateCharacter.at}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1482,8 +1486,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                 ScaffoldMessenger.of(context)
                                                                     .showSnackBar(
                                                                   const SnackBar(
-                                                                    content: Text(
-                                                                        'Vous avez deja echange vos points'),
+                                                                    content: Text(LangCreateCharacter
+                                                                        .alreadyChangedPoints),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1491,8 +1495,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                   ScaffoldMessenger.of(context)
                                                                       .showSnackBar(
                                                                     const SnackBar(
-                                                                      content: Text(
-                                                                          'Vous avez deja enleve 1 point, vous devez le mettre ailleur ...'),
+                                                                      content: Text(LangCreateCharacter
+                                                                          .putThePoint),
                                                                     ),
                                                                   );
                                                                 } else {
@@ -1504,7 +1508,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                           },
                                                         ),
                                                         Text(
-                                                          '$_parryTemp PRD',
+                                                          '$_parryTemp ${LangCreateCharacter.pa}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1527,8 +1531,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                 ScaffoldMessenger.of(context)
                                                                     .showSnackBar(
                                                                   const SnackBar(
-                                                                    content: Text(
-                                                                        'Vous devez d\'abord enlever 1 point avant de le mettre ailleur ...'),
+                                                                    content: Text(LangCreateCharacter
+                                                                        .removeThePoint),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1539,7 +1543,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                           },
                                                         ),
                                                         Text(
-                                                          '$_intellectTemp INT',
+                                                          '$_intellectTemp ${LangCreateCharacter.int}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1559,8 +1563,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                 ScaffoldMessenger.of(context)
                                                                     .showSnackBar(
                                                                   const SnackBar(
-                                                                    content: Text(
-                                                                        'Vous devez d\'abord enlever 1 point avant de le mettre ailleur ...'),
+                                                                    content: Text(LangCreateCharacter
+                                                                        .removeThePoint),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1571,7 +1575,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                           },
                                                         ),
                                                         Text(
-                                                          '$_charismaTemp CHA',
+                                                          '$_charismaTemp ${LangCreateCharacter.cha}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1599,18 +1603,18 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                             if (_count2 == 2) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Vous devez faire les modifications indiquees'),
+                                  content: Text(LangCreateCharacter.mustIndicateChange),
                                 ),
                               );
-                              return 'Vous devez faire les modifications indiquees';
+                              return LangCreateCharacter.mustIndicateChange;
                             }
                             if (_count2 == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Vous devez remettre le point sur une characteristique'),
+                                  content: Text(LangCreateCharacter.mustPutStatistic),
                                 ),
                               );
-                              return 'Vous devez remettre le point une characteristique';
+                              return LangCreateCharacter.mustPutStatistic;
                             }
                             return null;
                           },
@@ -1627,13 +1631,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
-                                            'Vous etes un ingenieur',
+                                            LangCreateCharacter.youAreAnEngineer,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                                 color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
-                                          'Vous devez retirer 1 point en AT ou PRD et mettre 1 point en INT ou AD',
+                                          LangCreateCharacter.mustChangeFightIntDex,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                               color: Theme.of(context).colorScheme.onBackground),
                                         ),
@@ -1656,8 +1660,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                 ScaffoldMessenger.of(context)
                                                                     .showSnackBar(
                                                                   const SnackBar(
-                                                                    content: Text(
-                                                                        'Vous avez deja echange vos points'),
+                                                                    content: Text(LangCreateCharacter
+                                                                        .alreadyChangedPoints),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1665,8 +1669,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                   ScaffoldMessenger.of(context)
                                                                       .showSnackBar(
                                                                     const SnackBar(
-                                                                      content: Text(
-                                                                          'Vous avez deja enleve 1 point, vous devez le mettre ailleur ...'),
+                                                                      content: Text(LangCreateCharacter
+                                                                          .putThePoint),
                                                                     ),
                                                                   );
                                                                 } else {
@@ -1678,7 +1682,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                           },
                                                         ),
                                                         Text(
-                                                          '$_attackTemp AT',
+                                                          '$_attackTemp ${LangCreateCharacter.at}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1698,8 +1702,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                 ScaffoldMessenger.of(context)
                                                                     .showSnackBar(
                                                                   const SnackBar(
-                                                                    content: Text(
-                                                                        'Vous avez deja echange vos points'),
+                                                                    content: Text(LangCreateCharacter
+                                                                        .alreadyChangedPoints),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1707,8 +1711,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                   ScaffoldMessenger.of(context)
                                                                       .showSnackBar(
                                                                     const SnackBar(
-                                                                      content: Text(
-                                                                          'Vous avez deja enleve 1 point, vous devez le mettre ailleur ...'),
+                                                                      content: Text(LangCreateCharacter
+                                                                          .putThePoint),
                                                                     ),
                                                                   );
                                                                 } else {
@@ -1720,7 +1724,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                           },
                                                         ),
                                                         Text(
-                                                          '$_parryTemp PRD',
+                                                          '$_parryTemp ${LangCreateCharacter.pa}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1743,8 +1747,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                 ScaffoldMessenger.of(context)
                                                                     .showSnackBar(
                                                                   const SnackBar(
-                                                                    content: Text(
-                                                                        'Vous devez d\'abord enlever 1 point avant de le mettre ailleur ...'),
+                                                                    content: Text(LangCreateCharacter
+                                                                        .removeThePoint),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1755,7 +1759,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                           },
                                                         ),
                                                         Text(
-                                                          '$_intellectTemp INT',
+                                                          '$_intellectTemp ${LangCreateCharacter.int}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1775,8 +1779,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                 ScaffoldMessenger.of(context)
                                                                     .showSnackBar(
                                                                   const SnackBar(
-                                                                    content: Text(
-                                                                        'Vous devez d\'abord enlever 1 point avant de le mettre ailleur ...'),
+                                                                    content: Text(LangCreateCharacter
+                                                                        .removeThePoint),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1793,7 +1797,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                           },
                                                         ),
                                                         Text(
-                                                          '$_dexterityTemp AD',
+                                                          '$_dexterityTemp ${LangCreateCharacter.dex}',
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .bodyLarge
@@ -1821,18 +1825,18 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                             if (_count2 == 2) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Vous devez faire les modifications indiquees'),
+                                  content: Text(LangCreateCharacter.mustIndicateChange),
                                 ),
                               );
-                              return 'Vous devez faire les modifications indiquees';
+                              return LangCreateCharacter.mustIndicateChange;
                             }
                             if (_count2 == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Vous devez remettre le point sur une characteristique'),
+                                  content: Text(LangCreateCharacter.mustPutStatistic),
                                 ),
                               );
-                              return 'Vous devez remettre le point une characteristique';
+                              return LangCreateCharacter.mustPutStatistic;
                             }
                             return null;
                           },
@@ -1849,13 +1853,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
-                                            'Votre adresse est faible',
+                                            LangCreateCharacter.yourDexterityIsLow,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                                 color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
-                                          'Vous devez retirer un point d\'AT ou de PRD',
+                                          LangCreateCharacter.removeFight,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                               color: Theme.of(context).colorScheme.onBackground),
                                         ),
@@ -1870,8 +1874,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                     if (_count3 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
-                                                          content: Text(
-                                                              'Vous avez deja modifie cette caracteristique'),
+                                                          content: Text(LangCreateCharacter
+                                                              .alreadyChangedStatistic),
                                                         ),
                                                       );
                                                     } else {
@@ -1883,7 +1887,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                 },
                                               ),
                                               Text(
-                                                '$_attackTemp AT',
+                                                '$_attackTemp ${LangCreateCharacter.at}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                                     color: Theme.of(context).colorScheme.onBackground),
                                               ),
@@ -1896,8 +1900,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                     if (_count3 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
-                                                          content: Text(
-                                                              'Vous avez deja modifie cette caracteristique'),
+                                                          content: Text(LangCreateCharacter
+                                                              .alreadyChangedStatistic),
                                                         ),
                                                       );
                                                     } else {
@@ -1909,7 +1913,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                 },
                                               ),
                                               Text(
-                                                '$_parryTemp PRD',
+                                                '$_parryTemp ${LangCreateCharacter.pa}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                                     color: Theme.of(context).colorScheme.onBackground),
                                               ),
@@ -1927,10 +1931,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                             if (_count3 > 0) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Vous devez enlever 1 point en AT ou en PRD'),
+                                  content: Text(LangCreateCharacter.removeFight),
                                 ),
                               );
-                              return 'Vous devez enlever 1 point en AT ou en PRD';
+                              return LangCreateCharacter.removeFight;
                             }
                             return null;
                           },
@@ -1947,13 +1951,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         Padding(
                                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                                           child: Text(
-                                            'Votre adresse est eleve',
+                                            LangCreateCharacter.yourDexterityIsHigh,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                                 color: Theme.of(context).colorScheme.onBackground),
                                           ),
                                         ),
                                         Text(
-                                          'Vous devez mettre 1 point en AT ou PRD',
+                                          LangCreateCharacter.putFight,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                               color: Theme.of(context).colorScheme.onBackground),
                                         ),
@@ -1968,8 +1972,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                     if (_count3 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
-                                                          content: Text(
-                                                              'Vous avez deja modifie cette caracteristique'),
+                                                          content: Text(LangCreateCharacter
+                                                              .alreadyChangedStatistic),
                                                         ),
                                                       );
                                                     } else {
@@ -1981,7 +1985,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                 },
                                               ),
                                               Text(
-                                                '$_attackTemp AT',
+                                                '$_attackTemp ${LangCreateCharacter.at}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                                     color: Theme.of(context).colorScheme.onBackground),
                                               ),
@@ -1994,8 +1998,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                     if (_count3 < 1) {
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
-                                                          content: Text(
-                                                              'Vous avez deja modifie cette caracteristique'),
+                                                          content: Text(LangCreateCharacter
+                                                              .alreadyChangedStatistic),
                                                         ),
                                                       );
                                                     } else {
@@ -2007,7 +2011,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                 },
                                               ),
                                               Text(
-                                                '$_parryTemp PRD',
+                                                '$_parryTemp ${LangCreateCharacter.pa}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                                     color: Theme.of(context).colorScheme.onBackground),
                                               ),
@@ -2025,10 +2029,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                             if (_count3 > 0) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Vous devez ajouter 1 point en AT ou en PRD'),
+                                  content: Text(LangCreateCharacter.putFight),
                                 ),
                               );
-                              return 'Vous devez ajouter 1 point en AT ou en PRD';
+                              return LangCreateCharacter.putFight;
                             }
                             return null;
                           },
@@ -2041,7 +2045,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                 side: BorderSide(color: Theme.of(context).colorScheme.primary),
                               ),
                               child: Text(
-                                'Reset',
+                                LangCreateCharacter.reset,
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelLarge
@@ -2158,7 +2162,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                           child: Column(
                             children: [
                               Text(
-                                'Finale',
+                                LangCreateCharacter.finalPart,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineLarge
@@ -2170,7 +2174,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        'Points de destin',
+                                        LangCharacterSheet.fatePointsCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                             color: Theme.of(context).colorScheme.onBackground),
                                       ),
@@ -2190,7 +2194,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         ),
                                         validator: (value) {
                                           if (int.parse(value!) < 0 || int.parse(value) > 3) {
-                                            return 'entre 0 et 3';
+                                            return LangCreateCharacter.between0And3;
                                           }
                                           return null;
                                         },
@@ -2227,7 +2231,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                 Expanded(
                                                   flex: 2,
                                                   child: Text(
-                                                    'Pieces d\'or',
+                                                    LangCharacterSheet.goldCoinsCharacter,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .labelLarge
@@ -2262,12 +2266,12 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       if (!_isBourgeois &&
                                                           (int.parse(value!) < 20 ||
                                                               int.parse(value) > 120)) {
-                                                        return 'entre 20 et 120';
+                                                        return LangCreateCharacter.between20And120;
                                                       }
                                                       if (_isBourgeois &&
                                                           (int.parse(value!) < 40 ||
                                                               int.parse(value) > 240)) {
-                                                        return 'entre 40 et 240';
+                                                        return LangCreateCharacter.between40And240;
                                                       }
                                                       return null;
                                                     },
@@ -2282,7 +2286,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                 Expanded(
                                                   flex: 2,
                                                   child: Text(
-                                                    'Pieces d\'argent',
+                                                    LangCharacterSheet.silverCoinsCharacter,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .labelLarge
@@ -2317,12 +2321,12 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       if (!_isBourgeois &&
                                                           (int.parse(value!) < 0 ||
                                                               int.parse(value) > 99)) {
-                                                        return 'entre 0 et 99';
+                                                        return LangCreateCharacter.between0And99;
                                                       }
                                                       if (_isBourgeois &&
                                                           (int.parse(value!) < 0 ||
                                                               int.parse(value) > 198)) {
-                                                        return 'entre 0 et 198';
+                                                        return LangCreateCharacter.between0And198;
                                                       }
                                                       return null;
                                                     },
@@ -2365,7 +2369,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        'Nom',
+                                        LangCharacterSheet.nameCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                             color: Theme.of(context).colorScheme.onBackground),
                                       ),
@@ -2390,7 +2394,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        'Genre',
+                                        LangCharacterSheet.genderCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                             color: Theme.of(context).colorScheme.onBackground),
                                       ),
@@ -2611,7 +2615,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                           color: Theme.of(context).colorScheme.primary,
                         ),
                         Text(
-                          'Precedent',
+                          LangCreateCharacter.previous,
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge
@@ -2633,14 +2637,14 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                 children: [
                   _controller.index < _controller.length - 1
                       ? Text(
-                          'Suivant',
+                          LangCreateCharacter.next,
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge
                               ?.copyWith(color: Theme.of(context).colorScheme.primary),
                         )
                       : Text(
-                          'Sauve.',
+                          LangCreateCharacter.save,
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge
