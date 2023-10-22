@@ -42,7 +42,7 @@ class _CharacterTabState extends State<CharacterTab> {
                           } else if (snapshot.connectionState == ConnectionState.done) {
                             Map jsonValue = jsonDecode(snapshot.data);
                             return InkWell(
-                              onTap: () => context.goNamed(RoutesPath.characterSheet),
+                              onTap: () => context.goNamed(RoutesPath.characterSheetMain),
                               child: Card(
                                 elevation: 0.0,
                                 color: Theme.of(context).colorScheme.surfaceVariant,
