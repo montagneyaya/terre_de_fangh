@@ -32,19 +32,19 @@ NavigationBar homeNavigation(int index, BuildContext context) {
     onDestinationSelected: (index) {
       switch (index) {
         case 0:
-          context.pushReplacement(RoutesPath.characterSheetMain);
+          context.goNamed(RoutesPath.characterSheetMain);
           break;
         case 1:
-          context.pushReplacement(RoutesPath.characterSheetFight);
+          context.goNamed(RoutesPath.characterSheetFight);
           break;
         case 2:
-          context.pushReplacement(RoutesPath.characterSheetItems);
+          context.goNamed(RoutesPath.characterSheetItems);
           break;
         case 3:
-          context.pushReplacement(RoutesPath.characterSheetBackPack);
+          context.goNamed(RoutesPath.characterSheetBackPack);
           break;
         case 4:
-          context.pushReplacement(RoutesPath.characterSheetPurse);
+          context.goNamed(RoutesPath.characterSheetPurse);
           break;
       }
     },

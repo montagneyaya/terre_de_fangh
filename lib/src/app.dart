@@ -1,8 +1,9 @@
+import 'dart:js';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:terre_de_fangh/src/routes/routes_path.dart';
-import 'package:terre_de_fangh/src/ui/pages/test_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
