@@ -1,5 +1,5 @@
-import 'package:terre_de_fangh/src/data/models/creatures/player_character/people.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/jobs.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/people.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/skills.enum.dart';
 import 'package:terre_de_fangh/src/lang/FR_fr/peoples.dart';
 
@@ -30,7 +30,7 @@ final People peopleHuman = People(
       jobBourgeois,
       jobTorturer,
       jobMyrmidon,
-      jobAny
+      jobAny,
     ],
     [],
     [
@@ -80,7 +80,7 @@ final People peopleHuman = People(
       skillHollowHead,
       skillShootProperly,
       skillFallIntoTraps,
-      skillPainIsForTheWeak
+      skillPainIsForTheWeak,
     ]);
 
 final People peopleBarbarian = People(
@@ -106,7 +106,7 @@ final People peopleBarbarian = People(
       skillSwim,
       skillTrack,
       skillShootProperly,
-      skillPainIsForTheWeak
+      skillPainIsForTheWeak,
     ]);
 
 final People peopleDwarf = People(
@@ -131,7 +131,7 @@ final People peopleDwarf = People(
       jobPirate,
       jobBourgeois,
       jobTorturer,
-      jobAny
+      jobAny,
     ],
     [skillBarrelCall, skillTreasureInstinct, skillAnnoying, skillSkinflint],
     [
@@ -144,7 +144,7 @@ final People peopleDwarf = People(
       skillPoppycock,
       skillMistrust,
       skillShootProperly,
-      skillPainIsForTheWeak
+      skillPainIsForTheWeak,
     ]);
 
 final People peopleHighElf = People(
@@ -173,7 +173,7 @@ final People peopleHighElf = People(
       jobPirate,
       jobBourgeois,
       jobTorturer,
-      jobAny
+      jobAny,
     ],
     [skillErudition, skillWeirdRunes, skillFallIntoTraps],
     [
@@ -182,7 +182,7 @@ final People peopleHighElf = People(
       skillJugglingAndDancing,
       skillSwim,
       skillFirstAid,
-      skillShootProperly
+      skillShootProperly,
     ]);
 
 final People peopleHalfElf = People(
@@ -212,7 +212,7 @@ final People peopleHalfElf = People(
       jobBourgeois,
       jobTorturer,
       jobMyrmidon,
-      jobAny
+      jobAny,
     ],
     [skillCallForReinforcements, skillFurl, skillDetect, skillMistrust],
     [
@@ -223,7 +223,7 @@ final People peopleHalfElf = People(
       skillDiggingThroughTrashCans,
       skillBeggingAndWhining,
       skillSwim,
-      skillShootProperly
+      skillShootProperly,
     ]);
 
 final People peopleSilvanElf = People(
@@ -251,7 +251,7 @@ final People peopleSilvanElf = People(
       jobPirate,
       jobBourgeois,
       jobTorturer,
-      jobAny
+      jobAny,
     ],
     [skillRide, skillTouchingNaivety, skillFirstAid, skillShootProperly, skillFallIntoTraps],
     [
@@ -260,7 +260,7 @@ final People peopleSilvanElf = People(
       skillJugglingAndDancing,
       skillSwim,
       skillTrack,
-      skillHollowHead
+      skillHollowHead,
     ]);
 
 final People peopleDarkElf = People(
@@ -289,7 +289,7 @@ final People peopleDarkElf = People(
       jobPirate,
       jobBourgeois,
       jobTorturer,
-      jobAny
+      jobAny,
     ],
     [skillAgoraphobia, skillSilentMovement, skillDetect, skillShootProperly],
     [
@@ -301,7 +301,7 @@ final People peopleDarkElf = People(
       skillLooselyHit,
       skillMistrust,
       skillTrack,
-      skillWeirdRunes
+      skillWeirdRunes,
     ]);
 
 final People peopleOrc = People(
@@ -324,14 +324,14 @@ final People peopleOrc = People(
       skillInYourFace,
       skillSurvivalInstinct,
       skillFeetSmell,
-      skillHollowHead
+      skillHollowHead,
     ],
     [
       skillStuffingWeapons,
       skillMessUp,
       skillDiggingThroughTrashCans,
       skillIntimidate,
-      skillPainIsForTheWeak
+      skillPainIsForTheWeak,
     ]);
 
 final People peopleHalfOrc = People(
@@ -356,7 +356,7 @@ final People peopleHalfOrc = People(
       skillIntimidate,
       skillSwim,
       skillShootProperly,
-      skillPainIsForTheWeak
+      skillPainIsForTheWeak,
     ]);
 
 final People peopleGoblin = People(
@@ -380,9 +380,9 @@ final People peopleGoblin = People(
       skillSurvivalInstinct,
       skillTreasureInstinct,
       skillFeetSmell,
-      skillHollowHead
+      skillHollowHead,
     ],
-    [skillAmateurHandyman, skillDefuse, skillClimb, skillBlacksmith]);
+    [skillAmateurHandyman, skillDefuse, skillClimb, skillBlacksmith],);
 
 final People peopleOgre = People(
     LangPeoples.ogre,
@@ -404,14 +404,14 @@ final People peopleOgre = People(
       skillSurvivalInstinct,
       skillIntimidate,
       skillFeetSmell,
-      skillHollowHead
+      skillHollowHead,
     ],
     [
       skillInYourFace,
       skillMessUp,
       skillDiggingThroughTrashCans,
       skillMonsterLanguages,
-      skillPainIsForTheWeak
+      skillPainIsForTheWeak,
     ]);
 
 final People peopleHobbit = People(
@@ -439,7 +439,7 @@ final People peopleHobbit = People(
       jobPirate,
       jobBourgeois,
       jobTorturer,
-      jobAny
+      jobAny,
     ],
     [skillBarrelCall, skillAttractsMonster, skillCook, skillSurvivalInstinct, skillLikeNothing],
     [
@@ -451,7 +451,7 @@ final People peopleHobbit = People(
       skillDiggingThroughTrashCans,
       skillTreasureInstinct,
       skillBeggingAndWhining,
-      skillShootProperly
+      skillShootProperly,
     ]);
 
 final People peopleGnome = People(
@@ -473,7 +473,7 @@ final People peopleGnome = People(
       skillRide,
       skillFurl,
       skillSilentMovement,
-      skillTreasureInstinct
+      skillTreasureInstinct,
     ],
     [
       skillUnderstandAnimals,
@@ -483,7 +483,7 @@ final People peopleGnome = People(
       skillJugglingAndDancing,
       skillBeggingAndWhining,
       skillSwim,
-      skillLocksmith
+      skillLocksmith,
     ]);
 
 final People peopleMafiaDwarf = People(
@@ -508,7 +508,7 @@ final People peopleMafiaDwarf = People(
       skillSkinflint,
       skillLikeNothing,
       skillAttackLeap,
-      skillSly
+      skillSly,
     ],
     [
       skillCallForReinforcements,
@@ -520,7 +520,7 @@ final People peopleMafiaDwarf = People(
       skillMistrust,
       skillTrack,
       skillLocksmith,
-      skillShootProperly
+      skillShootProperly,
     ]);
 
 final People peopleSylderianAmazon = People(
@@ -546,9 +546,9 @@ final People peopleSylderianAmazon = People(
       skillLongWeapons,
       skillFierceBeauty,
       skillIgnorant,
-      skillSurvivor
+      skillSurvivor,
     ],
-    [skillClimb, skillSurvivalInstinct, skillIntimidate, skillSwim, skillTrack, skillShootProperly]);
+    [skillClimb, skillSurvivalInstinct, skillIntimidate, skillSwim, skillTrack, skillShootProperly],);
 
 final People peopleMonster = People(
     LangPeoples.monster,
@@ -577,7 +577,7 @@ final People peopleMonster = People(
       jobBourgeois,
       jobTorturer,
       jobMyrmidon,
-      jobAny
+      jobAny,
     ],
     [],
     [
@@ -640,7 +640,7 @@ final People peopleMonster = People(
       skillTormentor,
       skillMiserable,
       skillCoward,
-      skillSurviving
+      skillSurviving,
     ]);
 
 final List<People> peopleEnum = [
@@ -658,5 +658,5 @@ final List<People> peopleEnum = [
   peopleHobbit,
   peopleGnome,
   peopleMafiaDwarf,
-  peopleSylderianAmazon
+  peopleSylderianAmazon,
 ];

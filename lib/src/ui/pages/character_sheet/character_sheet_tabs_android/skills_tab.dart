@@ -4,7 +4,7 @@ Widget _skillsTab(BuildContext context) {
   return Container(
     decoration: background(context, imageSkills, BoxFit.contain),
     child: ListView(
-      children: const [],
+      //children: const [],
     ),
   );
 }

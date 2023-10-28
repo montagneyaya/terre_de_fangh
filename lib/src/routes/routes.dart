@@ -4,11 +4,6 @@ final _router = GoRouter(
   initialLocation: RoutesPath.home,
   routes: [
     GoRoute(
-      name: RoutesPath.root,
-      path: RoutesPath.root,
-      redirect: (context, state) => RoutesPath.home,
-    ),
-    GoRoute(
       name: RoutesPath.home,
       path: RoutesPath.home,
       builder: (context, state) => const HomePage(),

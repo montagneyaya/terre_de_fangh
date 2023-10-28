@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:terre_de_fangh/src/lang/FR_fr/character_sheet.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/ui.dart';
 import 'package:terre_de_fangh/src/ui/components/background/background.dart';
 import 'package:terre_de_fangh/src/ui/components/text/label_text_field.dart';
 import 'package:terre_de_fangh/src/ui/components/text/text.dart';
 import 'package:terre_de_fangh/src/ui/components/text/text_field.dart';
 import 'package:terre_de_fangh/src/ui/instances/background/background.dart';
-import 'package:terre_de_fangh/src/lang/FR_fr/ui.dart';
+
+part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/armors_tab.dart';
 part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/fight_tab.dart';
 part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/weapons_tab.dart';
-part 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_tabs_android/armors_tab.dart';
 
 class CharacterSheetFightAndroid extends StatefulWidget {
   const CharacterSheetFightAndroid({super.key});

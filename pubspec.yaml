@@ -1,5 +1,5 @@
 name: terre_de_fangh
-description: "Terre de Fangh est une application pour le jeu de rôle dans l'univeres de Naheulbeuk créé par POK"
+description: "Terre de Fangh est une application pour le jeu de rôle dans l'univers de Naheulbeuk créé par POK (http://www.naheulbeuk.com/)"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -40,16 +40,16 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   http: ^1.1.0
-  url_launcher: ^6.1.14
+  url_launcher: ^6.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
 
-  go_router: ^12.0.0
+  go_router: ^12.0.1
   provider: ^6.0.5
   shared_preferences: ^2.2.2
-  flutter_svg: ^2.0.7
+  flutter_svg: ^2.0.8
   json_annotation: ^4.8.1
   path_provider: ^2.1.1
 
@@ -69,10 +69,9 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  mocktail: ^1.0.1
-  very_good_analysis: ^5.1.0
-  bloc_test: ^9.1.4
+  bloc_test: ^9.1.5
   build_runner: ^2.4.6
+  mockito: ^5.4.2
   json_serializable: ^6.7.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -81,6 +80,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  very_good_analysis: ^5.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

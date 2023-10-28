@@ -2,148 +2,148 @@ import 'package:terre_de_fangh/src/data/models/creatures/player_character/skill.
 import 'package:terre_de_fangh/src/lang/FR_fr/skills.dart';
 
 final Skill skillAmbidextrous =
-    Skill(LangSkills.ambidextrous, LangSkillsDescription.ambidextrous, false);
+    Skill(LangSkills.ambidextrous, LangSkillsDescription.ambidextrous);
 
-final Skill skillAgoraphobia = Skill(LangSkills.agoraphobia, LangSkillsDescription.agoraphobia, false);
+final Skill skillAgoraphobia = Skill(LangSkills.agoraphobia, LangSkillsDescription.agoraphobia);
 
 final Skill skillCallForReinforcements =
-    Skill(LangSkills.callForReinforcements, LangSkillsDescription.callForReinforcements, false);
+    Skill(LangSkills.callForReinforcements, LangSkillsDescription.callForReinforcements);
 
-final Skill skillSavageCall = Skill(LangSkills.savageCall, LangSkillsDescription.savageCall, false);
+final Skill skillSavageCall = Skill(LangSkills.savageCall, LangSkillsDescription.savageCall);
 
-final Skill skillBarrelCall = Skill(LangSkills.barrelCall, LangSkillsDescription.barrelCall, false);
+final Skill skillBarrelCall = Skill(LangSkills.barrelCall, LangSkillsDescription.barrelCall);
 
-final Skill skillBellyCall = Skill(LangSkills.bellyCall, LangSkillsDescription.bellyCall, false);
+final Skill skillBellyCall = Skill(LangSkills.bellyCall, LangSkillsDescription.bellyCall);
 
 final Skill skillStuffingWeapons =
-    Skill(LangSkills.stuffingWeapons, LangSkillsDescription.stuffingWeapons, false);
+    Skill(LangSkills.stuffingWeapons, LangSkillsDescription.stuffingWeapons);
 
 final Skill skillScamAndSwindling =
-    Skill(LangSkills.scamAndSwindling, LangSkillsDescription.scamAndSwindling, false);
+    Skill(LangSkills.scamAndSwindling, LangSkillsDescription.scamAndSwindling);
 
 final Skill skillAttractsMonster =
-    Skill(LangSkills.attractsMonster, LangSkillsDescription.attractsMonster, false);
+    Skill(LangSkills.attractsMonster, LangSkillsDescription.attractsMonster);
 
-final Skill skillInYourFace = Skill(LangSkills.inYourFace, LangSkillsDescription.inYourFace, false);
+final Skill skillInYourFace = Skill(LangSkills.inYourFace, LangSkillsDescription.inYourFace);
 
 final Skill skillAmateurHandyman =
-    Skill(LangSkills.amateurHandyman, LangSkillsDescription.amateurHandyman, false);
+    Skill(LangSkills.amateurHandyman, LangSkillsDescription.amateurHandyman);
 
-final Skill skillWinnerSLuck = Skill(LangSkills.winnerSLuck, LangSkillsDescription.winnerSLuck, false);
+final Skill skillWinnerSLuck = Skill(LangSkills.winnerSLuck, LangSkillsDescription.winnerSLuck);
 
-final Skill skillGroupLeader = Skill(LangSkills.groupLeader, LangSkillsDescription.groupLeader, false);
+final Skill skillGroupLeader = Skill(LangSkills.groupLeader, LangSkillsDescription.groupLeader);
 
-final Skill skillMessUp = Skill(LangSkills.messUp, LangSkillsDescription.messUp, false);
+final Skill skillMessUp = Skill(LangSkills.messUp, LangSkillsDescription.messUp);
 
-final Skill skillRide = Skill(LangSkills.ride, LangSkillsDescription.ride, false);
+final Skill skillRide = Skill(LangSkills.ride, LangSkillsDescription.ride);
 
-final Skill skillFurl = Skill(LangSkills.furl, LangSkillsDescription.furl, false);
+final Skill skillFurl = Skill(LangSkills.furl, LangSkillsDescription.furl);
 
 final Skill skillUnderstandAnimals =
-    Skill(LangSkills.understandAnimals, LangSkillsDescription.understandAnimals, false);
+    Skill(LangSkills.understandAnimals, LangSkillsDescription.understandAnimals);
 
-final Skill skillCook = Skill(LangSkills.cook, LangSkillsDescription.cook, false);
+final Skill skillCook = Skill(LangSkills.cook, LangSkillsDescription.cook);
 
 final Skill skillSilentMovement =
-    Skill(LangSkills.silentMovement, LangSkillsDescription.silentMovement, false);
+    Skill(LangSkills.silentMovement, LangSkillsDescription.silentMovement);
 
-final Skill skillDefuse = Skill(LangSkills.defuse, LangSkillsDescription.defuse, false);
+final Skill skillDefuse = Skill(LangSkills.defuse, LangSkillsDescription.defuse);
 
-final Skill skillDetect = Skill(LangSkills.detect, LangSkillsDescription.detect, false);
+final Skill skillDetect = Skill(LangSkills.detect, LangSkillsDescription.detect);
 
-final Skill skillErudition = Skill(LangSkills.erudition, LangSkillsDescription.erudition, false);
+final Skill skillErudition = Skill(LangSkills.erudition, LangSkillsDescription.erudition);
 
-final Skill skillClimb = Skill(LangSkills.climb, LangSkillsDescription.climb, false);
+final Skill skillClimb = Skill(LangSkills.climb, LangSkillsDescription.climb);
 
-final Skill skillBlacksmith = Skill(LangSkills.blacksmith, LangSkillsDescription.blacksmith, false);
+final Skill skillBlacksmith = Skill(LangSkills.blacksmith, LangSkillsDescription.blacksmith);
 
-final Skill skillLooselyHit = Skill(LangSkills.looselyHit, LangSkillsDescription.looselyHit, false);
+final Skill skillLooselyHit = Skill(LangSkills.looselyHit, LangSkillsDescription.looselyHit);
 
-final Skill skillPoppycock = Skill(LangSkills.poppycock, LangSkillsDescription.poppycock, false);
+final Skill skillPoppycock = Skill(LangSkills.poppycock, LangSkillsDescription.poppycock);
 
 final Skill skillDiggingThroughTrashCans =
-    Skill(LangSkills.diggingThroughTrashCans, LangSkillsDescription.diggingThroughTrashCans, false);
+    Skill(LangSkills.diggingThroughTrashCans, LangSkillsDescription.diggingThroughTrashCans);
 
 final Skill skillSurvivalInstinct =
-    Skill(LangSkills.survivalInstinct, LangSkillsDescription.survivalInstinct, false);
+    Skill(LangSkills.survivalInstinct, LangSkillsDescription.survivalInstinct);
 
 final Skill skillTreasureInstinct =
-    Skill(LangSkills.treasureInstinct, LangSkillsDescription.treasureInstinct, false);
+    Skill(LangSkills.treasureInstinct, LangSkillsDescription.treasureInstinct);
 
-final Skill skillIntimidate = Skill(LangSkills.intimidate, LangSkillsDescription.intimidate, false);
+final Skill skillIntimidate = Skill(LangSkills.intimidate, LangSkillsDescription.intimidate);
 
 final Skill skillJugglingAndDancing =
-    Skill(LangSkills.jugglingAndDancing, LangSkillsDescription.jugglingAndDancing, false);
+    Skill(LangSkills.jugglingAndDancing, LangSkillsDescription.jugglingAndDancing);
 
 final Skill skillMonsterLanguages =
-    Skill(LangSkills.monsterLanguages, LangSkillsDescription.monsterLanguages, false);
+    Skill(LangSkills.monsterLanguages, LangSkillsDescription.monsterLanguages);
 
-final Skill skillMistrust = Skill(LangSkills.mistrust, LangSkillsDescription.mistrust, false);
+final Skill skillMistrust = Skill(LangSkills.mistrust, LangSkillsDescription.mistrust);
 
 final Skill skillBeggingAndWhining =
-    Skill(LangSkills.beggingAndWhining, LangSkillsDescription.beggingAndWhining, false);
+    Skill(LangSkills.beggingAndWhining, LangSkillsDescription.beggingAndWhining);
 
-final Skill skillSwim = Skill(LangSkills.swim, LangSkillsDescription.swim, false);
+final Skill skillSwim = Skill(LangSkills.swim, LangSkillsDescription.swim);
 
 final Skill skillTouchingNaivety =
-    Skill(LangSkills.touchingNaivety, LangSkillsDescription.touchingNaivety, false);
+    Skill(LangSkills.touchingNaivety, LangSkillsDescription.touchingNaivety);
 
-final Skill skillAnnoying = Skill(LangSkills.annoying, LangSkillsDescription.annoying, false);
+final Skill skillAnnoying = Skill(LangSkills.annoying, LangSkillsDescription.annoying);
 
-final Skill skillTrack = Skill(LangSkills.track, LangSkillsDescription.track, false);
+final Skill skillTrack = Skill(LangSkills.track, LangSkillsDescription.track);
 
-final Skill skillFirstAid = Skill(LangSkills.firstAid, LangSkillsDescription.firstAid, false);
+final Skill skillFirstAid = Skill(LangSkills.firstAid, LangSkillsDescription.firstAid);
 
-final Skill skillSkinflint = Skill(LangSkills.skinflint, LangSkillsDescription.skinflint, false);
+final Skill skillSkinflint = Skill(LangSkills.skinflint, LangSkillsDescription.skinflint);
 
-final Skill skillRecovery = Skill(LangSkills.recovery, LangSkillsDescription.recovery, false);
+final Skill skillRecovery = Skill(LangSkills.recovery, LangSkillsDescription.recovery);
 
-final Skill skillLikeNothing = Skill(LangSkills.likeNothing, LangSkillsDescription.likeNothing, false);
+final Skill skillLikeNothing = Skill(LangSkills.likeNothing, LangSkillsDescription.likeNothing);
 
-final Skill skillWeirdRunes = Skill(LangSkills.weirdRunes, LangSkillsDescription.weirdRunes, false);
+final Skill skillWeirdRunes = Skill(LangSkills.weirdRunes, LangSkillsDescription.weirdRunes);
 
-final Skill skillFeetSmell = Skill(LangSkills.feetSmell, LangSkillsDescription.feetSmell, false);
+final Skill skillFeetSmell = Skill(LangSkills.feetSmell, LangSkillsDescription.feetSmell);
 
-final Skill skillLocksmith = Skill(LangSkills.locksmith, LangSkillsDescription.locksmith, false);
+final Skill skillLocksmith = Skill(LangSkills.locksmith, LangSkillsDescription.locksmith);
 
-final Skill skillHollowHead = Skill(LangSkills.hollowHead, LangSkillsDescription.hollowHead, false);
+final Skill skillHollowHead = Skill(LangSkills.hollowHead, LangSkillsDescription.hollowHead);
 
 final Skill skillShootProperly =
-    Skill(LangSkills.shootProperly, LangSkillsDescription.shootProperly, false);
+    Skill(LangSkills.shootProperly, LangSkillsDescription.shootProperly);
 
 final Skill skillFallIntoTraps =
-    Skill(LangSkills.fallIntoTraps, LangSkillsDescription.fallIntoTraps, false);
+    Skill(LangSkills.fallIntoTraps, LangSkillsDescription.fallIntoTraps);
 
 final Skill skillPainIsForTheWeak =
-    Skill(LangSkills.painIsForTheWeak, LangSkillsDescription.painIsForTheWeak, false);
+    Skill(LangSkills.painIsForTheWeak, LangSkillsDescription.painIsForTheWeak);
 
 final Skill skillSuperPowerful =
-    Skill(LangSkills.superPowerful, LangSkillsDescription.superPowerful, false);
+    Skill(LangSkills.superPowerful, LangSkillsDescription.superPowerful);
 
-final Skill skillAttackLeap = Skill(LangSkills.attackLeap, LangSkillsDescription.attackLeap, false);
+final Skill skillAttackLeap = Skill(LangSkills.attackLeap, LangSkillsDescription.attackLeap);
 
-final Skill skillSly = Skill(LangSkills.sly, LangSkillsDescription.sly, false);
+final Skill skillSly = Skill(LangSkills.sly, LangSkillsDescription.sly);
 
-final Skill skillLongWeapons = Skill(LangSkills.longWeapons, LangSkillsDescription.longWeapons, false);
+final Skill skillLongWeapons = Skill(LangSkills.longWeapons, LangSkillsDescription.longWeapons);
 
 final Skill skillFierceBeauty =
-    Skill(LangSkills.fierceBeauty, LangSkillsDescription.fierceBeauty, false);
+    Skill(LangSkills.fierceBeauty, LangSkillsDescription.fierceBeauty);
 
-final Skill skillIgnorant = Skill(LangSkills.ignorant, LangSkillsDescription.ignorant, false);
+final Skill skillIgnorant = Skill(LangSkills.ignorant, LangSkillsDescription.ignorant);
 
-final Skill skillSurvivor = Skill(LangSkills.survivor, LangSkillsDescription.survivor, false);
+final Skill skillSurvivor = Skill(LangSkills.survivor, LangSkillsDescription.survivor);
 
-final Skill skillVile = Skill(LangSkills.vile, LangSkillsDescription.vile, false);
+final Skill skillVile = Skill(LangSkills.vile, LangSkillsDescription.vile);
 
-final Skill skillIronGrip = Skill(LangSkills.ironGrip, LangSkillsDescription.ironGrip, false);
+final Skill skillIronGrip = Skill(LangSkills.ironGrip, LangSkillsDescription.ironGrip);
 
-final Skill skillTormentor = Skill(LangSkills.tormentor, LangSkillsDescription.tormentor, false);
+final Skill skillTormentor = Skill(LangSkills.tormentor, LangSkillsDescription.tormentor);
 
-final Skill skillMiserable = Skill(LangSkills.miserable, LangSkillsDescription.miserable, false);
+final Skill skillMiserable = Skill(LangSkills.miserable, LangSkillsDescription.miserable);
 
-final Skill skillCoward = Skill(LangSkills.coward, LangSkillsDescription.coward, false);
+final Skill skillCoward = Skill(LangSkills.coward, LangSkillsDescription.coward);
 
-final Skill skillSurviving = Skill(LangSkills.surviving, LangSkillsDescription.surviving, false);
+final Skill skillSurviving = Skill(LangSkills.surviving, LangSkillsDescription.surviving);
 
 final List<Skill> skillEnum = [
   skillAmbidextrous,

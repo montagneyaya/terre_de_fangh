@@ -5,13 +5,13 @@ part 'specialization.g.dart';
 class Specialization {
   Specialization(this.specialization);
 
+  factory Specialization.fromJson(Map<String, dynamic> json) => _$SpecializationFromJson(json);
+
   String specialization;
 
   @override
   String toString() {
     return specialization;
   }
-
-  factory Specialization.fromJson(Map<String, dynamic> json) => _$SpecializationFromJson(json);
   Map<String, dynamic> toJson() => _$SpecializationToJson(this);
 }

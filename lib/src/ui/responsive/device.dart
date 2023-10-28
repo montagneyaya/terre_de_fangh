@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Device {
-  Devices? device(context) {
-    final TargetPlatform targetPlatform = Theme.of(context).platform;
-    final double dimension = MediaQuery.of(context).size.shortestSide;
+  Devices? device(BuildContext context) {
+    final targetPlatform = Theme.of(context).platform;
+    final dimension = MediaQuery.of(context).size.shortestSide;
     if (kIsWeb) return Devices.web;
     if (targetPlatform == TargetPlatform.android && dimension < 720) return Devices.androidHandset;
     if (targetPlatform == TargetPlatform.android && dimension >= 720) return Devices.androidTablet;

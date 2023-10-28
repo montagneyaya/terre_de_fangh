@@ -14,27 +14,27 @@ class Save {
   List<String> fileList = [];
 
   Future<String> get _localPath async {
-    final Directory directory = await getApplicationDocumentsDirectory();
+    final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
 
   Future<Directory> get _localDirectory async {
-    final String path = await _localPath;
+    final path = await _localPath;
     return Directory('$path/$directory');
   }
 
   Future<File> get _localFile async {
-    final String path = await _localPath;
+    final path = await _localPath;
     return File('$path/$directory/$fileName');
   }
 
   Future<File> writeNewJson(Map<String, dynamic> jsonSave) async {
-    final Directory directoryWrite = await _localDirectory;
-    final File file = await _localFile;
-    directoryWrite.exists().then((directoryTest) {
+    final directoryWrite = await _localDirectory;
+    final file = await _localFile;
+    await directoryWrite.exists().then((directoryTest) {
       if (directoryTest == false) {
         file.create(recursive: true).then((_) {
-          String jsonString = jsonEncode(jsonSave);
+          final jsonString = jsonEncode(jsonSave);
           return file.writeAsString(jsonString);
         });
       }
@@ -42,7 +42,7 @@ class Save {
         file.exists().then((fileTest) {
           if (fileTest == false) {
             file.create(recursive: true).then((_) {
-              String jsonString = jsonEncode(jsonSave);
+              final jsonString = jsonEncode(jsonSave);
               return file.writeAsString(jsonString);
             });
           }
@@ -58,11 +58,11 @@ class Save {
   }
 
   Future<List<String>> readAllFile() async {
-    final Directory directoryRead = await _localDirectory;
+    final directoryRead = await _localDirectory;
     if (directoryRead.existsSync() == false) {
       return [];
     } else {
-      await for (FileSystemEntity entity in directoryRead.list()) {
+      await for (final FileSystemEntity entity in directoryRead.list()) {
         fileList.add(entity.path);
       }
       return fileList;

@@ -1,6 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/job.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/skill.dart';
-import 'package:json_annotation/json_annotation.dart';
+
 part 'people.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
@@ -19,7 +20,9 @@ class People {
       this.load,
       this.jobs,
       this.birthSkills,
-      this.optionalSkills);
+      this.optionalSkills,);
+
+  factory People.fromJson(Map<String, dynamic> json) => _$PeopleFromJson(json);
 
   String people;
   List<int> courage;
@@ -48,7 +51,5 @@ class People {
   String toString() {
     return people;
   }
-
-  factory People.fromJson(Map<String, dynamic> json) => _$PeopleFromJson(json);
   Map<String, dynamic> toJson() => _$PeopleToJson(this);
 }

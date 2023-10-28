@@ -1,6 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/skill.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/specialization.dart';
-import 'package:json_annotation/json_annotation.dart';
+
 part 'job.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
@@ -19,7 +20,9 @@ class Job {
       this.pr,
       this.specialization,
       this.inheritedSkills,
-      this.optionalSkills);
+      this.optionalSkills,);
+
+  factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
 
   String job;
   List<int> courage;
@@ -52,7 +55,5 @@ class Job {
   String toString() {
     return job;
   }
-
-  factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
   Map<String, dynamic> toJson() => _$JobToJson(this);
 }

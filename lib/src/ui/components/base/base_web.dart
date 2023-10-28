@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:terre_de_fangh/src/ui/Assets/images.dart';
+import 'package:terre_de_fangh/src/ui/components/drawer/drawer.dart';
+import 'package:terre_de_fangh/src/ui/instances/app_bar/app_bar_web.dart';
 import 'package:terre_de_fangh/src/ui/responsive/breakpoint.dart';
 import 'package:terre_de_fangh/src/ui/responsive/device.dart';
-import 'package:terre_de_fangh/src/ui/instances/app_bar/app_bar_web.dart';
-import 'package:terre_de_fangh/src/ui/components/drawer/drawer.dart';
 
 class BaseWeb extends StatelessWidget {
-  final Widget content;
-  final BoxDecoration backgroundContent;
 
   const BaseWeb(this.content, this.backgroundContent, {super.key});
+  final Widget content;
+  final BoxDecoration backgroundContent;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +39,9 @@ class BaseWeb extends StatelessWidget {
     );
   }
 
-  ImageProvider<Object> _imageHeader(context) {
-    final Device device = Device();
-    final Breakpoint breakpoint = Breakpoint();
+  ImageProvider<Object> _imageHeader(BuildContext context) {
+    final device = Device();
+    final breakpoint = Breakpoint();
     if (device.device(context) == Devices.web) {
       switch (breakpoint.breakpoint(context)) {
         case Breakpoints.xsmall:

@@ -16,7 +16,7 @@ Widget _potionsMunitionsTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -59,7 +59,7 @@ Widget _potionsMunitionsTab(BuildContext context) {
                             children: [
                               Expanded(
                                 child: terreDeFanghTextBodyMedium(
-                                    context, LangCharacterSheet.ammoCharacter),
+                                    context, LangCharacterSheet.ammoCharacter,),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -91,7 +91,7 @@ Widget _potionsMunitionsTab(BuildContext context) {
                             children: [
                               Expanded(
                                 child: terreDeFanghTextBodyMedium(
-                                    context, LangCharacterSheet.effectsItemAmmoPotion),
+                                    context, LangCharacterSheet.effectsItemAmmoPotion,),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -164,7 +164,7 @@ Widget _potionsMunitionsTab(BuildContext context) {
                             children: [
                               Expanded(
                                 child: terreDeFanghTextBodyMedium(
-                                    context, LangCharacterSheet.potionsPoisonsCharacter),
+                                    context, LangCharacterSheet.potionsPoisonsCharacter,),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -202,7 +202,7 @@ Widget _potionsMunitionsTab(BuildContext context) {
                             children: [
                               Expanded(
                                 child: terreDeFanghTextBodyMedium(
-                                    context, LangCharacterSheet.effectsItemAmmoPotion),
+                                    context, LangCharacterSheet.effectsItemAmmoPotion,),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),

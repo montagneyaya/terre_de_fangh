@@ -10,8 +10,8 @@ class CharacterTab extends StatefulWidget {
 class _CharacterTabState extends State<CharacterTab> {
   @override
   Widget build(BuildContext context) {
-    List<String> charactersFiles = [];
-    List<Widget> charactersList = [];
+    //final charactersFiles = <String>[];
+    final charactersList = <Widget>[];
     return Container(
       decoration: background(context, imageCharacters, BoxFit.contain),
       child: Column(
@@ -24,55 +24,55 @@ class _CharacterTabState extends State<CharacterTab> {
             icon: const Icon(Icons.add),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8),
             child: FutureBuilder(
               future: Save('characters').readAllFile(),
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
                 } else if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
-                    charactersFiles = snapshot.data;
-                    for (var fileElement in charactersFiles) {
-                      Widget character = FutureBuilder(
+                    final charactersFiles = snapshot.data as List<String>;
+                    for (final fileElement in charactersFiles) {
+                      final Widget character = FutureBuilder(
                         future: Load(fileElement).readJson(),
-                        builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
                             return const CircularProgressIndicator();
                           } else if (snapshot.connectionState == ConnectionState.done) {
-                            Map jsonValue = jsonDecode(snapshot.data);
+                            final jsonValue = jsonDecode(snapshot.data as String);
                             return InkWell(
                               onTap: () => context.goNamed(RoutesPath.characterSheetMain),
                               child: Card(
-                                elevation: 0.0,
+                                elevation: 0,
                                 color: Theme.of(context).colorScheme.surfaceVariant,
                                 child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
+                                  padding: const EdgeInsets.all(4),
                                   child: Row(
                                     children: [
                                       Text(
-                                        jsonValue['name_creature'] + ' ',
+                                        '${(jsonValue as Map<String, dynamic>)['name_creature']} ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyLarge
                                             ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
                                       ),
                                       Text(
-                                        jsonValue['gender'] + ' ',
+                                        '${jsonValue['gender']} ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyLarge
                                             ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
                                       ),
                                       Text(
-                                        jsonValue['people'] + ' ',
+                                        '${jsonValue['people']} ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyLarge
                                             ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
                                       ),
                                       Text(
-                                        jsonValue['job'] + ' ',
+                                        '${jsonValue['job']} ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyLarge

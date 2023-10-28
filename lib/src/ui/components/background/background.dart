@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 BoxDecoration background(
-    BuildContext context, ImageProvider<Object> backgroundImage, BoxFit backgroundFit) {
+    BuildContext context, ImageProvider<Object> backgroundImage, BoxFit backgroundFit,) {
   return BoxDecoration(
     color: Theme.of(context).colorScheme.surface,
     image: DecorationImage(

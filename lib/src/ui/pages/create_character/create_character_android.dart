@@ -123,9 +123,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
       _intellectController,
       _charismaController,
       _dexterityController,
-      _strengthController
+      _strengthController,
     ];
-    for (var element in _statisticsController) {
+    for (final element in _statisticsController) {
       element.text = '8';
     }
 
@@ -178,7 +178,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
       _goldController,
       _silverController,
     ];
-    for (var element in _wealthController) {
+    for (final element in _wealthController) {
       element.text = '0';
     }
     _nameController.text = '';
@@ -195,10 +195,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
   @override
   void dispose() {
     //step 1
-    for (var element in _statisticsController) {
+    for (final element in _statisticsController) {
       element.dispose();
     }
-    for (var element in _wealthController) {
+    for (final element in _wealthController) {
       element.dispose();
     }
     _fateController.dispose();
@@ -252,14 +252,14 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: Text(
                                         LangCharacterSheet.courageCOUCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[0],
                                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
@@ -278,12 +278,12 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32),
                                         child: IconButton(
                                           icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
-                                            int value = Dices().d6() + 7;
+                                            final value = Dices().d6() + 7;
                                             _statisticsController[0].text = value.toString();
                                           },
                                         ),
@@ -300,18 +300,18 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: Text(
                                         LangCharacterSheet.intellectINTCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[1],
                                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
-                                        keyboardType: const TextInputType.numberWithOptions(),
+                                        keyboardType:  const TextInputType.numberWithOptions(),
                                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                         decoration: const InputDecoration(
                                           counterText: '',
@@ -326,12 +326,12 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32),
                                         child: IconButton(
                                           icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
-                                            int value = Dices().d6() + 7;
+                                            final value = Dices().d6() + 7;
                                             _statisticsController[1].text = value.toString();
                                           },
                                         ),
@@ -348,14 +348,14 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: Text(
                                         LangCharacterSheet.charismaCHACharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[2],
                                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
@@ -374,12 +374,12 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32),
                                         child: IconButton(
                                           icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
-                                            int value = Dices().d6() + 7;
+                                            final value = Dices().d6() + 7;
                                             _statisticsController[2].text = value.toString();
                                           },
                                         ),
@@ -396,14 +396,14 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: Text(
                                         LangCharacterSheet.dexterityDEXCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[3],
                                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
@@ -422,12 +422,12 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32),
                                         child: IconButton(
                                           icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
-                                            int value = Dices().d6() + 7;
+                                            final value = Dices().d6() + 7;
                                             _statisticsController[3].text = value.toString();
                                           },
                                         ),
@@ -444,14 +444,14 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: Text(
                                         LangCharacterSheet.strengthSTRCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _statisticsController[4],
                                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 2,
@@ -470,12 +470,12 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32),
                                         child: IconButton(
                                           icon: const Icon(IconsDices.dice6),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
-                                            int value = Dices().d6() + 7;
+                                            final value = Dices().d6() + 7;
                                             _statisticsController[4].text = value.toString();
                                           },
                                         ),
@@ -488,8 +488,8 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                 child: TextButton(
                                   child: SvgPicture.asset(AssetsImages.dice20),
                                   onPressed: () {
-                                    for (var element in _statisticsController) {
-                                      int value = Dices().d6() + 7;
+                                    for (final element in _statisticsController) {
+                                      final value = Dices().d6() + 7;
                                       element.text = value.toString();
                                     }
                                   },
@@ -547,9 +547,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         setState(() {
                                           _peopleController = value!;
                                           _jobsList = [];
-                                          for (Job job in _peopleController.jobs) {
-                                            bool test = false;
-                                            for (int i = 0; i < 5; i++) {
+                                          for (final job in _peopleController.jobs) {
+                                            var test = false;
+                                            for (var i = 0; i < 5; i++) {
                                               test = int.parse(_statisticsController[i].text) >
                                                       job.statistics()[i][0] - 1 &&
                                                   int.parse(_statisticsController[i].text) <
@@ -710,10 +710,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               title: Text(
                                                 _skillsObtain[index].skill,
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                               onTap: () {
-                                                showDialog(
+                                                showDialog<AlertDialog>(
                                                   context: context,
                                                   builder: (context) {
                                                     return AlertDialog(
@@ -727,7 +727,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                             ?.copyWith(
                                                                 color: Theme.of(context)
                                                                     .colorScheme
-                                                                    .onSurfaceVariant),
+                                                                    .onSurfaceVariant,),
                                                       ),
                                                       content: SingleChildScrollView(
                                                         child: Text(
@@ -738,7 +738,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onSurfaceVariant),
+                                                                      .onSurfaceVariant,),
                                                         ),
                                                       ),
                                                     );
@@ -804,10 +804,10 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                             ?.copyWith(
                                                                 color: Theme.of(context)
                                                                     .colorScheme
-                                                                    .onBackground),
+                                                                    .onBackground,),
                                                       ),
                                                       onTap: () {
-                                                        showDialog(
+                                                        showDialog<AlertDialog>(
                                                           context: context,
                                                           builder: (context) {
                                                             return AlertDialog(
@@ -822,7 +822,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     ?.copyWith(
                                                                         color: Theme.of(context)
                                                                             .colorScheme
-                                                                            .onSurfaceVariant),
+                                                                            .onSurfaceVariant,),
                                                               ),
                                                               content: SingleChildScrollView(
                                                                 child: Text(
@@ -833,7 +833,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                       ?.copyWith(
                                                                           color: Theme.of(context)
                                                                               .colorScheme
-                                                                              .onSurfaceVariant),
+                                                                              .onSurfaceVariant,),
                                                                 ),
                                                               ),
                                                             );
@@ -911,7 +911,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                         Text(
                                           LangCreateCharacter.noModifier,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground),
+                                              color: Theme.of(context).colorScheme.onBackground,),
                                         ),
                                       ],
                                     ),
@@ -934,17 +934,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16),
                                           child: Text(
                                             LangCreateCharacter.youAreAnOgre,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                                color: Theme.of(context).colorScheme.onBackground),
+                                                color: Theme.of(context).colorScheme.onBackground,),
                                           ),
                                         ),
                                         Text(
                                           LangCreateCharacter.obtainSuperPowerful,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground),
+                                              color: Theme.of(context).colorScheme.onBackground,),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -958,7 +958,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(
-                                                              LangCreateCharacter.alreadyUsed3Points),
+                                                              LangCreateCharacter.alreadyUsed3Points,),
                                                         ),
                                                       );
                                                     } else {
@@ -973,7 +973,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               Text(
                                                 '$_attackTemp AT',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                               const Spacer(),
                                               IconButton(
@@ -985,7 +985,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(
-                                                              LangCreateCharacter.alreadyUsed3Points),
+                                                              LangCreateCharacter.alreadyUsed3Points,),
                                                         ),
                                                       );
                                                     } else {
@@ -1000,7 +1000,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               Text(
                                                 '$_parryTemp ${LangCreateCharacter.pa}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                             ],
                                           ),
@@ -1026,17 +1026,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16),
                                           child: Text(
                                             LangCreateCharacter.youAreAFighter,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                                color: Theme.of(context).colorScheme.onBackground),
+                                                color: Theme.of(context).colorScheme.onBackground,),
                                           ),
                                         ),
                                         Text(
                                           LangCreateCharacter.canChanged1AtPa,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground),
+                                              color: Theme.of(context).colorScheme.onBackground,),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1070,7 +1070,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               Text(
                                                 '$_attackTemp ${LangCreateCharacter.at}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                               const Spacer(),
                                               if (_count2Down)
@@ -1102,7 +1102,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               Text(
                                                 '$_parryTemp ${LangCreateCharacter.pa}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                             ],
                                           ),
@@ -1136,17 +1136,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16),
                                           child: Text(
                                             LangCreateCharacter.youAreARanger,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                                color: Theme.of(context).colorScheme.onBackground),
+                                                color: Theme.of(context).colorScheme.onBackground,),
                                           ),
                                         ),
                                         Text(
                                           LangCreateCharacter.canChange2Statistics,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground),
+                                              color: Theme.of(context).colorScheme.onBackground,),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1195,7 +1195,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                         const Spacer(),
                                                         if (_count2Down)
@@ -1236,7 +1236,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                         const Spacer(),
                                                         if (_count2Down)
@@ -1277,7 +1277,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                       ],
                                                     ),
@@ -1333,7 +1333,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                         const Spacer(),
                                                         if (_count2Down)
@@ -1374,7 +1374,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                       ],
                                                     ),
@@ -1413,17 +1413,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16),
                                           child: Text(
                                             LangCreateCharacter.youAreADealer,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                                color: Theme.of(context).colorScheme.onBackground),
+                                                color: Theme.of(context).colorScheme.onBackground,),
                                           ),
                                         ),
                                         Text(
                                           LangCreateCharacter.mustChangeFightIntCha,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground),
+                                              color: Theme.of(context).colorScheme.onBackground,),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1445,7 +1445,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     .showSnackBar(
                                                                   const SnackBar(
                                                                     content: Text(LangCreateCharacter
-                                                                        .alreadyChangedPoints),
+                                                                        .alreadyChangedPoints,),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1454,7 +1454,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                       .showSnackBar(
                                                                     const SnackBar(
                                                                       content: Text(LangCreateCharacter
-                                                                          .putThePoint),
+                                                                          .putThePoint,),
                                                                     ),
                                                                   );
                                                                 } else {
@@ -1473,7 +1473,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                         const Spacer(),
                                                         IconButton(
@@ -1487,7 +1487,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     .showSnackBar(
                                                                   const SnackBar(
                                                                     content: Text(LangCreateCharacter
-                                                                        .alreadyChangedPoints),
+                                                                        .alreadyChangedPoints,),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1496,7 +1496,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                       .showSnackBar(
                                                                     const SnackBar(
                                                                       content: Text(LangCreateCharacter
-                                                                          .putThePoint),
+                                                                          .putThePoint,),
                                                                     ),
                                                                   );
                                                                 } else {
@@ -1515,7 +1515,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                       ],
                                                     ),
@@ -1532,7 +1532,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     .showSnackBar(
                                                                   const SnackBar(
                                                                     content: Text(LangCreateCharacter
-                                                                        .removeThePoint),
+                                                                        .removeThePoint,),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1550,7 +1550,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                         const Spacer(),
                                                         IconButton(
@@ -1564,7 +1564,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     .showSnackBar(
                                                                   const SnackBar(
                                                                     content: Text(LangCreateCharacter
-                                                                        .removeThePoint),
+                                                                        .removeThePoint,),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1582,7 +1582,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                       ],
                                                     ),
@@ -1629,17 +1629,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16),
                                           child: Text(
                                             LangCreateCharacter.youAreAnEngineer,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                                color: Theme.of(context).colorScheme.onBackground),
+                                                color: Theme.of(context).colorScheme.onBackground,),
                                           ),
                                         ),
                                         Text(
                                           LangCreateCharacter.mustChangeFightIntDex,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground),
+                                              color: Theme.of(context).colorScheme.onBackground,),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1661,7 +1661,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     .showSnackBar(
                                                                   const SnackBar(
                                                                     content: Text(LangCreateCharacter
-                                                                        .alreadyChangedPoints),
+                                                                        .alreadyChangedPoints,),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1670,7 +1670,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                       .showSnackBar(
                                                                     const SnackBar(
                                                                       content: Text(LangCreateCharacter
-                                                                          .putThePoint),
+                                                                          .putThePoint,),
                                                                     ),
                                                                   );
                                                                 } else {
@@ -1689,7 +1689,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                         const Spacer(),
                                                         IconButton(
@@ -1703,7 +1703,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     .showSnackBar(
                                                                   const SnackBar(
                                                                     content: Text(LangCreateCharacter
-                                                                        .alreadyChangedPoints),
+                                                                        .alreadyChangedPoints,),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1712,7 +1712,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                       .showSnackBar(
                                                                     const SnackBar(
                                                                       content: Text(LangCreateCharacter
-                                                                          .putThePoint),
+                                                                          .putThePoint,),
                                                                     ),
                                                                   );
                                                                 } else {
@@ -1731,7 +1731,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                       ],
                                                     ),
@@ -1748,7 +1748,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     .showSnackBar(
                                                                   const SnackBar(
                                                                     content: Text(LangCreateCharacter
-                                                                        .removeThePoint),
+                                                                        .removeThePoint,),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1766,7 +1766,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                         const Spacer(),
                                                         IconButton(
@@ -1780,7 +1780,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                                     .showSnackBar(
                                                                   const SnackBar(
                                                                     content: Text(LangCreateCharacter
-                                                                        .removeThePoint),
+                                                                        .removeThePoint,),
                                                                   ),
                                                                 );
                                                               } else {
@@ -1804,7 +1804,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                               ?.copyWith(
                                                                   color: Theme.of(context)
                                                                       .colorScheme
-                                                                      .onBackground),
+                                                                      .onBackground,),
                                                         ),
                                                       ],
                                                     ),
@@ -1851,17 +1851,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16),
                                           child: Text(
                                             LangCreateCharacter.yourDexterityIsLow,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                                color: Theme.of(context).colorScheme.onBackground),
+                                                color: Theme.of(context).colorScheme.onBackground,),
                                           ),
                                         ),
                                         Text(
                                           LangCreateCharacter.removeFight,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground),
+                                              color: Theme.of(context).colorScheme.onBackground,),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1875,7 +1875,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(LangCreateCharacter
-                                                              .alreadyChangedStatistic),
+                                                              .alreadyChangedStatistic,),
                                                         ),
                                                       );
                                                     } else {
@@ -1889,7 +1889,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               Text(
                                                 '$_attackTemp ${LangCreateCharacter.at}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                               const Spacer(),
                                               IconButton(
@@ -1901,7 +1901,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(LangCreateCharacter
-                                                              .alreadyChangedStatistic),
+                                                              .alreadyChangedStatistic,),
                                                         ),
                                                       );
                                                     } else {
@@ -1915,7 +1915,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               Text(
                                                 '$_parryTemp ${LangCreateCharacter.pa}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                             ],
                                           ),
@@ -1949,17 +1949,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: const EdgeInsets.symmetric(vertical: 16),
                                           child: Text(
                                             LangCreateCharacter.yourDexterityIsHigh,
                                             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                                color: Theme.of(context).colorScheme.onBackground),
+                                                color: Theme.of(context).colorScheme.onBackground,),
                                           ),
                                         ),
                                         Text(
                                           LangCreateCharacter.putFight,
                                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground),
+                                              color: Theme.of(context).colorScheme.onBackground,),
                                         ),
                                         Expanded(
                                           child: Row(
@@ -1973,7 +1973,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(LangCreateCharacter
-                                                              .alreadyChangedStatistic),
+                                                              .alreadyChangedStatistic,),
                                                         ),
                                                       );
                                                     } else {
@@ -1987,7 +1987,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               Text(
                                                 '$_attackTemp ${LangCreateCharacter.at}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                               const Spacer(),
                                               IconButton(
@@ -1999,7 +1999,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(LangCreateCharacter
-                                                              .alreadyChangedStatistic),
+                                                              .alreadyChangedStatistic,),
                                                         ),
                                                       );
                                                     } else {
@@ -2013,7 +2013,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                               Text(
                                                 '$_parryTemp ${LangCreateCharacter.pa}',
                                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                    color: Theme.of(context).colorScheme.onBackground),
+                                                    color: Theme.of(context).colorScheme.onBackground,),
                                               ),
                                             ],
                                           ),
@@ -2176,14 +2176,14 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: Text(
                                         LangCharacterSheet.fatePointsCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         controller: _fateController,
                                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         textAlign: TextAlign.center,
                                         maxLength: 1,
@@ -2202,13 +2202,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32),
                                         child: IconButton(
                                           icon: const Icon(IconsDices.dice4),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             setState(() {
-                                              int value = Dices().d4() - 1;
+                                              final value = Dices().d4() - 1;
                                               _fateController.text = value.toString();
                                             });
                                           },
@@ -2238,7 +2238,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                         ?.copyWith(
                                                             color: Theme.of(context)
                                                                 .colorScheme
-                                                                .onBackground),
+                                                                .onBackground,),
                                                   ),
                                                 ),
                                                 Expanded(
@@ -2250,14 +2250,14 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                         ?.copyWith(
                                                             color: Theme.of(context)
                                                                 .colorScheme
-                                                                .onBackground),
+                                                                .onBackground,),
                                                     textAlignVertical: TextAlignVertical.bottom,
                                                     textAlign: TextAlign.center,
                                                     maxLength: 2,
                                                     keyboardType:
                                                         const TextInputType.numberWithOptions(),
                                                     inputFormatters: [
-                                                      FilteringTextInputFormatter.digitsOnly
+                                                      FilteringTextInputFormatter.digitsOnly,
                                                     ],
                                                     decoration: const InputDecoration(
                                                       counterText: '',
@@ -2293,7 +2293,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                         ?.copyWith(
                                                             color: Theme.of(context)
                                                                 .colorScheme
-                                                                .onBackground),
+                                                                .onBackground,),
                                                   ),
                                                 ),
                                                 Expanded(
@@ -2305,14 +2305,14 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                                         ?.copyWith(
                                                             color: Theme.of(context)
                                                                 .colorScheme
-                                                                .onBackground),
+                                                                .onBackground,),
                                                     textAlignVertical: TextAlignVertical.bottom,
                                                     textAlign: TextAlign.center,
                                                     maxLength: 3,
                                                     keyboardType:
                                                         const TextInputType.numberWithOptions(),
                                                     inputFormatters: [
-                                                      FilteringTextInputFormatter.digitsOnly
+                                                      FilteringTextInputFormatter.digitsOnly,
                                                     ],
                                                     decoration: const InputDecoration(
                                                       counterText: '',
@@ -2340,17 +2340,17 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 32.0),
+                                        padding: const EdgeInsets.only(left: 32),
                                         child: IconButton(
                                           icon: const Icon(IconsDices.dice6_2),
                                           color: Theme.of(context).colorScheme.onBackground,
                                           onPressed: () {
                                             setState(() {
-                                              int goldCoins = (Dices().d6() + Dices().d6()) * 10;
-                                              int silverCoins = Dices().d100() - 1;
+                                              var goldCoins = (Dices().d6() + Dices().d6()) * 10;
+                                              var silverCoins = Dices().d100() - 1;
                                               if (_isBourgeois) {
-                                                int addGoldCoins = (Dices().d6() + Dices().d6()) * 10;
-                                                int addSilverCoins = Dices().d100() - 1;
+                                                final addGoldCoins = (Dices().d6() + Dices().d6()) * 10;
+                                                final addSilverCoins = Dices().d100() - 1;
                                                 goldCoins += addGoldCoins;
                                                 silverCoins += addSilverCoins;
                                               }
@@ -2371,7 +2371,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: Text(
                                         LangCharacterSheet.nameCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                       ),
                                     ),
                                     Expanded(
@@ -2379,7 +2379,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: TextFormField(
                                         controller: _nameController,
                                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         validator: (nameCharacter) {
                                           return null;
@@ -2396,7 +2396,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: Text(
                                         LangCharacterSheet.genderCharacter,
                                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                       ),
                                     ),
                                     Expanded(
@@ -2404,7 +2404,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                       child: TextFormField(
                                         controller: _genderController,
                                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground),
+                                            color: Theme.of(context).colorScheme.onBackground,),
                                         textAlignVertical: TextAlignVertical.bottom,
                                         validator: (gender) {
                                           return null;
@@ -2427,9 +2427,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
         ),
         Row(
           children: [
-            _controller.index == 0
-                ? const Spacer()
-                : TextButton(
+            if (_controller.index == 0) const Spacer() else TextButton(
                     onPressed: _controller.index > 0
                         ? () {
                             //step 5 to step 4
@@ -2439,7 +2437,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                                 _goldController,
                                 _silverController,
                               ];
-                              for (var element in _wealthController) {
+                              for (final element in _wealthController) {
                                 element.text = '0';
                               }
                               _nameController.text = '';
@@ -2533,16 +2531,16 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
 
                             //step 3 to step 2
                             if (_controller.index == 2) {
-                              List<Skill> skillsPeopleObtain = [];
-                              List<Skill> skillsPeopleChoose = [];
-                              List<Skill> skillsJobObtain = [];
-                              List<Skill> skillsJobChoose = [];
+                              var skillsPeopleObtain = <Skill>[];
+                              var skillsPeopleChoose = <Skill>[];
+                              var skillsJobObtain = <Skill>[];
+                              var skillsJobChoose = <Skill>[];
                               _skillsController = [];
                               _skillsObtain = [];
                               _skillsChoose = [];
                               _isHuman = false;
-                              for (var element in skillEnum) {
-                                element.isSelect(false);
+                              for (final element in skillEnum) {
+                                element.check = false;
                               }
                               if (_peopleController != peopleHuman) {
                                 skillsPeopleObtain = _peopleController.birthSkills;
@@ -2554,9 +2552,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                               _skillsObtain = [...skillsPeopleObtain, ...skillsJobObtain];
                               _skillsObtain = _skillsObtain.toSet().toList();
                               _skillsObtain.sort((a, b) => a.skill.compareTo(b.skill));
-                              Set<Skill> skillsObtainSet = Set.from(_skillsObtain);
+                              final skillsObtainSet = Set<Skill>.from(_skillsObtain);
                               _skillsChoose = [...skillsPeopleChoose, ...skillsJobChoose];
-                              Set<Skill> skillsChooseSet = Set.from(_skillsChoose);
+                              final skillsChooseSet = Set<Skill>.from(_skillsChoose);
                               _skillsChoose = List.from(skillsChooseSet.difference(skillsObtainSet));
                               _skillsChoose = _skillsChoose.toSet().toList();
                               _skillsChoose.sort((a, b) => a.skill.compareTo(b.skill));
@@ -2576,9 +2574,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                               _jobController = jobAny;
                               _specializationController = specializationAny;
 
-                              for (People people in peopleEnum) {
-                                bool test = false;
-                                for (int i = 0; i < 5; i++) {
+                              for (final people in peopleEnum) {
+                                var test = false;
+                                for (var i = 0; i < 5; i++) {
                                   test = int.parse(_statisticsController[i].text) >
                                           people.statistics()[i][0] - 1 &&
                                       int.parse(_statisticsController[i].text) <
@@ -2589,9 +2587,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                               }
                               _peopleController = _peoplesList[0];
 
-                              for (Job job in _peopleController.jobs) {
-                                bool test = false;
-                                for (int i = 0; i < 5; i++) {
+                              for (final job in _peopleController.jobs) {
+                                var test = false;
+                                for (var i = 0; i < 5; i++) {
                                   test = int.parse(_statisticsController[i].text) >
                                           job.statistics()[i][0] - 1 &&
                                       int.parse(_statisticsController[i].text) <
@@ -2635,15 +2633,13 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
             TextButton(
               child: Row(
                 children: [
-                  _controller.index < _controller.length - 1
-                      ? Text(
+                  if (_controller.index < _controller.length - 1) Text(
                           LangCreateCharacter.next,
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge
                               ?.copyWith(color: Theme.of(context).colorScheme.primary),
-                        )
-                      : Text(
+                        ) else Text(
                           LangCreateCharacter.save,
                           style: Theme.of(context)
                               .textTheme
@@ -2667,9 +2663,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                     _jobController = jobAny;
                     _specializationController = specializationAny;
 
-                    for (People people in peopleEnum) {
-                      bool test = false;
-                      for (int i = 0; i < 5; i++) {
+                    for (final people in peopleEnum) {
+                      var test = false;
+                      for (var i = 0; i < 5; i++) {
                         test =
                             int.parse(_statisticsController[i].text) > people.statistics()[i][0] - 1 &&
                                 int.parse(_statisticsController[i].text) < people.statistics()[i][1] + 1;
@@ -2679,9 +2675,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                     }
                     _peopleController = _peoplesList[0];
 
-                    for (Job job in _peopleController.jobs) {
-                      bool test = false;
-                      for (int i = 0; i < 5; i++) {
+                    for (final job in _peopleController.jobs) {
+                      var test = false;
+                      for (var i = 0; i < 5; i++) {
                         test = int.parse(_statisticsController[i].text) > job.statistics()[i][0] - 1 &&
                             int.parse(_statisticsController[i].text) < job.statistics()[i][1] + 1;
                         if (!test) break;
@@ -2699,16 +2695,16 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                 //step 2 to step 3
                 if (_characterForm.currentState != null) {
                   if (_controller.index == 1 && _characterForm.currentState!.validate()) {
-                    List<Skill> skillsPeopleObtain = [];
-                    List<Skill> skillsPeopleChoose = [];
-                    List<Skill> skillsJobObtain = [];
-                    List<Skill> skillsJobChoose = [];
+                    var skillsPeopleObtain = <Skill>[];
+                    var skillsPeopleChoose = <Skill>[];
+                    var skillsJobObtain = <Skill>[];
+                    var skillsJobChoose = <Skill>[];
                     _skillsController = [];
                     _skillsObtain = [];
                     _skillsChoose = [];
                     _isHuman = false;
-                    for (var element in skillEnum) {
-                      element.isSelect(false);
+                    for (final element in skillEnum) {
+                      element.check = false;
                     }
                     if (_peopleController != peopleHuman) {
                       skillsPeopleObtain = _peopleController.birthSkills;
@@ -2720,9 +2716,9 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                     _skillsObtain = [...skillsPeopleObtain, ...skillsJobObtain];
                     _skillsObtain = _skillsObtain.toSet().toList();
                     _skillsObtain.sort((a, b) => a.skill.compareTo(b.skill));
-                    Set<Skill> skillsObtainSet0 = Set.from(_skillsObtain);
+                    final skillsObtainSet0 = Set<Skill>.from(_skillsObtain);
                     _skillsChoose = [...skillsPeopleChoose, ...skillsJobChoose];
-                    Set<Skill> skillsChooseSet0 = Set.from(_skillsChoose);
+                    final skillsChooseSet0 = Set<Skill>.from(_skillsChoose);
                     _skillsChoose = List.from(skillsChooseSet0.difference(skillsObtainSet0));
                     _skillsChoose = _skillsChoose.toSet().toList();
                     _skillsChoose.sort((a, b) => a.skill.compareTo(b.skill));
@@ -2767,7 +2763,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                     _highAttack = false;
                     _highParry = false;
 
-                    for (int i = 0; i < _skillsChoose.length; i++) {
+                    for (var i = 0; i < _skillsChoose.length; i++) {
                       if (_skillsChoose[i].selected) {
                         _skills.add(_skillsChoose[i]);
                       }
@@ -2831,7 +2827,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                       _goldController,
                       _silverController,
                     ];
-                    for (var element in _wealthController) {
+                    for (final element in _wealthController) {
                       element.text = '0';
                     }
                     _nameController.text = '';
@@ -2863,7 +2859,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                         _healthPoints = 20;
                       } else {
                         _healthPoints =
-                            (_peopleController.hp - (_peopleController.hp * 30 / 100)).ceil().toInt();
+                            (_peopleController.hp - (_peopleController.hp * 30 / 100)).ceil();
                       }
                     }
                     if (_jobController == jobPaladin && _peopleController == peopleHuman) {
@@ -2892,7 +2888,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                     _statisticsController[3].text = _dexterityTemp.toString();
                     _statisticsController[4].text = _strengthTemp.toString();
 
-                    PlayerCharacter character = PlayerCharacter(
+                    final character = PlayerCharacter(
                       _nameController.text,
                       _genderController.text,
                       _peopleController.people,
@@ -2912,7 +2908,7 @@ class _CreateCharacterAndroidState extends State<CreateCharacterAndroid>
                       _maxNaturalPR,
                       _skills,
                     );
-                    Map<String, dynamic> characterJson = character.toJson();
+                    final characterJson = character.toJson();
                     Save('characters').writeNewJson(characterJson);
                     context.pop<bool>(false);
                   }

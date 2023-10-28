@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:terre_de_fangh/main.dart';
 import 'package:terre_de_fangh/src/app.dart';
 
 void main() {

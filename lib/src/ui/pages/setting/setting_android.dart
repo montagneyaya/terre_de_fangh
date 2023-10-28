@@ -67,7 +67,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
                       controlAffinity: ListTileControlAffinity.trailing,
                       groupValue: themeModeNotifier.themeMode,
                       onChanged: (ThemeMode? value) {
-                        themeModeNotifier.toggleThemeMode(value);
+                        themeModeNotifier.toggleThemeMode(value!);
                       },
                     ),
                     RadioListTile<ThemeMode>(
@@ -87,7 +87,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
                       controlAffinity: ListTileControlAffinity.trailing,
                       groupValue: themeModeNotifier.themeMode,
                       onChanged: (ThemeMode? value) {
-                        themeModeNotifier.toggleThemeMode(value);
+                        themeModeNotifier.toggleThemeMode(value!);
                       },
                     ),
                     RadioListTile<ThemeMode>(
@@ -107,7 +107,7 @@ class _SettingAndroidState extends State<SettingAndroid> {
                       controlAffinity: ListTileControlAffinity.trailing,
                       groupValue: themeModeNotifier.themeMode,
                       onChanged: (ThemeMode? value) {
-                        themeModeNotifier.toggleThemeMode(value);
+                        themeModeNotifier.toggleThemeMode(value!);
                       },
                     ),
                   ],

@@ -21,7 +21,8 @@ class HomeWeb extends StatelessWidget {
           text: TextSpan(
             children: [
               TextSpan(
-                text: '''    Bienvenue sur la terre de Fangh où vous pourrez trouver l'aventure!
+                text: '''
+    Bienvenue sur la terre de Fangh où vous pourrez trouver l'aventure!
     Vous trouverez des outils pour faire des parties de jeux de rôle dans ''',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),

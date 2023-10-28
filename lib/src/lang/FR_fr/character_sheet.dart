@@ -64,7 +64,7 @@ class LangCharacterSheet {
   static const String booksCharacter = 'Bouquins';
   static const String maxLoadCharacter = 'Charge Max';
   static const String totalLoadCharacter = 'Charge Total';
-  static const String equipmentWeightCharacter = 'Poids de l\'équipements';
+  static const String equipmentWeightCharacter = "Poids de l'équipements";
   static const String backPackWeightCharacter = 'Poids du sac à dos';
   static const String kgMaxBackpack = 'Kg Max';
   static const String clothesCharacter = 'vêtements';
@@ -79,8 +79,8 @@ class LangCharacterSheet {
   static const String maxPurse = 'Max';
   static const String beryliumCharacter = 'Berylium (500 PO)';
   static const String thritilCharacter = 'Thritil (100 PO)';
-  static const String goldCoinsCharacter = 'Pièces d\'Or';
-  static const String silverCoinsCharacter = 'Pièces d\'Argent';
+  static const String goldCoinsCharacter = "Pièces d'Or";
+  static const String silverCoinsCharacter = "Pièces d'Argent";
   static const String gemsCharacter = 'Gemmes';
   static const String ugCharacter = 'U.G.';
   static const String otherMoney = 'Autres monnaies';

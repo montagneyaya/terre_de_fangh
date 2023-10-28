@@ -16,7 +16,7 @@ Widget _itemsTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -29,7 +29,7 @@ Widget _itemsTab(BuildContext context) {
                           children: [
                             Expanded(
                               child: terreDeFanghTextBodyMedium(
-                                  context, LangCharacterSheet.specialsItemsCharacter),
+                                  context, LangCharacterSheet.specialsItemsCharacter,),
                             ),
                             Expanded(
                               child: terreDeFanghTextField(context),
@@ -59,7 +59,7 @@ Widget _itemsTab(BuildContext context) {
                             children: [
                               Expanded(
                                 child: terreDeFanghTextBodyMedium(
-                                    context, LangCharacterSheet.bonusEffectsItem),
+                                    context, LangCharacterSheet.bonusEffectsItem,),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -126,7 +126,7 @@ Widget _itemsTab(BuildContext context) {
                             children: [
                               Expanded(
                                 child: terreDeFanghTextBodyMedium(
-                                    context, LangCharacterSheet.loadingItemsCharacter),
+                                    context, LangCharacterSheet.loadingItemsCharacter,),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),
@@ -158,7 +158,7 @@ Widget _itemsTab(BuildContext context) {
                             children: [
                               Expanded(
                                 child: terreDeFanghTextBodyMedium(
-                                    context, LangCharacterSheet.effectsItemAmmoPotion),
+                                    context, LangCharacterSheet.effectsItemAmmoPotion,),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),

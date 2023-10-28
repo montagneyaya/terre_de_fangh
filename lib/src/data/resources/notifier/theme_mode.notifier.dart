@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeModeNotifier extends ChangeNotifier {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late ThemeMode _themeMode;
-  late int _themeModePrefs;
-
-  ThemeMode get themeMode => _themeMode;
 
   ThemeModeNotifier() {
     _themeMode = ThemeMode.light;
     _themeModePrefs = 0;
     _loadFromPrefs();
   }
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late ThemeMode _themeMode;
+  late int _themeModePrefs;
 
-  void toggleThemeMode(mode) {
+  ThemeMode get themeMode => _themeMode;
+
+  void toggleThemeMode(ThemeMode mode) {
     _themeMode = mode;
     _themeModePrefs = _themeModeValue();
     _saveToPrefs(_themeModePrefs);
@@ -33,18 +33,15 @@ class ThemeModeNotifier extends ChangeNotifier {
   }
 
   Future<void> _loadFromPrefs() async {
-    final SharedPreferences prefs = await _prefs;
+    final prefs = await _prefs;
     _themeModePrefs = prefs.getInt('themeMode') ?? 0;
     switch (_themeModePrefs) {
       case 0:
         _themeMode = ThemeMode.light;
-        break;
       case 1:
         _themeMode = ThemeMode.dark;
-        break;
       case 2:
         _themeMode = ThemeMode.system;
-        break;
       default:
         _themeMode = ThemeMode.light;
         break;
@@ -52,8 +49,8 @@ class ThemeModeNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _saveToPrefs(value) async {
-    final SharedPreferences prefs = await _prefs;
-    prefs.setInt('themeMode', value);
+  Future<void> _saveToPrefs(int value) async {
+    final prefs = await _prefs;
+    await prefs.setInt('themeMode', value);
   }
 }

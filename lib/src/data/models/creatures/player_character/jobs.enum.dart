@@ -1,6 +1,6 @@
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/job.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/player_character/specializations.enum.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/skills.enum.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/player_character/specializations.enum.dart';
 import 'package:terre_de_fangh/src/lang/FR_fr/jobs.dart';
 
 final Job jobFighter = Job(
@@ -24,7 +24,7 @@ final Job jobFighter = Job(
       skillBlacksmith,
       skillIntimidate,
       skillShootProperly,
-      skillPainIsForTheWeak
+      skillPainIsForTheWeak,
     ]);
 
 final Job jobNinja = Job(
@@ -49,7 +49,7 @@ final Job jobNinja = Job(
       skillClimb,
       skillMistrust,
       skillSwim,
-      skillLikeNothing
+      skillLikeNothing,
     ]);
 
 final Job jobRogue = Job(
@@ -74,7 +74,7 @@ final Job jobRogue = Job(
       skillLooselyHit,
       skillDiggingThroughTrashCans,
       skillMistrust,
-      skillLikeNothing
+      skillLikeNothing,
     ]);
 
 final Job jobCleric = Job(
@@ -94,7 +94,7 @@ final Job jobCleric = Job(
       specializationMalgar,
       specializationYouclidh,
       specializationDlul,
-      specializationSlanouch
+      specializationSlanouch,
     ],
     [skillErudition, skillMistrust, skillRecovery],
     [
@@ -104,7 +104,7 @@ final Job jobCleric = Job(
       skillPoppycock,
       skillFirstAid,
       skillSkinflint,
-      skillWeirdRunes
+      skillWeirdRunes,
     ]);
 
 final Job jobWizard = Job(
@@ -130,7 +130,7 @@ final Job jobWizard = Job(
       specializationWaterAndIce,
       specializationEarth,
       specializationAir,
-      specializationTzinntch
+      specializationTzinntch,
     ],
     [skillErudition, skillRecovery, skillWeirdRunes],
     [
@@ -139,7 +139,7 @@ final Job jobWizard = Job(
       skillRide,
       skillPoppycock,
       skillMonsterLanguages,
-      skillFirstAid
+      skillFirstAid,
     ]);
 
 final Job jobPaladin = Job(
@@ -156,7 +156,7 @@ final Job jobPaladin = Job(
     0,
     [specializationDlul, specializationSlanouch, specializationBraav, specializationKhornettoh],
     [skillRide, skillIntimidate, skillRecovery],
-    [skillStuffingWeapons, skillMessUp, skillErudition, skillPoppycock, skillFirstAid]);
+    [skillStuffingWeapons, skillMessUp, skillErudition, skillPoppycock, skillFirstAid],);
 
 final Job jobRanger = Job(
     LangJobs.ranger,
@@ -181,7 +181,7 @@ final Job jobRanger = Job(
       skillClimb,
       skillMistrust,
       skillFirstAid,
-      skillShootProperly
+      skillShootProperly,
     ]);
 
 final Job jobBard = Job(
@@ -203,9 +203,9 @@ final Job jobBard = Job(
       skillErudition,
       skillPoppycock,
       skillJugglingAndDancing,
-      skillTouchingNaivety
+      skillTouchingNaivety,
     ],
-    [skillMistrust, skillBeggingAndWhining, skillFirstAid, skillWeirdRunes, skillShootProperly]);
+    [skillMistrust, skillBeggingAndWhining, skillFirstAid, skillWeirdRunes, skillShootProperly],);
 
 final Job jobDealer = Job(
     LangJobs.dealer,
@@ -221,7 +221,7 @@ final Job jobDealer = Job(
     3,
     [specializationAny],
     [skillCallForReinforcements, skillScamAndSwindling, skillErudition, skillPoppycock, skillMistrust],
-    [skillGroupLeader, skillRide, skillCook, skillBlacksmith, skillTreasureInstinct, skillWeirdRunes]);
+    [skillGroupLeader, skillRide, skillCook, skillBlacksmith, skillTreasureInstinct, skillWeirdRunes],);
 
 final Job jobEngineer = Job(
     LangJobs.engineer,
@@ -245,10 +245,10 @@ final Job jobEngineer = Job(
       specializationAlchemist,
       specializationDoctor,
       specializationBasketMaker,
-      specializationGoblin
+      specializationGoblin,
     ],
     [skillAmateurHandyman, skillDefuse, skillBlacksmith, skillLikeNothing, skillLocksmith],
-    [skillCallForReinforcements, skillRide, skillCook, skillErudition, skillSwim, skillFirstAid]);
+    [skillCallForReinforcements, skillRide, skillCook, skillErudition, skillSwim, skillFirstAid],);
 
 final Job jobPirate = Job(
     LangJobs.pirate,
@@ -269,7 +269,7 @@ final Job jobPirate = Job(
       skillScamAndSwindling,
       skillFurl,
       skillClimb,
-      skillSwim
+      skillSwim,
     ],
     [
       skillDetect,
@@ -277,7 +277,7 @@ final Job jobPirate = Job(
       skillTreasureInstinct,
       skillMistrust,
       skillBeggingAndWhining,
-      skillShootProperly
+      skillShootProperly,
     ]);
 
 final Job jobBourgeois = Job(
@@ -300,7 +300,7 @@ final Job jobBourgeois = Job(
       skillJugglingAndDancing,
       skillMistrust,
       skillSwim,
-      skillWeirdRunes
+      skillWeirdRunes,
     ]);
 
 /*
@@ -1017,7 +1017,7 @@ final Job jobTorturer = Job(
       skillMistrust,
       skillVile,
       skillIronGrip,
-      skillTormentor
+      skillTormentor,
     ],
     [
       skillAmateurHandyman,
@@ -1029,7 +1029,7 @@ final Job jobTorturer = Job(
       skillSwim,
       skillFirstAid,
       skillShootProperly,
-      skillPainIsForTheWeak
+      skillPainIsForTheWeak,
     ]);
 
 final Job jobMyrmidon = Job(
@@ -1056,7 +1056,7 @@ final Job jobMyrmidon = Job(
       skillLikeNothing,
       skillMiserable,
       skillCoward,
-      skillSurviving
+      skillSurviving,
     ],
     [
       skillAmbidextrous,
@@ -1098,8 +1098,8 @@ final Job jobMyrmidon = Job(
       skillPainIsForTheWeak,
       skillVile,
       skillIronGrip,
-      skillTormentor
+      skillTormentor,
     ]);
 
 final Job jobAny = Job(LangJobs.any, [8, 20], [8, 20], [8, 20], [8, 20], [8, 20], 0, 0, 0, 0, 0,
-    [specializationAny], [], []);
+    [specializationAny], [], [],);

@@ -16,7 +16,7 @@ Widget _booksIngredientsTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -29,7 +29,7 @@ Widget _booksIngredientsTab(BuildContext context) {
                           children: [
                             Expanded(
                               child: terreDeFanghTextBodyMedium(
-                                  context, LangCharacterSheet.quantityIngredient),
+                                  context, LangCharacterSheet.quantityIngredient,),
                             ),
                             Expanded(
                               child: terreDeFanghTextField(context),
@@ -66,7 +66,7 @@ Widget _booksIngredientsTab(BuildContext context) {
                             children: [
                               Expanded(
                                 child: terreDeFanghTextBodyMedium(
-                                    context, LangCharacterSheet.ingredientsCharacter),
+                                    context, LangCharacterSheet.ingredientsCharacter,),
                               ),
                               Expanded(
                                 child: terreDeFanghTextField(context),

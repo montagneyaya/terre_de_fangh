@@ -12,14 +12,14 @@ class LangCreateCharacter {
   static const String select2skills = 'Sélectionner 2 competences';
   static const String modifier = 'Modificateur';
   static const String noModifier =
-      'Il n\'y a pas de modificateurs pour votre selection. Vous pouvez passer à l\'étape finale';
+      "Il n'y a pas de modificateurs pour votre selection. Vous pouvez passer à l'étape finale";
   static const String youAreAnOgre = 'Vous êtes un ogre';
   static const String obtainSuperPowerful =
       'L\'ogre peut obtenir la compétence "Super Bourrin" s\'il retrancher jusqu\'à 3 points à son score de base en ATTAQUE et/ou en PARADE pour en faire un bonus de dégâts. Ainsi il peut avoir +3 en dégâts en plus de ses autres bonus de FORCE, mais son côté bourrin le rend maladroit. En outre, un malus de PRD -5 s\'applique à celui qui tente de parer une attaque de l\'ogre.';
   static const String alreadyUsed3Points = 'Vous avez deja utiliser les 3 points';
   static const String pa = 'PRD';
   static const String youAreAFighter = 'Vous êtes un guerrier';
-  static const String canChanged1AtPa = 'Vous pouvez échanger 1 point d\'AT et 1 point de PRD';
+  static const String canChanged1AtPa = "Vous pouvez échanger 1 point d'AT et 1 point de PRD";
   static const String at = 'AT';
   static const String mustPutAtOrPa = 'Vous devez remettre le point en AT ou PRD';
   static const String youAreARanger = 'Vous êtes un ranger';
@@ -36,13 +36,13 @@ class LangCreateCharacter {
   static const String alreadyChangedPoints = 'Vous avez déjà échangé vos points';
   static const String putThePoint = 'Vous avez déjà enlevé 1 point, vous devez le mettre ailleurs ...';
   static const String removeThePoint =
-      'Vous devez d\'abord enlever 1 point avant de le mettre ailleurs ...';
+      "Vous devez d'abord enlever 1 point avant de le mettre ailleurs ...";
   static const String mustIndicateChange = 'Vous devez faire les modifications indiquées';
   static const String youAreAnEngineer = 'Vous êtes un ingénieur';
   static const String mustChangeFightIntDex =
       'Vous devez retirer 1 point en AT ou PRD et mettre 1 point en INT ou AD';
   static const String yourDexterityIsLow = 'Votre adresse est faible';
-  static const String removeFight = 'Vous devez retirer un point d\'AT ou de PRD';
+  static const String removeFight = "Vous devez retirer un point d'AT ou de PRD";
   static const String alreadyChangedStatistic = 'Vous avez deja modifie cette caractéristique';
   static const String yourDexterityIsHigh = 'Votre adresse est élevé';
   static const String putFight = 'Vous devez ajouter un point en AT ou en PRD';

@@ -1,15 +1,16 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:terre_de_fangh/src/data/models/creatures/creatures.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/jobs.enum.dart';
 import 'package:terre_de_fangh/src/data/models/creatures/player_character/skill.dart';
-import 'package:terre_de_fangh/src/data/models/creatures/creatures.dart';
 import 'package:terre_de_fangh/src/data/models/items/armor.dart';
+import 'package:terre_de_fangh/src/data/models/items/item.dart';
 import 'package:terre_de_fangh/src/data/models/items/weapon.dart';
 import 'package:terre_de_fangh/src/data/resources/modifiers/add_natural_damages.dart';
 import 'package:terre_de_fangh/src/data/resources/modifiers/add_spell_damages.dart';
-import 'package:terre_de_fangh/src/data/models/items/item.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:terre_de_fangh/src/lang/FR_fr/character_sheet.dart';
 import 'package:terre_de_fangh/src/lang/FR_fr/jobs.dart';
 import 'package:terre_de_fangh/src/lang/fr_FR/specializations.dart';
+
 part 'player_character.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
@@ -43,15 +44,17 @@ class PlayerCharacter extends Creatures {
     this.parry = parry;
     evade = dexterity;
     this.courage = courage;
-    spellResistance = ((courage + intellect + strength) / 3).round().toInt();
+    spellResistance = ((courage + intellect + strength) / 3).round();
     if (job == jobWizard.job || job == jobCleric.job || job == jobPaladin.job) {
-      physicalSpell = ((intellect + dexterity) / 2).ceil().toInt();
-      psychicSpell = ((intellect + charisma) / 2).ceil().toInt();
+      physicalSpell = ((intellect + dexterity) / 2).ceil();
+      psychicSpell = ((intellect + charisma) / 2).ceil();
     }
-    if (job == jobEngineer.job) engineer = ((intellect + dexterity) / 2).ceil().toInt();
+    if (job == jobEngineer.job) engineer = ((intellect + dexterity) / 2).ceil();
     actualHealthPoints = healthPoints;
     actualAstralPoints = astralPoints;
   }
+
+  factory PlayerCharacter.fromJson(Map<String, dynamic> json) => _$PlayerCharacterFromJson(json);
 
   String gender = '';
   String job = LangJobs.any;
@@ -92,23 +95,17 @@ class PlayerCharacter extends Creatures {
       case 0:
       case 1:
         modifyEvade = modifyDexterity + 1;
-        break;
       case 2:
         modifyEvade = modifyDexterity;
-        break;
       case 3:
       case 4:
         modifyEvade = modifyDexterity - 2;
-        break;
       case 5:
         modifyEvade = modifyDexterity - 4;
-        break;
       case 6:
         modifyEvade = modifyDexterity - 5;
-        break;
       case 7:
         modifyEvade = modifyDexterity - 6;
-        break;
       default:
         modifyEvade = -1;
     }
@@ -188,7 +185,5 @@ class PlayerCharacter extends Creatures {
     if (value < 9) addStrengthDamages.damages = -1;
     return addStrengthDamages;
   }
-
-  factory PlayerCharacter.fromJson(Map<String, dynamic> json) => _$PlayerCharacterFromJson(json);
   Map<String, dynamic> toJson() => _$PlayerCharacterToJson(this);
 }

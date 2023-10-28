@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 
-HSLColor primaryColor(double tone) => HSLColor.fromAHSL(1.0, 12.0, 0.25, tone);
-HSLColor secondaryColor(double tone) => HSLColor.fromAHSL(1.0, 342.0, 0.25, tone);
-HSLColor tertiaryColor(double tone) => HSLColor.fromAHSL(1.0, 132.0, 0.25, tone);
+HSLColor primaryColor(double tone) => HSLColor.fromAHSL(1, 12, 0.25, tone);
+HSLColor secondaryColor(double tone) => HSLColor.fromAHSL(1, 342, 0.25, tone);
+HSLColor tertiaryColor(double tone) => HSLColor.fromAHSL(1, 132, 0.25, tone);
 
-HSLColor primaryDarkColor(double tone) => HSLColor.fromAHSL(1.0, 192.0, 0.33, tone);
-HSLColor secondaryDarkColor(double tone) => HSLColor.fromAHSL(1.0, 163.0, 0.33, tone);
-HSLColor tertiaryDarkColor(double tone) => HSLColor.fromAHSL(1.0, 312.0, 0.33, tone);
+HSLColor primaryDarkColor(double tone) => HSLColor.fromAHSL(1, 192, 0.33, tone);
+HSLColor secondaryDarkColor(double tone) => HSLColor.fromAHSL(1, 163, 0.33, tone);
+HSLColor tertiaryDarkColor(double tone) => HSLColor.fromAHSL(1, 312, 0.33, tone);
 
-HSLColor neutralColor(double tone) => HSLColor.fromAHSL(1.0, 0.0, 0.0, tone);
+HSLColor neutralColor(double tone) => HSLColor.fromAHSL(1, 0, 0, tone);
 
-HSLColor neutralVariantColor(double tone) => HSLColor.fromAHSL(1.0, 44.0, 0.25, tone);
-HSLColor neutralDarkVariantColor(double tone) => HSLColor.fromAHSL(1.0, 228.0, 0.18, tone);
+HSLColor neutralVariantColor(double tone) => HSLColor.fromAHSL(1, 44, 0.25, tone);
+HSLColor neutralDarkVariantColor(double tone) => HSLColor.fromAHSL(1, 228, 0.18, tone);
 
-HSLColor errorColor(double tone) => HSLColor.fromAHSL(1.0, 0.0, 0.70, tone);
+HSLColor errorColor(double tone) => HSLColor.fromAHSL(1, 0, 0.70, tone);
 
 ColorScheme terreDeFanghColors() {
-  final ColorScheme base = ThemeData().colorScheme;
+  final base = ThemeData().colorScheme;
   return base.copyWith(
     //primary color
     primary: primaryColor(0.40).toColor(),
-    onPrimary: primaryColor(1.0).toColor(),
+    onPrimary: primaryColor(1).toColor(),
     primaryContainer: primaryColor(0.90).toColor(),
     onPrimaryContainer: primaryColor(0.10).toColor(),
     //secondary color
     secondary: secondaryColor(0.40).toColor(),
-    onSecondary: secondaryColor(1.0).toColor(),
+    onSecondary: secondaryColor(1).toColor(),
     secondaryContainer: secondaryColor(0.90).toColor(),
     onSecondaryContainer: secondaryColor(0.10).toColor(),
     //tertiary color
     tertiary: tertiaryColor(0.40).toColor(),
-    onTertiary: tertiaryColor(1.0).toColor(),
+    onTertiary: tertiaryColor(1).toColor(),
     tertiaryContainer: tertiaryColor(0.90).toColor(),
     onTertiaryContainer: tertiaryColor(0.10).toColor(),
     //surface color
@@ -45,7 +45,7 @@ ColorScheme terreDeFanghColors() {
     outlineVariant: neutralVariantColor(0.52).toColor(),
     //error color
     error: errorColor(0.40).toColor(),
-    onError: errorColor(1.0).toColor(),
+    onError: errorColor(1).toColor(),
     errorContainer: errorColor(0.90).toColor(),
     onErrorContainer: errorColor(0.10).toColor(),
     //modify color
@@ -56,7 +56,7 @@ ColorScheme terreDeFanghColors() {
 }
 
 ColorScheme terreDeFanghColorsDark() {
-  final ColorScheme base = ThemeData.dark().colorScheme;
+  final base = ThemeData.dark().colorScheme;
   return base.copyWith(
     //primary dark color
     primary: primaryDarkColor(0.80).toColor(),

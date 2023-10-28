@@ -54,7 +54,7 @@ Widget _campingTab(BuildContext context) {
                 kBottomNavigationBarHeight,
           ),
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -63,7 +63,7 @@ Widget _campingTab(BuildContext context) {
                     Expanded(
                       flex: 3,
                       child: terreDeFanghTextBodyMedium(
-                          context, LangCharacterSheet.bivouacEquipmentCharacter),
+                          context, LangCharacterSheet.bivouacEquipmentCharacter,),
                     ),
                     Expanded(
                       flex: 2,

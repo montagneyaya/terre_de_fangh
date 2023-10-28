@@ -1,23 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:terre_de_fangh/src/routes/routes_path.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:terre_de_fangh/src/data/resources/notifier/theme_mode.notifier.dart';
+import 'package:terre_de_fangh/src/lang/FR_fr/ui.dart';
+import 'package:terre_de_fangh/src/routes/routes_path.dart';
 import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet.dart';
+import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_backpack.dart';
+import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_fight.dart';
+import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_items.dart';
+import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_purse.dart';
 import 'package:terre_de_fangh/src/ui/pages/create_character/create_character.dart';
 import 'package:terre_de_fangh/src/ui/pages/home/home.dart';
 import 'package:terre_de_fangh/src/ui/pages/setting/setting.dart';
 import 'package:terre_de_fangh/src/ui/themes/theme_naheulbeuk_android.dart';
 import 'package:terre_de_fangh/src/ui/themes/theme_naheulbeuk_ios.dart';
 import 'package:terre_de_fangh/src/ui/themes/theme_naheulbeuk_web.dart';
-import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_items.dart';
-import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_backpack.dart';
-import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_fight.dart';
-import 'package:terre_de_fangh/src/ui/pages/character_sheet/character_sheet_purse.dart';
-import 'package:terre_de_fangh/src/lang/FR_fr/ui.dart';
+
 part 'package:terre_de_fangh/src/routes/routes.dart';
 
 class TerreDeFanghApp extends StatelessWidget {
@@ -25,7 +26,7 @@ class TerreDeFanghApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TargetPlatform targetPlatform = Theme.of(context).platform;
+    final targetPlatform = Theme.of(context).platform;
     ThemeData? themeDevice;
     ThemeData? themeDeviceDark;
     if (kIsWeb) {

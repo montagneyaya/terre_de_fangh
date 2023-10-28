@@ -4,7 +4,7 @@ Widget _soloQuestTab(BuildContext context) {
   return Container(
     decoration: background(context, imageAdventuresSolo, BoxFit.contain),
     child: ListView(
-      children: const [],
+      
     ),
   );
 }

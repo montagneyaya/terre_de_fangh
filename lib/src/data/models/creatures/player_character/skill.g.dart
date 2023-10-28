@@ -9,7 +9,7 @@ part of 'skill.dart';
 Skill _$SkillFromJson(Map<String, dynamic> json) => Skill(
       json['skill'] as String,
       json['described'] as String,
-      json['selected'] as bool,
+      selected: json['selected'] as bool,
     );
 
 Map<String, dynamic> _$SkillToJson(Skill instance) => <String, dynamic>{
