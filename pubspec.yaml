@@ -1,0 +1,59 @@
+name: myapp
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.9.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.5+1
+  go_router: ^17.0.0
+  google_fonts: ^6.3.2
+  meta: ^1.16.0
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  very_good_analysis: ^10.0.0
+  build_runner: ^2.10.2
+  freezed: ^3.2.3
+  json_serializable: ^6.7.1
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+assets:
+    - assets/pictures/
+    - assets/pictures/decor/
+    - assets/pictures/decor/mobile/
+    - assets/pictures/decor/web/
+
+fonts:
+    - family: benguiab
+      fonts:
+        - asset: assets/fonts/benguiab.ttf
+    - family: dauphinn
+      fonts:
+        - asset: assets/fonts/dauphinn.ttf
+    - family: lithogrb
+      fonts:
+        - asset: assets/fonts/lithogrb.ttf
+    - family: lithogrl
+      fonts:
+        - asset: assets/fonts/lithogrl.ttf
+    - family: IconsRPG
+      fonts:
+        - asset: assets/fonts/IconsRPG.ttf
+    - family: IconsDices
+      fonts:
+        - asset: assets/fonts/IconsDices.ttf
