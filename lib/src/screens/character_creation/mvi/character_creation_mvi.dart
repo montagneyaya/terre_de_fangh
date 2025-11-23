@@ -28,7 +28,13 @@ class _CharacterCreationScreenMVIState
   CharacterCreationViewModel createInitialViewModel() => const CharacterCreationViewModel(
         characterName: '',
         step: CharacterCreationStep.statistics,
-        statistics: {},
+        statistics: {
+          'courage': 8,
+          'intellect': 8,
+          'charisma': 8,
+          'dexterity': 8,
+          'strength': 8,
+        },
         skills: {},
         modifiers: {},
       );
@@ -43,6 +49,7 @@ class _CharacterCreationScreenMVIState
       case CharacterCreationAction.goToPreviousStep:
         _handlePreviousStep();
       case CharacterCreationAction.updateStatistics:
+        // The payload is now type-safe due to the factory constructor
         final stats = Map<String, int>.from(intent.payload['statistics'] as Map);
         _handleUpdateStatistics(stats);
       case CharacterCreationAction.selectPeople:
@@ -52,7 +59,7 @@ class _CharacterCreationScreenMVIState
       case CharacterCreationAction.selectSpecialization:
         _handleSelectSpecialization(intent.payload['specialization'] as Specialization?);
       case CharacterCreationAction.updateSkills:
-        final skills = Map<Skill, int>.from(intent.payload['skills'] as Map);
+        final skills = Map<Skill, int>.from(intent.payload['skills'] as Map<dynamic, dynamic>);
         _handleUpdateSkills(skills);
       case CharacterCreationAction.updateModifiers:
         final modifiers = Map<String, dynamic>.from(intent.payload['modifiers'] as Map);
@@ -82,10 +89,24 @@ class _CharacterCreationScreenMVIState
 
   void _handleNextStep() {
     final currentStep = viewModel.step;
+
+    // If we're on the statistics step, validate the stats
+    if (currentStep == CharacterCreationStep.statistics) {
+      if (!viewModel.areStatisticsValid) {
+        // Show error message in the view model
+        updateViewModel(viewModel.copyWith(
+          error: 'All statistics must be between 8 and 20',
+        ));
+        return; // Don't proceed to next step
+      }
+    }
+
+    // If we passed validation or it's not the statistics step, proceed
     if (currentStep.index < CharacterCreationStep.values.length - 1) {
       updateViewModel(
         viewModel.copyWith(
           step: CharacterCreationStep.values[currentStep.index + 1],
+          error: null, // Clear any previous errors
         ),
       );
     }
@@ -262,39 +283,19 @@ class _CharacterCreationScreenMVIState
               children: [
                 // Step 1: Statistics
                 Step1Statistics(
-                  statistics: viewModel.statistics,
-                  onStatisticsUpdated: (stats) => onIntent(
-                    CharacterCreationIntent(
-                      CharacterCreationAction.updateStatistics,
-                      {'statistics': stats},
-                    ),
-                  ),
+                  viewModel: viewModel,
+                  onIntent: onIntent,
                 ),
                 // Step 2: Character
                 Step2Character(
                   selectedPeople: viewModel.selectedPeople,
                   availablePeople: People.peoples,
-                  onPeopleChanged: (people) => onIntent(
-                    CharacterCreationIntent(
-                      CharacterCreationAction.selectPeople,
-                      {'people': people},
-                    ),
-                  ),
+                  onPeopleChanged: (people) => onIntent(CharacterCreationIntent.selectPeople(people)),
                   selectedJob: viewModel.selectedJob,
                   availableJobs: viewModel.selectedPeople?.jobs ?? Job.jobs,
-                  onJobChanged: (job) => onIntent(
-                    CharacterCreationIntent(
-                      CharacterCreationAction.selectJob,
-                      {'job': job},
-                    ),
-                  ),
+                  onJobChanged: (job) => onIntent(CharacterCreationIntent.selectJob(job)),
                   selectedSpecialization: viewModel.selectedSpecialization,
-                  onSpecializationChanged: (spec) => onIntent(
-                    CharacterCreationIntent(
-                      CharacterCreationAction.selectSpecialization,
-                      {'specialization': spec},
-                    ),
-                  ),
+                  onSpecializationChanged: (spec) => onIntent(CharacterCreationIntent.selectSpecialization(spec)),
                 ),
                 // Step 3: Skills
                 Step3Skills(
@@ -313,23 +314,13 @@ class _CharacterCreationScreenMVIState
                     // Handle adding optional skill
                     final newSkills = Map<Skill, int>.from(viewModel.skills);
                     newSkills[skill] = 0;
-                    onIntent(
-                      CharacterCreationIntent(
-                        CharacterCreationAction.updateSkills,
-                        {'skills': newSkills},
-                      ),
-                    );
+                    onIntent(CharacterCreationIntent.updateSkills(newSkills));
                   },
                   onRemoveOptionalSkill: (skill) {
                     // Handle removing optional skill
                     final newSkills = Map<Skill, int>.from(viewModel.skills)
                     ..remove(skill);
-                    onIntent(
-                      CharacterCreationIntent(
-                        CharacterCreationAction.updateSkills,
-                        {'skills': newSkills},
-                      ),
-                    );
+                    onIntent(CharacterCreationIntent.updateSkills(newSkills));
                   },
                   isHumanAny: viewModel.selectedPeople?.name == 'Human',
                 ),
@@ -375,18 +366,17 @@ class _CharacterCreationScreenMVIState
               children: [
                 if (viewModel.step.index > 0)
                   ElevatedButton(
-                    onPressed: () => onIntent(
-                      const CharacterCreationIntent(CharacterCreationAction.goToPreviousStep),
-                    ),
+                    onPressed: () => onIntent(CharacterCreationIntent.goToPreviousStep()),
                     child: const Text('Previous'),
                   )
                 else
                   const SizedBox(width: 100),
                 if (viewModel.step.index < CharacterCreationStep.values.length - 1)
                   ElevatedButton(
-                    onPressed: () => onIntent(
-                      const CharacterCreationIntent(CharacterCreationAction.goToNextStep),
-                    ),
+                    onPressed: viewModel.step == CharacterCreationStep.statistics &&
+                        !viewModel.areStatisticsValid
+                        ? null
+                        : () => onIntent(CharacterCreationIntent.goToNextStep()),
                     child: const Text('Next'),
                   )
                 else
@@ -395,9 +385,7 @@ class _CharacterCreationScreenMVIState
                         ? null
                         : () {
                       debugPrint('Finalizing character creation');
-                      onIntent(const CharacterCreationIntent(
-                        CharacterCreationAction.finalizeCharacter,
-                      ));
+                      onIntent(CharacterCreationIntent.finalizeCharacter());
                     },
                     child: viewModel.isLoading
                         ? const CircularProgressIndicator()

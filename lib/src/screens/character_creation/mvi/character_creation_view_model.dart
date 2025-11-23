@@ -26,6 +26,10 @@ class CharacterCreationViewModel extends MviViewModel {
     this.modifiers = const {},
   });
 
+  bool get areStatisticsValid {
+    return statistics.values.every((value) => value >= 8 && value <= 20);
+  }
+
   final CharacterCreationStep step;
   final bool isLoading;
   final String? error;
