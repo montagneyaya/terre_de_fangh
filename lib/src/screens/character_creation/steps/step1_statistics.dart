@@ -1,72 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:myapp/src/data/services/dices.dart';
+import 'package:myapp/src/screens/character_creation/mvi/character_creation_intent.dart';
+import 'package:myapp/src/screens/character_creation/mvi/character_creation_view_model.dart';
 
 class Step1Statistics extends StatelessWidget {
   const Step1Statistics({
-    required this.statistics,
-    required this.onStatisticsUpdated,
+    required this.viewModel,
+    required this.onIntent,
     super.key,
-    this.error,
   });
 
-  final Map<String, int> statistics;
-  final ValueChanged<Map<String, int>> onStatisticsUpdated;
-  final String? error;
+  final CharacterCreationViewModel viewModel;
+  final void Function(CharacterCreationIntent) onIntent;
 
   void _updateStatistic(String stat, int value) {
-    final newStats = Map<String, int>.from(statistics);
-    newStats[stat] = value.clamp(8, 20);
-    onStatisticsUpdated(newStats);
+    final newStats = Map<String, int>.from(viewModel.statistics);
+    newStats[stat] = value;
+    onIntent(CharacterCreationIntent.updateStatistics(newStats));
   }
 
   void _randomizeStatistic(String stat) {
-    final newStats = Map<String, int>.from(statistics);
-    newStats[stat] = 8 + (DateTime.now().millisecondsSinceEpoch % 13);
-    onStatisticsUpdated(newStats);
+    final newStats = Map<String, int>.from(viewModel.statistics);
+    newStats[stat] = Dices().d6() + 7; // Random value between 8-13 (inclusive)
+    onIntent(CharacterCreationIntent.updateStatistics(newStats));
+  }
+
+  bool _isStatValid(int? value) {
+    return value != null && value >= 8 && value <= 20;
+  }
+
+  bool get areStatisticsValid {
+    return viewModel.statistics.values.every(
+      (value) => value >= 8 && value <= 20,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final hasInvalidStats = viewModel.statistics.values.any(
+      (v) => !_isStatValid(v),
+    );
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          if (error != null)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16),
+          if (hasInvalidStats)
+            const Padding(
+              padding: EdgeInsets.only(bottom: 16),
               child: Text(
-                error!,
-                style: const TextStyle(color: Colors.red),
+                'All statistics must be between 8 and 20',
+                style: TextStyle(color: Colors.red),
                 textAlign: TextAlign.center,
               ),
             ),
           _StatisticRow(
             label: 'Courage',
-            value: statistics['courage'] ?? 8,
+            value: viewModel.statistics['courage'] ?? 8,
             onChanged: (val) => _updateStatistic('courage', val),
             onRandomize: () => _randomizeStatistic('courage'),
           ),
           _StatisticRow(
             label: 'Intellect',
-            value: statistics['intellect'] ?? 8,
+            value: viewModel.statistics['intellect'] ?? 8,
             onChanged: (val) => _updateStatistic('intellect', val),
             onRandomize: () => _randomizeStatistic('intellect'),
           ),
           _StatisticRow(
             label: 'Charisma',
-            value: statistics['charisma'] ?? 8,
+            value: viewModel.statistics['charisma'] ?? 8,
             onChanged: (val) => _updateStatistic('charisma', val),
             onRandomize: () => _randomizeStatistic('charisma'),
           ),
           _StatisticRow(
             label: 'Dexterity',
-            value: statistics['dexterity'] ?? 8,
+            value: viewModel.statistics['dexterity'] ?? 8,
             onChanged: (val) => _updateStatistic('dexterity', val),
             onRandomize: () => _randomizeStatistic('dexterity'),
           ),
           _StatisticRow(
             label: 'Strength',
-            value: statistics['strength'] ?? 8,
+            value: viewModel.statistics['strength'] ?? 8,
             onChanged: (val) => _updateStatistic('strength', val),
             onRandomize: () => _randomizeStatistic('strength'),
           ),
@@ -74,11 +89,12 @@ class Step1Statistics extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               final newStats = <String, int>{};
-              for (final stat in statistics.keys) {
+              final dice = Dices();
+              for (final stat in viewModel.statistics.keys) {
                 newStats[stat] =
-                    8 + (DateTime.now().millisecondsSinceEpoch % 13);
+                    dice.d6() + 7; // Random value between 8-13 (inclusive)
               }
-              onStatisticsUpdated(newStats);
+              onIntent(CharacterCreationIntent.updateStatistics(newStats));
             },
             child: const Text('Randomize All'),
           ),
@@ -130,12 +146,8 @@ class _StatisticRowState extends State<_StatisticRow> {
   }
 
   void _onSubmitted(String value) {
-    final intValue = int.tryParse(value);
-    if (intValue != null && intValue != widget.value) {
-      widget.onChanged(intValue.clamp(8, 20));
-    } else {
-      _controller.text = widget.value.toString();
-    }
+    final intValue = int.tryParse(value) ?? 0;
+    widget.onChanged(intValue);
   }
 
   @override
@@ -166,8 +178,12 @@ class _StatisticRowState extends State<_StatisticRow> {
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   style: textStyle,
+                  onChanged: (value) {
+                    // Update on every keystroke
+                    final intValue = int.tryParse(value) ?? 0;
+                    widget.onChanged(intValue);
+                  },
                   onSubmitted: _onSubmitted,
-                  onTapOutside: (_) => _onSubmitted(_controller.text),
                 ),
               ),
               IconButton(
