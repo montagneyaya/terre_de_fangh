@@ -52,6 +52,22 @@ class CharacterCreationViewModel extends MviViewModel {
     }).toList();
   }
 
+  bool get isHumanNone {
+    return selectedPeople?.name == 'Human' && selectedJob?.name == 'None';
+  }
+
+  int get optionalSkillPoints => isHumanNone ? 4 : 2;
+
+  int get selectedOptionalSkillsCount =>
+      skills.entries.where((entry) => entry.value == 0).length;
+
+  bool get hasEnoughSkills {
+    final selectedCount = skills.entries
+        .where((entry) => entry.value == 0)
+        .length;
+    return isHumanNone ? selectedCount == 4 : selectedCount == 2;
+  }
+
   /// Creates a new ViewModel with the selected people and auto-selected job/specialization
   CharacterCreationViewModel withSelectedPeople(People? people) {
     if (people == null) {

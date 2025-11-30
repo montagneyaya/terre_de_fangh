@@ -174,16 +174,55 @@ class _CharacterCreationScreenMVIState
         );
       }
     }
+
+    // If we're moving to the skills step, clear any existing skills
+    if (currentStep == CharacterCreationStep.character) {
+      updateViewModel(
+        viewModel.copyWith(
+          step: CharacterCreationStep.skills,
+          skills: {},  // Clear any existing skills
+          error: null,  // Clear any previous errors
+        ),
+      );
+      return;
+    }
+
+    // If we're on the skills step, validate the number of selected skills
+    if (currentStep == CharacterCreationStep.skills) {
+      if (!viewModel.hasEnoughSkills) {
+        final requiredSkills = viewModel.isHumanNone ? 4 : 2;
+        updateViewModel(
+          viewModel.copyWith(
+            error: 'Please select exactly $requiredSkills optional skills',
+          ),
+        );
+        return;
+      }
+    }
   }
 
   void _handlePreviousStep() {
     final currentStep = viewModel.step;
     if (currentStep.index > 0) {
-      updateViewModel(
-        viewModel.copyWith(
-          step: CharacterCreationStep.values[currentStep.index - 1],
-        ),
-      );
+      final previousStep = CharacterCreationStep.values[currentStep.index - 1];
+
+      // If we're moving back to the skills step, clear any existing skills
+      if (previousStep == CharacterCreationStep.skills) {
+        updateViewModel(
+          viewModel.copyWith(
+            step: previousStep,
+            skills: {},  // Clear any existing skills
+            error: null,  // Clear any errors
+          ),
+        );
+      } else {
+        updateViewModel(
+          viewModel.copyWith(
+            step: previousStep,
+            error: null,  // Clear any errors
+          ),
+        );
+      }
     }
   }
 
@@ -376,36 +415,36 @@ class _CharacterCreationScreenMVIState
                 ),
                 // Step 3: Skills
                 Step3Skills(
-                  acquiredSkills: viewModel.skills.entries
-                      .where((entry) => entry.value > 0)
-                      .map((entry) => entry.key)
-                      .toList(),
-                  optionalSkills: viewModel.selectedJob?.optionalSkills ?? [],
+                  birthSkills: viewModel.isHumanNone
+                      ? []
+                      : [
+                          ...(viewModel.selectedPeople?.birthSkills ?? []),
+                          ...(viewModel.selectedJob?.inheritedSkills ?? []),
+                        ],
+                  optionalSkills: [
+                    ...(viewModel.selectedPeople?.optionalSkills ?? []),
+                    ...(viewModel.selectedJob?.optionalSkills ?? []),
+                  ],
                   selectedOptionalSkills: viewModel.skills.entries
-                      .where(
-                        (entry) =>
-                            entry.value == 0 &&
-                            (viewModel.selectedJob?.optionalSkills.contains(
-                                  entry.key,
-                                ) ??
-                                false),
-                      )
+                      .where((entry) => entry.value == 0)
                       .map((entry) => entry.key)
                       .toSet(),
-                  optionalSkillPoints: 2, // Default value, adjust as needed
+                  optionalSkillPoints: viewModel.optionalSkillPoints,
                   onAddOptionalSkill: (skill) {
-                    // Handle adding optional skill
-                    final newSkills = Map<Skill, int>.from(viewModel.skills);
-                    newSkills[skill] = 0;
+                    final newSkills = Map<Skill, int>.from(viewModel.skills)..[skill] = 0;
                     onIntent(CharacterCreationIntent.updateSkills(newSkills));
                   },
                   onRemoveOptionalSkill: (skill) {
-                    // Handle removing optional skill
-                    final newSkills = Map<Skill, int>.from(viewModel.skills)
-                      ..remove(skill);
+                    final newSkills = Map<Skill, int>.from(viewModel.skills)..remove(skill);
                     onIntent(CharacterCreationIntent.updateSkills(newSkills));
                   },
-                  isHumanAny: viewModel.selectedPeople?.name == 'Human',
+                  error:
+                      viewModel.step == CharacterCreationStep.skills &&
+                          !viewModel.hasEnoughSkills
+                      ? viewModel.isHumanNone
+                            ? 'Please select 4 optional skills'
+                            : 'Please select 2 optional skills'
+                      : null,
                 ),
                 // Step 4: Modifiers
                 Step4Modifiers(
@@ -460,7 +499,12 @@ class _CharacterCreationScreenMVIState
                   ElevatedButton(
                     onPressed:
                         viewModel.step == CharacterCreationStep.statistics &&
-                            !viewModel.areStatisticsValid
+                                !viewModel.areStatisticsValid ||
+                            viewModel.step ==
+                                    CharacterCreationStep
+                                        .skills && // Add this condition
+                                !viewModel
+                                    .hasEnoughSkills // Check if enough skills are selected
                         ? null
                         : () =>
                               onIntent(CharacterCreationIntent.goToNextStep()),
