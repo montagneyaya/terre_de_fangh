@@ -30,6 +30,76 @@ class CharacterCreationViewModel extends MviViewModel {
     return statistics.values.every((value) => value >= 8 && value <= 20);
   }
 
+  List<People> get availablePeoples {
+    return People.peoples.where((people) {
+      return (statistics['courage'] ?? 0) >= people.courage[0] &&
+          (statistics['intellect'] ?? 0) >= people.intellect[0] &&
+          (statistics['charisma'] ?? 0) >= people.charisma[0] &&
+          (statistics['dexterity'] ?? 0) >= people.dexterity[0] &&
+          (statistics['strength'] ?? 0) >= people.strength[0];
+    }).toList();
+  }
+
+  List<Job> get availableJobs {
+    if (selectedPeople == null) return [];
+
+    return selectedPeople!.jobs.where((job) {
+      return (statistics['courage'] ?? 0) >= job.courage[0] &&
+          (statistics['intellect'] ?? 0) >= job.intellect[0] &&
+          (statistics['charisma'] ?? 0) >= job.charisma[0] &&
+          (statistics['dexterity'] ?? 0) >= job.dexterity[0] &&
+          (statistics['strength'] ?? 0) >= job.strength[0];
+    }).toList();
+  }
+
+  /// Creates a new ViewModel with the selected people and auto-selected job/specialization
+  CharacterCreationViewModel withSelectedPeople(People? people) {
+    if (people == null) {
+      return copyWith(
+        selectedPeople: null,
+        selectedJob: null,
+        selectedSpecialization: null,
+      );
+    }
+
+    final availableJobs = this.availableJobs;
+    final firstJob = availableJobs.isNotEmpty ? availableJobs.first : null;
+    final firstSpecialization = firstJob?.specializations.isNotEmpty ?? false
+        ? firstJob!.specializations.first
+        : null;
+
+    return copyWith(
+      selectedPeople: people,
+      selectedJob: firstJob,
+      selectedSpecialization: firstSpecialization,
+    );
+  }
+
+  /// Creates a new ViewModel with the selected job and auto-selected specialization
+  CharacterCreationViewModel withSelectedJob(Job? job) {
+    if (job == null) {
+      return copyWith(
+        selectedJob: null,
+        selectedSpecialization: null,
+      );
+    }
+
+    final firstSpecialization = job.specializations.isNotEmpty
+        ? job.specializations.first
+        : null;
+
+    return copyWith(
+      selectedJob: job,
+      selectedSpecialization: firstSpecialization,
+    );
+  }
+
+  List<Specialization> get availableSpecializations {
+    if (selectedJob == null) return [];
+
+    return selectedJob!.specializations.toList();
+  }
+
   final CharacterCreationStep step;
   final bool isLoading;
   final String? error;

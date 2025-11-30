@@ -1,9 +1,38 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/src/data/services/dices.dart';
 import 'package:myapp/src/screens/character_creation/mvi/character_creation_intent.dart';
 import 'package:myapp/src/screens/character_creation/mvi/character_creation_view_model.dart';
 
+/// Represents the different types of statistics that can be modified
+enum StatisticType {
+  courage,
+  intellect,
+  charisma,
+  dexterity,
+  strength,
+}
+
+extension StatisticTypeExtension on StatisticType {
+  /// Returns the display name for each statistic type
+  String get displayName {
+    switch (this) {
+      case StatisticType.courage:
+        return 'Courage';
+      case StatisticType.intellect:
+        return 'Intellect';
+      case StatisticType.charisma:
+        return 'Charisma';
+      case StatisticType.dexterity:
+        return 'Dexterity';
+      case StatisticType.strength:
+        return 'Strength';
+    }
+  }
+}
+
+/// The first step in character creation for setting character statistics
 class Step1Statistics extends StatelessWidget {
   const Step1Statistics({
     required this.viewModel,
@@ -14,88 +43,60 @@ class Step1Statistics extends StatelessWidget {
   final CharacterCreationViewModel viewModel;
   final void Function(CharacterCreationIntent) onIntent;
 
-  void _updateStatistic(String stat, int value) {
+  /// Updates a single statistic value
+  void _updateStatistic(StatisticType stat, int value) {
     final newStats = Map<String, int>.from(viewModel.statistics);
-    newStats[stat] = value;
+    newStats[stat.name] = value;
     onIntent(CharacterCreationIntent.updateStatistics(newStats));
   }
 
-  void _randomizeStatistic(String stat) {
+  /// Randomizes a single statistic value
+  void _randomizeStatistic(StatisticType stat) {
     final newStats = Map<String, int>.from(viewModel.statistics);
-    newStats[stat] = Dices().d6() + 7; // Random value between 8-13 (inclusive)
+    newStats[stat.name] = Dices().d6() + 7; // 8-13 inclusive
     onIntent(CharacterCreationIntent.updateStatistics(newStats));
   }
 
-  bool _isStatValid(int? value) {
-    return value != null && value >= 8 && value <= 20;
-  }
-
-  bool get areStatisticsValid {
-    return viewModel.statistics.values.every(
-      (value) => value >= 8 && value <= 20,
-    );
+  /// Randomizes all statistic values
+  void _randomizeAll() {
+    final newStats = <String, int>{};
+    final dice = Dices();
+    for (final stat in StatisticType.values) {
+      newStats[stat.name] = dice.d6() + 7; // 8-13 inclusive
+    }
+    onIntent(CharacterCreationIntent.updateStatistics(newStats));
   }
 
   @override
   Widget build(BuildContext context) {
-    final hasInvalidStats = viewModel.statistics.values.any(
-      (v) => !_isStatValid(v),
-    );
+    final theme = Theme.of(context);
+    final hasInvalidStats = !viewModel.areStatisticsValid;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           if (hasInvalidStats)
-            const Padding(
-              padding: EdgeInsets.only(bottom: 16),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16),
               child: Text(
                 'All statistics must be between 8 and 20',
-                style: TextStyle(color: Colors.red),
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.error,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
-          _StatisticRow(
-            label: 'Courage',
-            value: viewModel.statistics['courage'] ?? 8,
-            onChanged: (val) => _updateStatistic('courage', val),
-            onRandomize: () => _randomizeStatistic('courage'),
-          ),
-          _StatisticRow(
-            label: 'Intellect',
-            value: viewModel.statistics['intellect'] ?? 8,
-            onChanged: (val) => _updateStatistic('intellect', val),
-            onRandomize: () => _randomizeStatistic('intellect'),
-          ),
-          _StatisticRow(
-            label: 'Charisma',
-            value: viewModel.statistics['charisma'] ?? 8,
-            onChanged: (val) => _updateStatistic('charisma', val),
-            onRandomize: () => _randomizeStatistic('charisma'),
-          ),
-          _StatisticRow(
-            label: 'Dexterity',
-            value: viewModel.statistics['dexterity'] ?? 8,
-            onChanged: (val) => _updateStatistic('dexterity', val),
-            onRandomize: () => _randomizeStatistic('dexterity'),
-          ),
-          _StatisticRow(
-            label: 'Strength',
-            value: viewModel.statistics['strength'] ?? 8,
-            onChanged: (val) => _updateStatistic('strength', val),
-            onRandomize: () => _randomizeStatistic('strength'),
-          ),
+          ...StatisticType.values.map((stat) => _StatisticRow(
+                key: ValueKey('stat_row_${stat.name}'),
+                label: stat.displayName,
+                value: viewModel.statistics[stat.name] ?? 8,
+                onChanged: (val) => _updateStatistic(stat, val),
+                onRandomize: () => _randomizeStatistic(stat),
+              )),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
-              final newStats = <String, int>{};
-              final dice = Dices();
-              for (final stat in viewModel.statistics.keys) {
-                newStats[stat] =
-                    dice.d6() + 7; // Random value between 8-13 (inclusive)
-              }
-              onIntent(CharacterCreationIntent.updateStatistics(newStats));
-            },
+            onPressed: _randomizeAll,
             child: const Text('Randomize All'),
           ),
         ],
@@ -104,12 +105,10 @@ class Step1Statistics extends StatelessWidget {
   }
 }
 
+/// A single row widget for displaying and editing a statistic value
 class _StatisticRow extends StatefulWidget {
   const _StatisticRow({
-    required this.label,
-    required this.value,
-    required this.onChanged,
-    required this.onRandomize,
+    required this.label, required this.value, required this.onChanged, required this.onRandomize, super.key,
   });
 
   final String label;
@@ -123,6 +122,7 @@ class _StatisticRow extends StatefulWidget {
 
 class _StatisticRowState extends State<_StatisticRow> {
   late final TextEditingController _controller;
+  final _debouncer = _Debouncer(milliseconds: 500);
 
   @override
   void initState() {
@@ -142,19 +142,21 @@ class _StatisticRowState extends State<_StatisticRow> {
   @override
   void dispose() {
     _controller.dispose();
+    _debouncer.dispose();
     super.dispose();
   }
 
-  void _onSubmitted(String value) {
+  void _onChanged(String value) {
     final intValue = int.tryParse(value) ?? 0;
-    widget.onChanged(intValue);
+    _debouncer.run(() => widget.onChanged(intValue));
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final isInvalid = widget.value < 8 || widget.value > 20;
-    final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
-      color: isInvalid ? Colors.red : null,
+    final textStyle = theme.textTheme.titleMedium?.copyWith(
+      color: isInvalid ? theme.colorScheme.error : null,
     );
 
     return Padding(
@@ -162,13 +164,12 @@ class _StatisticRowState extends State<_StatisticRow> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(widget.label, style: Theme.of(context).textTheme.titleMedium),
+          Text(widget.label, style: theme.textTheme.titleMedium),
           Row(
             children: [
               IconButton(
                 icon: const Icon(Icons.remove),
-                onPressed: () =>
-                    widget.onChanged((widget.value - 1).clamp(8, 20)),
+                onPressed: () => widget.onChanged((widget.value - 1).clamp(8, 20)),
               ),
               SizedBox(
                 width: 50,
@@ -178,18 +179,18 @@ class _StatisticRowState extends State<_StatisticRow> {
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   style: textStyle,
-                  onChanged: (value) {
-                    // Update on every keystroke
-                    final intValue = int.tryParse(value) ?? 0;
-                    widget.onChanged(intValue);
-                  },
-                  onSubmitted: _onSubmitted,
+                  onChanged: _onChanged,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
+                    border: InputBorder.none,
+                    error: isInvalid ? const SizedBox.shrink() : null,
+                  ),
                 ),
               ),
               IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () =>
-                    widget.onChanged((widget.value + 1).clamp(8, 20)),
+                onPressed: () => widget.onChanged((widget.value + 1).clamp(8, 20)),
               ),
               IconButton(
                 icon: const Icon(Icons.casino),
@@ -201,5 +202,22 @@ class _StatisticRowState extends State<_StatisticRow> {
         ],
       ),
     );
+  }
+}
+
+/// A utility class to debounce rapid-fire events like text input
+class _Debouncer {
+  _Debouncer({required this.milliseconds});
+
+  final int milliseconds;
+  Timer? _timer;
+
+  void run(VoidCallback action) {
+    _timer?.cancel();
+    _timer = Timer(Duration(milliseconds: milliseconds), action);
+  }
+
+  void dispose() {
+    _timer?.cancel();
   }
 }

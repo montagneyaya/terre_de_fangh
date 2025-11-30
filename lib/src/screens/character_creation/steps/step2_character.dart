@@ -2,28 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:myapp/src/data/creatures/player_character/job.dart';
 import 'package:myapp/src/data/creatures/player_character/people.dart';
 import 'package:myapp/src/data/creatures/player_character/specialization.dart';
+import 'package:myapp/src/screens/character_creation/mvi/character_creation_intent.dart';
 
 class Step2Character extends StatelessWidget {
   const Step2Character({
     required this.availablePeople,
     required this.availableJobs,
+    required this.availableSpecializations,
     required this.selectedPeople,
     required this.selectedJob,
     required this.selectedSpecialization,
-    required this.onPeopleChanged,
-    required this.onJobChanged,
-    required this.onSpecializationChanged,
+    required this.onIntent, // Changed to use MVI intents
     super.key,
   });
 
   final List<People> availablePeople;
   final List<Job> availableJobs;
+  final List<Specialization> availableSpecializations;
   final People? selectedPeople;
   final Job? selectedJob;
   final Specialization? selectedSpecialization;
-  final ValueChanged<People> onPeopleChanged;
-  final ValueChanged<Job> onJobChanged;
-  final ValueChanged<Specialization> onSpecializationChanged;
+  final void Function(CharacterCreationIntent) onIntent; // MVI intent callback
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +47,14 @@ class Step2Character extends StatelessWidget {
     return DropdownButtonFormField<People>(
       initialValue: selectedPeople,
       items: availablePeople
-          .map(
-            (people) => DropdownMenuItem(
-              value: people,
-              child: Text(people.name),
-            ),
-          )
+          .map((people) => DropdownMenuItem(
+        value: people,
+        child: Text(people.name),
+      ))
           .toList(),
       onChanged: (people) {
         if (people != null) {
-          onPeopleChanged(people);
+          onIntent(CharacterCreationIntent.selectPeople(people));
         }
       },
       decoration: const InputDecoration(
@@ -68,21 +65,21 @@ class Step2Character extends StatelessWidget {
   }
 
   Widget _buildJobDropdown(BuildContext context) {
-    if (availableJobs.isEmpty) return const SizedBox.shrink();
+    if (selectedPeople == null || availableJobs.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
     return DropdownButtonFormField<Job>(
       initialValue: selectedJob,
       items: availableJobs
-          .map(
-            (job) => DropdownMenuItem(
-              value: job,
-              child: Text(job.name),
-            ),
-          )
+          .map((job) => DropdownMenuItem(
+        value: job,
+        child: Text(job.name),
+      ))
           .toList(),
       onChanged: (job) {
         if (job != null) {
-          onJobChanged(job);
+          onIntent(CharacterCreationIntent.selectJob(job));
         }
       },
       decoration: const InputDecoration(
@@ -93,13 +90,13 @@ class Step2Character extends StatelessWidget {
   }
 
   Widget _buildSpecializationDropdown(BuildContext context) {
-    if (selectedJob == null || selectedJob!.specializations.isEmpty) {
+    if (selectedJob == null) {
       return const SizedBox.shrink();
     }
 
     return DropdownButtonFormField<Specialization>(
       initialValue: selectedSpecialization,
-      items: selectedJob!.specializations
+      items: availableSpecializations
           .map(
             (spec) => DropdownMenuItem(
               value: spec,
@@ -109,7 +106,7 @@ class Step2Character extends StatelessWidget {
           .toList(),
       onChanged: (spec) {
         if (spec != null) {
-          onSpecializationChanged(spec);
+          onIntent(CharacterCreationIntent.selectSpecialization(spec));
         }
       },
       decoration: const InputDecoration(
