@@ -83,14 +83,65 @@ class _CharacterCreationScreenMVIState
         _handleUpdateCharacter(updates);
       case CharacterCreationAction.resetCharacterStats:
         _handleResetCharacterStats();
-      case CharacterCreationAction.selectRangerSourceAttribute:
-        final attribute = intent.payload['attribute'] as String;
-        _handleSelectRangerSourceAttribute(attribute);
-      case CharacterCreationAction.selectRangerTargetAttribute:
-        final attribute = intent.payload['attribute'] as String;
-        _handleSelectRangerTargetAttribute(attribute);
+      case CharacterCreationAction.updateOgreModifiers:
+        _handleUpdateOgreModifiers(
+          attackModifier: intent.payload['ogreAttackModifier'] as int,
+          parryModifier: intent.payload['ogreParryModifier'] as int,
+        );
+      case CharacterCreationAction.updateFighterModifiers:
+        _handleUpdateFighterModifiers(
+          attackChange: intent.payload['fighterAttackChange'] as int,
+          parryChange: intent.payload['fighterParryChange'] as int,
+        );
+      case CharacterCreationAction.updateDealerModifiers:
+        _handleUpdateDealerModifiers(
+          source: intent.payload['dealerSource'] as String?,
+          target: intent.payload['dealerTarget'] as String?,
+        );
+      case CharacterCreationAction.updateEngineerModifiers:
+        _handleUpdateEngineerModifiers(
+          source: intent.payload['engineerSource'] as String?,
+          target: intent.payload['engineerTarget'] as String?,
+        );
+      case CharacterCreationAction.resetModifiers:
+        _handleResetModifiers();
+      case CharacterCreationAction.applyDexterityModifier:
+        _handleApplyDexterityModifier(intent);
+      case CharacterCreationAction.selectRangerSource:
+        // Convert the old source/target update to the new statistics format
+        final attribute = intent.payload['attribute'] as String?;
+        // Update the source in modifiers
+        final updatedModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+        updatedModifiers['rangerSource'] = attribute;
+        updateViewModel(viewModel.copyWith(modifiers: updatedModifiers));
+
+      case CharacterCreationAction.selectRangerTarget:
+        // Convert the old target update to the new statistics format
+        final currentStats = Map<String, int>.from(viewModel.statistics);
+        final attribute = intent.payload['attribute'] as String?;
+        if (attribute != null && viewModel.rangerSource != null) {
+          // Move a point from source to target
+          currentStats[viewModel.rangerSource!] =
+              (currentStats[viewModel.rangerSource] ?? 0) - 1;
+          currentStats[attribute] = (currentStats[attribute] ?? 0) + 1;
+          _handleUpdateRangerModifiers(
+            statistics: currentStats,
+          );
+        }
+        // Update the target in modifiers
+        final updatedModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+        updatedModifiers['rangerTarget'] = attribute;
+        updateViewModel(viewModel.copyWith(modifiers: updatedModifiers));
+
       case CharacterCreationAction.resetRangerModifier:
         _handleResetRangerModifier();
+
+      case CharacterCreationAction.updateRangerModifiers:
+        _handleUpdateRangerModifiers(
+          statistics: intent.payload['statistics'] as Map<String, int>,
+          transferBegin: intent.payload['transferBegin'] as bool? ?? false,
+          transferFinish: intent.payload['transferFinish'] as bool? ?? false,
+        );
     }
   }
 
@@ -180,8 +231,8 @@ class _CharacterCreationScreenMVIState
       updateViewModel(
         viewModel.copyWith(
           step: CharacterCreationStep.skills,
-          skills: {},  // Clear any existing skills
-          error: null,  // Clear any previous errors
+          skills: {}, // Clear any existing skills
+          error: null, // Clear any previous errors
         ),
       );
       return;
@@ -206,23 +257,13 @@ class _CharacterCreationScreenMVIState
     if (currentStep.index > 0) {
       final previousStep = CharacterCreationStep.values[currentStep.index - 1];
 
-      // If we're moving back to the skills step, clear any existing skills
-      if (previousStep == CharacterCreationStep.skills) {
-        updateViewModel(
-          viewModel.copyWith(
-            step: previousStep,
-            skills: {},  // Clear any existing skills
-            error: null,  // Clear any errors
-          ),
-        );
-      } else {
-        updateViewModel(
-          viewModel.copyWith(
-            step: previousStep,
-            error: null,  // Clear any errors
-          ),
-        );
-      }
+      // Just update the step, keeping all other state including skills
+      updateViewModel(
+        viewModel.copyWith(
+          step: previousStep,
+          error: null, // Clear any errors
+        ),
+      );
     }
   }
 
@@ -231,10 +272,12 @@ class _CharacterCreationScreenMVIState
   }
 
   void _handleSelectPeople(People? people) {
+    // Use the withSelectedPeople method from the ViewModel which handles the cascading updates
     updateViewModel(viewModel.withSelectedPeople(people));
   }
 
   void _handleSelectJob(Job? job) {
+    // Use the withSelectedJob method from the ViewModel which handles the cascading updates
     updateViewModel(viewModel.withSelectedJob(job));
   }
 
@@ -272,33 +315,197 @@ class _CharacterCreationScreenMVIState
     );
   }
 
-  void _handleSelectRangerSourceAttribute(String attribute) {
-    // Update the ranger source attribute in the view model
+  void _handleUpdateOgreModifiers({
+    required int attackModifier,
+    required int parryModifier,
+  }) {
+    // Ensure the modifiers are within the allowed range (-3 to 0)
+    final newAttackModifier = attackModifier.clamp(-3, 0);
+    final newParryModifier = parryModifier.clamp(-3, 0);
+
+    // Calculate the new base values with the modifiers applied
+    final newAttackTotal = viewModel.baseAttack + newAttackModifier;
+    final newParryTotal = viewModel.baseParry + newParryModifier;
+
+    // Ensure we don't go below 1 for attack and parry
+    if (newAttackTotal < 1 || newParryTotal < 1) {
+      // Don't update if it would make attack or parry less than 1
+      return;
+    }
+
+    // Calculate the total points spent (absolute value since modifiers are negative)
+    final totalPoints = newAttackModifier.abs() + newParryModifier.abs();
+
+    // If total points exceed 3, don't update
+    if (totalPoints > 3) {
+      return;
+    }
+
+    // If we get here, the changes are valid
     updateViewModel(
       viewModel.copyWith(
-        // Add rangerSourceAttribute to your view model if not already present
-        // rangerSourceAttribute: attribute,
+        ogreAttackModifier: newAttackModifier,
+        ogreParryModifier: newParryModifier,
       ),
     );
+
+    // Force a rebuild to update the UI
+    setState(() {});
   }
 
-  void _handleSelectRangerTargetAttribute(String attribute) {
-    // Update the ranger target attribute in the view model
+  void _handleUpdateFighterModifiers({
+    required int attackChange,
+    required int parryChange,
+  }) {
+    // Fighter can only exchange 1 point between attack and parry
+    if ((attackChange == 1 && parryChange == -1) ||
+        (attackChange == -1 && parryChange == 1) ||
+        (attackChange == 0 && parryChange == 0)) {
+      updateViewModel(
+        viewModel.copyWith(
+          fighterAttackModifier: viewModel.fighterAttackModifier + attackChange,
+          fighterParryModifier: viewModel.fighterParryModifier + parryChange,
+        ),
+      );
+    }
+  }
+
+  void _handleUpdateRangerModifiers({
+    required Map<String, int> statistics,
+    bool transferBegin = false,
+    bool transferFinish = false,
+    Map<String, int>? originalStats,
+  }) {
+    final updatedModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+
+    // If originalStats is provided, use it, otherwise keep existing or initialize
+    if (originalStats != null) {
+      updatedModifiers['rangerOriginalStats'] = Map<String, int>.from(originalStats);
+    } else if (transferBegin && !updatedModifiers.containsKey('rangerOriginalStats')) {
+      // Only save original stats if we're beginning a transfer and don't have them already
+      updatedModifiers['rangerOriginalStats'] = Map<String, int>.from(viewModel.statistics);
+    }
+
     updateViewModel(
       viewModel.copyWith(
-        // Add rangerTargetAttribute to your view model if not already present
-        // rangerTargetAttribute: attribute,
+        statistics: statistics,
+        modifiers: {
+          ...updatedModifiers,
+          'rangerTransferBegin': transferBegin,
+          'rangerTransferFinish': transferFinish,
+        },
       ),
     );
   }
 
   void _handleResetRangerModifier() {
-    // Reset the ranger modifier in the view model
+    final updatedModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+    final originalStats = viewModel.rangerOriginalStats;
+
+    if (originalStats != null) {
+      // Restore original stats but keep the transfer active
+      updateViewModel(
+        viewModel.copyWith(
+          statistics: Map<String, int>.from(originalStats),
+          // Keep the transfer begin state but reset finish state
+          modifiers: {
+            ...updatedModifiers,
+            'rangerTransferFinish': false,
+            'rangerTarget': null, // Clear any previous target
+            // Keep rangerSource and rangerOriginalStats to allow retrying the transfer
+          },
+        ),
+      );
+    } else {
+      // If no original stats, just reset the transfer state
+      updateViewModel(
+        viewModel.copyWith(
+          rangerTransferBegin: false,
+          rangerTransferFinish: false,
+        ),
+      );
+    }
+
+    // Don't clean up the source and original stats to allow retrying
+    updatedModifiers..remove('rangerTarget')
+    ..remove('rangerTransferFinish');
+
     updateViewModel(
       viewModel.copyWith(
-        // Reset any ranger-related attributes
-        // rangerSourceAttribute: null,
-        // rangerTargetAttribute: null,
+        modifiers: updatedModifiers,
+      ),
+    );
+  }
+
+  void _handleUpdateDealerModifiers({
+    required String? source,
+    required String? target,
+  }) {
+    if ((source == 'attack' || source == 'parry') &&
+        (target == 'intellect' || target == 'charisma')) {
+      updateViewModel(
+        viewModel.copyWith(
+          dealerSource: source,
+          dealerTarget: target,
+        ),
+      );
+    }
+  }
+
+  void _handleUpdateEngineerModifiers({
+    required String? source,
+    required String? target,
+  }) {
+    if ((source == 'attack' || source == 'parry') &&
+        (target == 'intellect' || target == 'dexterity')) {
+      updateViewModel(
+        viewModel.copyWith(
+          engineerSource: source,
+          engineerTarget: target,
+        ),
+      );
+    }
+  }
+
+  void _handleResetModifiers() {
+    updateViewModel(
+      viewModel.copyWith(
+        ogreAttackModifier: 0,
+        ogreParryModifier: 0,
+        fighterAttackModifier: 0,
+        fighterParryModifier: 0,
+        rangerSource: null,
+        rangerTarget: null,
+        dealerSource: null,
+        dealerTarget: null,
+        engineerSource: null,
+        engineerTarget: null,
+      ),
+    );
+  }
+
+  void _handleApplyDexterityModifier(CharacterCreationIntent intent) {
+    final dexterity = viewModel.statistics['dexterity'] ?? 0;
+    final isNinja = viewModel.selectedJob?.name == 'Ninja';
+    final attribute =
+        intent.payload['attribute'] as String?; // Access attribute from payload
+
+    // If no attribute is provided and one is required, don't update
+    if (attribute == null && (dexterity < 9 || (dexterity > 12 && !isNinja))) {
+      return;
+    }
+
+    // Determine the modifier value based on dexterity
+    final dexterityModifier = dexterity < 9
+        ? -1
+        : (dexterity > 12 && !isNinja)
+        ? 1
+        : 0;
+
+    updateViewModel(
+      viewModel.copyWith(
+        dexterityModifier: dexterityModifier,
+        dexterityModifierAttribute: attribute,
       ),
     );
   }
@@ -415,27 +622,53 @@ class _CharacterCreationScreenMVIState
                 ),
                 // Step 3: Skills
                 Step3Skills(
-                  birthSkills: viewModel.isHumanNone
-                      ? []
-                      : [
-                          ...(viewModel.selectedPeople?.birthSkills ?? []),
-                          ...(viewModel.selectedJob?.inheritedSkills ?? []),
-                        ],
+                  birthSkills:
+                      viewModel.isHumanNone
+                            ? []
+                            : [
+                                ...{
+                                  ...?viewModel.selectedPeople?.birthSkills,
+                                  ...?viewModel.selectedJob?.inheritedSkills,
+                                },
+                              ].toList()
+                        ..sort((a, b) => a.name.compareTo(b.name)),
                   optionalSkills: [
-                    ...(viewModel.selectedPeople?.optionalSkills ?? []),
-                    ...(viewModel.selectedJob?.optionalSkills ?? []),
+                    ...{
+                          ...?viewModel.selectedPeople?.optionalSkills,
+                          ...?viewModel.selectedJob?.optionalSkills,
+                        }
+                        .where(
+                          (skill) =>
+                              !(!viewModel.isHumanNone &&
+                                  [
+                                    ...?viewModel.selectedPeople?.birthSkills,
+                                    ...?viewModel.selectedJob?.inheritedSkills,
+                                  ].contains(skill)),
+                        )
+                        .toList()
+                      ..sort((a, b) => a.name.compareTo(b.name)),
                   ],
                   selectedOptionalSkills: viewModel.skills.entries
-                      .where((entry) => entry.value == 0)
+                      .where(
+                        (entry) =>
+                            entry.value == 0 &&
+                            !(!viewModel.isHumanNone &&
+                                [
+                                  ...?viewModel.selectedPeople?.birthSkills,
+                                  ...?viewModel.selectedJob?.inheritedSkills,
+                                ].contains(entry.key)),
+                      )
                       .map((entry) => entry.key)
                       .toSet(),
                   optionalSkillPoints: viewModel.optionalSkillPoints,
                   onAddOptionalSkill: (skill) {
-                    final newSkills = Map<Skill, int>.from(viewModel.skills)..[skill] = 0;
+                    final newSkills = Map<Skill, int>.from(viewModel.skills)
+                      ..[skill] = 0;
                     onIntent(CharacterCreationIntent.updateSkills(newSkills));
                   },
                   onRemoveOptionalSkill: (skill) {
-                    final newSkills = Map<Skill, int>.from(viewModel.skills)..remove(skill);
+                    final newSkills = Map<Skill, int>.from(viewModel.skills)
+                      ..remove(skill);
                     onIntent(CharacterCreationIntent.updateSkills(newSkills));
                   },
                   error:
@@ -448,28 +681,8 @@ class _CharacterCreationScreenMVIState
                 ),
                 // Step 4: Modifiers
                 Step4Modifiers(
-                  people: viewModel.selectedPeople ?? People.human,
-                  job: viewModel.selectedJob ?? Job.none,
-                  dexterity: viewModel.statistics['dexterity'] ?? 0,
-                  rangerSourceAttribute: '',
-                  rangerTargetAttribute: '',
-                  hasActiveRangerExchange: false,
-                  isRangerExchangeComplete: false,
-                  onUpdateCharacter: (updates) {
-                    // Handle character updates
-                  },
-                  onResetCharacterStats: () {
-                    // Handle reset character stats
-                  },
-                  onSelectRangerSourceAttribute: (attribute) {
-                    // Handle ranger source attribute selection
-                  },
-                  onSelectRangerTargetAttribute: (attribute) {
-                    // Handle ranger target attribute selection
-                  },
-                  onResetRangerModifier: () {
-                    // Handle ranger modifier reset
-                  },
+                  viewModel: viewModel,
+                  onIntent: onIntent,
                 ),
                 // Step 5: Finalizing
                 Step5Finalizing(
@@ -505,6 +718,10 @@ class _CharacterCreationScreenMVIState
                                         .skills && // Add this condition
                                 !viewModel
                                     .hasEnoughSkills // Check if enough skills are selected
+                                    ||
+                            viewModel.step == CharacterCreationStep.modifiers &&
+                                !viewModel
+                                    .hasValidModifiers // Check if modifiers are valid
                         ? null
                         : () =>
                               onIntent(CharacterCreationIntent.goToNextStep()),

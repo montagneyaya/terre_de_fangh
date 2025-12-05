@@ -45,22 +45,25 @@ class Step2Character extends StatelessWidget {
     if (availablePeople.isEmpty) return const SizedBox.shrink();
 
     return DropdownButtonFormField<People>(
-      initialValue: selectedPeople,
+      initialValue: availablePeople.contains(selectedPeople) ? selectedPeople : null,
       items: availablePeople
           .map((people) => DropdownMenuItem(
-        value: people,
-        child: Text(people.name),
-      ))
+                value: people,
+                child: Text(people.name),
+              ))
           .toList(),
       onChanged: (people) {
         if (people != null) {
+          // Reset job and specialization when people changes
           onIntent(CharacterCreationIntent.selectPeople(people));
         }
       },
       decoration: const InputDecoration(
         labelText: 'People',
         border: OutlineInputBorder(),
+        hintText: 'Select people',
       ),
+      validator: (value) => value == null ? 'Please select people' : null,
     );
   }
 
@@ -70,12 +73,12 @@ class Step2Character extends StatelessWidget {
     }
 
     return DropdownButtonFormField<Job>(
-      initialValue: selectedJob,
+      initialValue: availableJobs.contains(selectedJob) ? selectedJob : null,
       items: availableJobs
           .map((job) => DropdownMenuItem(
-        value: job,
-        child: Text(job.name),
-      ))
+                value: job,
+                child: Text(job.name),
+              ))
           .toList(),
       onChanged: (job) {
         if (job != null) {
@@ -85,7 +88,9 @@ class Step2Character extends StatelessWidget {
       decoration: const InputDecoration(
         labelText: 'Job',
         border: OutlineInputBorder(),
+        hintText: 'Select job',
       ),
+      validator: (value) => value == null ? 'Please select a job' : null,
     );
   }
 
@@ -95,7 +100,9 @@ class Step2Character extends StatelessWidget {
     }
 
     return DropdownButtonFormField<Specialization>(
-      initialValue: selectedSpecialization,
+      initialValue: availableSpecializations.contains(selectedSpecialization)
+          ? selectedSpecialization
+          : null,
       items: availableSpecializations
           .map(
             (spec) => DropdownMenuItem(
@@ -112,7 +119,11 @@ class Step2Character extends StatelessWidget {
       decoration: const InputDecoration(
         labelText: 'Specialization',
         border: OutlineInputBorder(),
+        hintText: 'Select specialization',
       ),
+      validator: (value) => value == null && availableSpecializations.isNotEmpty
+          ? 'Please select a specialization'
+          : null,
     );
   }
 }

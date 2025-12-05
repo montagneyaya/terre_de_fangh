@@ -23,8 +23,127 @@ class CharacterCreationViewModel extends MviViewModel {
     this.selectedJob,
     this.selectedSpecialization,
     this.skills = const {},
-    this.modifiers = const {},
-  });
+    Map<String, dynamic>? modifiers,
+  }) : modifiers = modifiers ?? const {};
+
+  // Modifiers getters
+  int get attackModifier {
+    return (ogreAttackModifier + fighterAttackModifier + dexterityModifier)
+        .clamp(-3, 3);
+  }
+
+  int get parryModifier {
+    return (ogreParryModifier + fighterParryModifier + dexterityModifier).clamp(
+      -3,
+      3,
+    );
+  }
+
+  bool get isOgre => selectedPeople?.name == 'Ogre';
+
+  // Ogre modifiers
+  int get ogreAttackModifier => (modifiers['ogreAttackModifier'] as int?) ?? 0;
+  int get ogreParryModifier => (modifiers['ogreParryModifier'] as int?) ?? 0;
+
+  // Base values with fallback: if job's value is 0, use people's value
+  int get baseAttack => (selectedJob != null && selectedJob!.attack != 0)
+      ? selectedJob!.attack
+      : selectedPeople?.attack ?? 0;
+
+  int get baseParry => (selectedJob != null && selectedJob!.parry != 0)
+      ? selectedJob!.parry
+      : selectedPeople?.parry ?? 0;
+
+  // Calculated values
+  int get modifiedAttack => baseAttack + ogreAttackModifier;
+  int get modifiedParry => baseParry + ogreParryModifier;
+
+  // Fighter modifiers
+  int get fighterAttackModifier =>
+      (modifiers['fighterAttackModifier'] as int?) ?? 0;
+  int get fighterParryModifier =>
+      (modifiers['fighterParryModifier'] as int?) ?? 0;
+
+  // Ranger modifiers
+  String? get rangerSource => modifiers['rangerSource'] as String?;
+  String? get rangerTarget => modifiers['rangerTarget'] as String?;
+  bool get rangerTransferBegin =>
+      (modifiers['rangerTransferBegin'] as bool?) ?? false;
+  bool get rangerTransferFinish =>
+      (modifiers['rangerTransferFinish'] as bool?) ?? false;
+  Map<String, int>? get rangerOriginalStats {
+    final stats = modifiers['rangerOriginalStats'];
+    return stats != null ? Map<String, int>.from(stats as Map) : null;
+  }
+
+  // Dealer modifiers
+  String? get dealerSource => modifiers['dealerSource'] as String?;
+  String? get dealerTarget => modifiers['dealerTarget'] as String?;
+
+  // Engineer modifiers
+  String? get engineerSource => modifiers['engineerSource'] as String?;
+  String? get engineerTarget => modifiers['engineerTarget'] as String?;
+
+  // Dexterity modifier
+  int get dexterityModifier => (modifiers['dexterityModifier'] as int?) ?? 0;
+  String? get dexterityModifierAttribute =>
+      modifiers['dexterityModifierAttribute'] as String?;
+  bool get isFighter => selectedJob?.name == 'Fighter';
+  bool get isRanger => selectedJob?.name == 'Ranger';
+  bool get isDealer => selectedJob?.name == 'Dealer';
+  bool get isEngineer => selectedJob?.name == 'Engineer';
+  bool get isNinja => selectedJob?.name == 'Ninja';
+
+  bool get hasValidModifiers {
+    // Ogre validation
+    if (isOgre) {
+      final totalOgreModifier =
+          ogreAttackModifier.abs() + ogreParryModifier.abs();
+      if (totalOgreModifier > 0 && totalOgreModifier > 3) return false;
+    }
+
+    // Dealer validation
+    if (isDealer) {
+      if (dealerSource == null || dealerTarget == null) return false;
+      if (dealerSource != 'attack' && dealerSource != 'parry') return false;
+      if (dealerTarget != 'intellect' && dealerTarget != 'charisma') {
+        return false;
+      }
+    }
+
+    // Engineer validation
+    if (isEngineer) {
+      if (engineerSource == null || engineerTarget == null) return false;
+      if (engineerSource != 'attack' && engineerSource != 'parry') return false;
+      if (engineerTarget != 'intellect' && engineerTarget != 'dexterity') {
+        return false;
+      }
+    }
+
+    // Ranger validation
+    if (isRanger) {
+      // Check if source and target are selected
+      if (rangerSource == null || rangerTarget == null) return false;
+
+      // Source and target must be different
+      if (rangerSource == rangerTarget) return false;
+
+      // Validate source is one of the allowed attributes
+      final validSources = ['strength', 'dexterity', 'intellect', 'charisma'];
+      if (!validSources.contains(rangerSource)) return false;
+
+      // Validate target is one of the allowed attributes
+      final validTargets = ['strength', 'dexterity', 'intellect', 'charisma'];
+      if (!validTargets.contains(rangerTarget)) return false;
+    }
+
+    // Dexterity based modifiers
+    final dexterity = statistics['dexterity'] ?? 0;
+    if (dexterity < 9 && dexterityModifier >= 0) return false;
+    if (dexterity > 12 && !isNinja && dexterityModifier <= 0) return false;
+
+    return true;
+  }
 
   bool get areStatisticsValid {
     return statistics.values.every((value) => value >= 8 && value <= 20);
@@ -78,17 +197,31 @@ class CharacterCreationViewModel extends MviViewModel {
       );
     }
 
-    final availableJobs = this.availableJobs;
-    final firstJob = availableJobs.isNotEmpty ? availableJobs.first : null;
-    final firstSpecialization = firstJob?.specializations.isNotEmpty ?? false
-        ? firstJob!.specializations.first
-        : null;
-
-    return copyWith(
+    // Create a new view model with the selected people
+    var newViewModel = copyWith(
       selectedPeople: people,
-      selectedJob: firstJob,
-      selectedSpecialization: firstSpecialization,
+      selectedJob: null,
+      selectedSpecialization: null,
     );
+
+    // Get available jobs for the selected people
+    final availableJobs = newViewModel.availableJobs;
+    if (availableJobs.isNotEmpty) {
+      // Select the first available job
+      final firstJob = availableJobs.first;
+      newViewModel = newViewModel.copyWith(selectedJob: firstJob);
+
+      // Get available specializations for the selected job
+      final availableSpecializations = firstJob.specializations;
+      if (availableSpecializations.isNotEmpty) {
+        // Select the first available specialization
+        newViewModel = newViewModel.copyWith(
+          selectedSpecialization: availableSpecializations.first,
+        );
+      }
+    }
+
+    return newViewModel;
   }
 
   /// Creates a new ViewModel with the selected job and auto-selected specialization
@@ -100,20 +233,20 @@ class CharacterCreationViewModel extends MviViewModel {
       );
     }
 
-    final firstSpecialization = job.specializations.isNotEmpty
-        ? job.specializations.first
-        : null;
-
-    return copyWith(
+    // Create a new view model with the selected job
+    var newViewModel = copyWith(
       selectedJob: job,
-      selectedSpecialization: firstSpecialization,
+      selectedSpecialization: null,
     );
-  }
-
-  List<Specialization> get availableSpecializations {
-    if (selectedJob == null) return [];
-
-    return selectedJob!.specializations.toList();
+    // Get available specializations for the selected job
+    final availableSpecializations = job.specializations;
+    if (availableSpecializations.isNotEmpty) {
+      // Select the first available specialization
+      newViewModel = newViewModel.copyWith(
+        selectedSpecialization: availableSpecializations.first,
+      );
+    }
+    return newViewModel;
   }
 
   final CharacterCreationStep step;
@@ -127,6 +260,11 @@ class CharacterCreationViewModel extends MviViewModel {
   final Map<Skill, int> skills;
   final Map<String, dynamic> modifiers;
 
+  List<Specialization> get availableSpecializations {
+    if (selectedJob == null) return [];
+    return selectedJob!.specializations.toList();
+  }
+
   CharacterCreationViewModel copyWith({
     CharacterCreationStep? step,
     bool? isLoading,
@@ -138,18 +276,72 @@ class CharacterCreationViewModel extends MviViewModel {
     Map<Skill, int>? skills,
     Map<String, dynamic>? modifiers,
     String? characterName,
+    // Modifier parameters
+    String? rangerSource,
+    String? rangerTarget,
+    bool? rangerTransferBegin,
+    bool? rangerTransferFinish,
+    Map<String, int>? rangerOriginalStats,
+    int? ogreAttackModifier,
+    int? ogreParryModifier,
+    int? fighterAttackModifier,
+    int? fighterParryModifier,
+    String? dealerSource,
+    String? dealerTarget,
+    String? engineerSource,
+    String? engineerTarget,
+    int? dexterityModifier,
+    String? dexterityModifierAttribute,
   }) {
+    // Create a new modifiers map with the current values
+    final newModifiers = Map<String, dynamic>.from(modifiers ?? this.modifiers);
+
+    // Update the modifiers map with any new values
+    if (rangerSource != null) newModifiers['rangerSource'] = rangerSource;
+    if (rangerTarget != null) newModifiers['rangerTarget'] = rangerTarget;
+    if (rangerTransferBegin != null) {
+      newModifiers['rangerTransferBegin'] = rangerTransferBegin;
+    }
+    if (rangerTransferFinish != null) {
+      newModifiers['rangerTransferFinish'] = rangerTransferFinish;
+    }
+    if (rangerOriginalStats != null) {
+      newModifiers['rangerOriginalStats'] = rangerOriginalStats;
+    }
+    if (ogreAttackModifier != null) {
+      newModifiers['ogreAttackModifier'] = ogreAttackModifier;
+    }
+    if (ogreParryModifier != null) {
+      newModifiers['ogreParryModifier'] = ogreParryModifier;
+    }
+    if (fighterAttackModifier != null) {
+      newModifiers['fighterAttackModifier'] = fighterAttackModifier;
+    }
+    if (fighterParryModifier != null) {
+      newModifiers['fighterParryModifier'] = fighterParryModifier;
+    }
+    if (dealerSource != null) newModifiers['dealerSource'] = dealerSource;
+    if (dealerTarget != null) newModifiers['dealerTarget'] = dealerTarget;
+    if (engineerSource != null) newModifiers['engineerSource'] = engineerSource;
+    if (engineerTarget != null) newModifiers['engineerTarget'] = engineerTarget;
+    if (dexterityModifier != null) {
+      newModifiers['dexterityModifier'] = dexterityModifier;
+    }
+    if (dexterityModifierAttribute != null) {
+      newModifiers['dexterityModifierAttribute'] = dexterityModifierAttribute;
+    }
+
     return CharacterCreationViewModel(
       step: step ?? this.step,
       isLoading: isLoading ?? this.isLoading,
-      error: error,
-      statistics: statistics ?? this.statistics,
+      error: this.error,
+      statistics: statistics ?? Map.from(this.statistics),
       selectedPeople: selectedPeople ?? this.selectedPeople,
       selectedJob: selectedJob ?? this.selectedJob,
       selectedSpecialization:
           selectedSpecialization ?? this.selectedSpecialization,
-      skills: skills ?? this.skills,
-      modifiers: modifiers ?? this.modifiers,
+      skills: skills ?? Map.from(this.skills),
+      modifiers: newModifiers,
       characterName: characterName ?? this.characterName,
     );
   }

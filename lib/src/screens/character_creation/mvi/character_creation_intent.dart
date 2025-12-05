@@ -15,19 +15,27 @@ enum CharacterCreationAction {
   finalizeCharacter,
   updateCharacter,
   resetCharacterStats,
-  selectRangerSourceAttribute,
-  selectRangerTargetAttribute,
+  selectRangerSource,
+  selectRangerTarget,
   resetRangerModifier,
+  updateRangerModifiers,
+  updateOgreModifiers,
+  updateFighterModifiers,
+  updateDealerModifiers,
+  updateEngineerModifiers,
+  resetModifiers,
+  applyDexterityModifier,
 }
 
 class CharacterCreationIntent extends MviIntent {
-
   @visibleForTesting
   const CharacterCreationIntent(this.action, [this.payload = const {}]);
 
   /// Creates an intent to reset ranger modifier
   factory CharacterCreationIntent.resetRangerModifier() {
-    return const CharacterCreationIntent._(CharacterCreationAction.resetRangerModifier);
+    return const CharacterCreationIntent._(
+      CharacterCreationAction.resetRangerModifier,
+    );
   }
 
   const CharacterCreationIntent._(this.action, [this.payload = const {}]);
@@ -38,7 +46,9 @@ class CharacterCreationIntent extends MviIntent {
   }
 
   /// Creates an intent to update character statistics
-  factory CharacterCreationIntent.updateStatistics(Map<String, int> statistics) {
+  factory CharacterCreationIntent.updateStatistics(
+    Map<String, int> statistics,
+  ) {
     return CharacterCreationIntent._(
       CharacterCreationAction.updateStatistics,
       {'statistics': statistics},
@@ -47,12 +57,16 @@ class CharacterCreationIntent extends MviIntent {
 
   /// Creates an intent to proceed to the next step
   factory CharacterCreationIntent.goToNextStep() {
-    return const CharacterCreationIntent._(CharacterCreationAction.goToNextStep);
+    return const CharacterCreationIntent._(
+      CharacterCreationAction.goToNextStep,
+    );
   }
 
   /// Creates an intent to go back to the previous step
   factory CharacterCreationIntent.goToPreviousStep() {
-    return const CharacterCreationIntent._(CharacterCreationAction.goToPreviousStep);
+    return const CharacterCreationIntent._(
+      CharacterCreationAction.goToPreviousStep,
+    );
   }
 
   /// Creates an intent to select people
@@ -88,7 +102,9 @@ class CharacterCreationIntent extends MviIntent {
   }
 
   /// Creates an intent to update modifiers
-  factory CharacterCreationIntent.updateModifiers(Map<String, dynamic> modifiers) {
+  factory CharacterCreationIntent.updateModifiers(
+    Map<String, dynamic> modifiers,
+  ) {
     return CharacterCreationIntent._(
       CharacterCreationAction.updateModifiers,
       {'modifiers': modifiers},
@@ -97,7 +113,9 @@ class CharacterCreationIntent extends MviIntent {
 
   /// Creates an intent to finalize character
   factory CharacterCreationIntent.finalizeCharacter() {
-    return const CharacterCreationIntent._(CharacterCreationAction.finalizeCharacter);
+    return const CharacterCreationIntent._(
+      CharacterCreationAction.finalizeCharacter,
+    );
   }
 
   /// Creates an intent to update character
@@ -110,24 +128,110 @@ class CharacterCreationIntent extends MviIntent {
 
   /// Creates an intent to reset character stats
   factory CharacterCreationIntent.resetCharacterStats() {
-    return const CharacterCreationIntent._(CharacterCreationAction.resetCharacterStats);
+    return const CharacterCreationIntent._(
+      CharacterCreationAction.resetCharacterStats,
+    );
   }
 
-  /// Creates an intent to select ranger source attribute
-  factory CharacterCreationIntent.selectRangerSourceAttribute(dynamic attribute) {
+  /// Creates an intent to select ranger source
+  factory CharacterCreationIntent.selectRangerSource(dynamic attribute) {
     return CharacterCreationIntent._(
-      CharacterCreationAction.selectRangerSourceAttribute,
+      CharacterCreationAction.selectRangerSource,
       {'attribute': attribute},
     );
   }
 
-  /// Creates an intent to select ranger target attribute
-  factory CharacterCreationIntent.selectRangerTargetAttribute(dynamic attribute) {
+  /// Creates an intent to select ranger target
+  factory CharacterCreationIntent.selectRangerTarget(dynamic attribute) {
     return CharacterCreationIntent._(
-      CharacterCreationAction.selectRangerTargetAttribute,
+      CharacterCreationAction.selectRangerTarget,
       {'attribute': attribute},
     );
   }
+
+  /// Creates an intent to update ranger modifiers
+  factory CharacterCreationIntent.updateRangerModifiers({
+    required Map<String, int> statistics,
+    bool transferBegin = false,
+    bool transferFinish = false,
+    Map<String, int>? originalStats,
+  }) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.updateRangerModifiers,
+      {
+        'statistics': statistics,
+        'transferBegin': transferBegin,
+        'transferFinish': transferFinish,
+        'originalStats': ?originalStats,
+      },
+    );
+  }
+
+  factory CharacterCreationIntent.updateOgreModifiers({
+    int attackModifier = 0,
+    int parryModifier = 0,
+  }) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.updateOgreModifiers,
+      {
+        'ogreAttackModifier': attackModifier,
+        'ogreParryModifier': parryModifier,
+      },
+    );
+  }
+
+  factory CharacterCreationIntent.updateFighterModifiers({
+    required int attackChange,
+    required int parryChange,
+  }) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.updateFighterModifiers,
+      {
+        'fighterAttackChange': attackChange,
+        'fighterParryChange': parryChange,
+      },
+    );
+  }
+
+  factory CharacterCreationIntent.updateDealerModifiers({
+    required String? source,
+    required String? target,
+  }) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.updateDealerModifiers,
+      {
+        'dealerSource': source,
+        'dealerTarget': target,
+      },
+    );
+  }
+
+  factory CharacterCreationIntent.updateEngineerModifiers({
+    required String? source,
+    required String? target,
+  }) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.updateEngineerModifiers,
+      {
+        'engineerSource': source,
+        'engineerTarget': target,
+      },
+    );
+  }
+
+  factory CharacterCreationIntent.resetModifiers() {
+    return const CharacterCreationIntent._(
+      CharacterCreationAction.resetModifiers,
+    );
+  }
+
+  factory CharacterCreationIntent.applyDexterityModifier({String? attribute}) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.applyDexterityModifier,
+      {'attribute': attribute},
+    );
+  }
+
   final CharacterCreationAction action;
   final Map<String, dynamic> payload;
 }
