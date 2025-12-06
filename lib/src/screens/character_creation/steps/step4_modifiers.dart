@@ -25,9 +25,11 @@ class Step4Modifiers extends StatelessWidget {
     // Apply dexterity modifier when the step is first shown
     if (_shouldShowDexterityModifiers) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        onIntent(CharacterCreationIntent.applyDexterityModifier(
-          attribute: viewModel.dexterityModifierAttribute,
-        ));
+        onIntent(
+          CharacterCreationIntent.applyDexterityModifier(
+            attribute: viewModel.dexterityModifierAttribute,
+          ),
+        );
       });
     }
 
@@ -402,9 +404,10 @@ class Step4Modifiers extends StatelessWidget {
                     // Minus button
                     IconButton(
                       icon: const Icon(Icons.remove_circle_outline, size: 24),
-                      color: !transferBegin && !transferFinish ? Colors.red : Colors.grey.shade400,
-                      onPressed:
-                          (!transferBegin && !transferFinish)
+                      color: !transferBegin && !transferFinish
+                          ? Colors.red
+                          : Colors.grey.shade400,
+                      onPressed: (!transferBegin && !transferFinish)
                           ? () {
                               final updatedStats = Map<String, int>.from(
                                 currentStats,
@@ -437,9 +440,10 @@ class Step4Modifiers extends StatelessWidget {
                     // Plus button
                     IconButton(
                       icon: const Icon(Icons.add_circle_outline, size: 24),
-                      color: transferBegin && !transferFinish ? Colors.green : Colors.grey.shade400,
-                      onPressed:
-                          (transferBegin && !transferFinish)
+                      color: transferBegin && !transferFinish
+                          ? Colors.green
+                          : Colors.grey.shade400,
+                      onPressed: (transferBegin && !transferFinish)
                           ? () {
                               final updatedStats = Map<String, int>.from(
                                 currentStats,
@@ -474,6 +478,17 @@ class Step4Modifiers extends StatelessWidget {
   }
 
   Widget _buildDealerModifiers() {
+    final baseAttack = viewModel.baseAttack;
+    final baseParry = viewModel.baseParry;
+    final attackValue = viewModel.statistics['attack'] ?? 0;
+    final parryValue = viewModel.statistics['parry'] ?? 0;
+    final intellectValue = viewModel.statistics['intellect'] ?? 0;
+    final charismaValue = viewModel.statistics['charisma'] ?? 0;
+    final transferBegin =
+        (viewModel.modifiers['dealerTransferBegin'] as bool?) ?? false;
+    final transferFinish =
+        (viewModel.modifiers['dealerTransferFinish'] as bool?) ?? false;
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -486,57 +501,169 @@ class Step4Modifiers extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const Text('Transfer points from combat to social attributes:'),
-            const SizedBox(height: 8),
-
-            // Source Attribute (Combat)
-            DropdownButtonFormField<String>(
-              initialValue: viewModel.dealerSource,
-              decoration: const InputDecoration(
-                labelText: 'From (Combat)',
-                border: OutlineInputBorder(),
-              ),
-              items:
-                  const [
-                    'attack',
-                    'parry',
-                  ].map((attr) {
-                    return DropdownMenuItem(
-                      value: attr,
-                      child: Text(attr[0].toUpperCase() + attr.substring(1)),
-                    );
-                  }).toList(),
-              onChanged: (value) => onIntent(
-                CharacterCreationIntent.updateDealerModifiers(
-                  source: value,
-                  target: viewModel.dealerTarget,
-                ),
-              ),
-            ),
-
             const SizedBox(height: 16),
 
-            // Target Attribute (Social)
-            DropdownButtonFormField<String>(
-              initialValue: viewModel.dealerTarget,
-              decoration: const InputDecoration(
-                labelText: 'To (Social)',
-                border: OutlineInputBorder(),
-              ),
-              items:
-                  const [
-                    'intellect',
-                    'charisma',
-                  ].where((attr) => attr != viewModel.dealerSource).map((attr) {
-                    return DropdownMenuItem(
-                      value: attr,
-                      child: Text(attr[0].toUpperCase() + attr.substring(1)),
-                    );
-                  }).toList(),
-              onChanged: (value) => onIntent(
-                CharacterCreationIntent.updateDealerModifiers(
-                  source: viewModel.dealerSource,
-                  target: value,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Left side: Combat Statistics
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Combat Statistics:',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Attack Row
+                      Row(
+                        children: [
+                          const Text('Attack:'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '${baseAttack + attackValue}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: (!transferBegin && !transferFinish)
+                                ? () {
+                              onIntent(
+                                CharacterCreationIntent
+                                    .updateDealerModifiers(
+                                  statistics: {
+                                    ...viewModel.statistics,
+                                    'attack': attackValue - 1,
+                                  },
+                                  transferBegin: true,
+                                  originalStats: viewModel.statistics,
+                                ),
+                              );
+                            }
+                                : null,
+                          ),
+                        ],
+                      ),
+
+                      // Parry Row
+                      Row(
+                        children: [
+                          const Text('Parry:'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '${baseParry + parryValue}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: (!transferBegin && !transferFinish)
+                                ? () {
+                              onIntent(
+                                CharacterCreationIntent
+                                    .updateDealerModifiers(
+                                  statistics: {
+                                    ...viewModel.statistics,
+                                    'parry': parryValue - 1,
+                                  },
+                                  transferBegin: true,
+                                  originalStats: viewModel.statistics,
+                                ),
+                              );
+                            }
+                                : null,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
+
+                const SizedBox(width: 16),
+
+                // Right side: Social Statistics
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Social Statistics:',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Intellect Row
+                      Row(
+                        children: [
+                          const Text('Intellect:'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$intellectValue',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: (transferBegin && !transferFinish)
+                                ? () {
+                              onIntent(
+                                CharacterCreationIntent
+                                    .updateDealerModifiers(
+                                  statistics: {
+                                    ...viewModel.statistics,
+                                    'intellect': intellectValue + 1,
+                                    'attack': attackValue,
+                                  },
+                                  transferFinish: true,
+                                ),
+                              );
+                            }
+                                : null,
+                          ),
+                        ],
+                      ),
+
+                      // Charisma Row
+                      Row(
+                        children: [
+                          const Text('Charisma:'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$charismaValue',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: (transferBegin && !transferFinish)
+                                ? () {
+                              onIntent(
+                                CharacterCreationIntent
+                                    .updateDealerModifiers(
+                                  statistics: {
+                                    ...viewModel.statistics,
+                                    'charisma': charismaValue + 1,
+                                    'parry': parryValue,
+                                  },
+                                  transferFinish: true,
+                                ),
+                              );
+                            }
+                                : null,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: () =>
+                    onIntent(CharacterCreationIntent.resetDealerModifier()),
+                icon: const Icon(Icons.refresh, size: 18),
+                label: const Text('Reset Dealer Modifiers'),
               ),
             ),
           ],
@@ -546,6 +673,17 @@ class Step4Modifiers extends StatelessWidget {
   }
 
   Widget _buildEngineerModifiers() {
+    final baseAttack = viewModel.baseAttack;
+    final baseParry = viewModel.baseParry;
+    final attackValue = viewModel.statistics['attack'] ?? 0;
+    final parryValue = viewModel.statistics['parry'] ?? 0;
+    final intellectValue = viewModel.statistics['intellect'] ?? 0;
+    final dexterityValue = viewModel.statistics['dexterity'] ?? 0;
+    final transferBegin =
+        (viewModel.modifiers['engineerTransferBegin'] as bool?) ?? false;
+    final transferFinish =
+        (viewModel.modifiers['engineerTransferFinish'] as bool?) ?? false;
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -557,60 +695,166 @@ class Step4Modifiers extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            const Text('Transfer points from combat to mental attributes:'),
-            const SizedBox(height: 8),
-
-            // Source Attribute (Combat)
-            DropdownButtonFormField<String>(
-              initialValue: viewModel.engineerSource,
-              decoration: const InputDecoration(
-                labelText: 'From (Combat)',
-                border: OutlineInputBorder(),
-              ),
-              items:
-                  const [
-                    'attack',
-                    'parry',
-                  ].map((attr) {
-                    return DropdownMenuItem(
-                      value: attr,
-                      child: Text(attr[0].toUpperCase() + attr.substring(1)),
-                    );
-                  }).toList(),
-              onChanged: (value) => onIntent(
-                CharacterCreationIntent.updateEngineerModifiers(
-                  source: value,
-                  target: viewModel.engineerTarget,
-                ),
-              ),
-            ),
-
+            const Text('Transfer points from combat to engineer statistics:'),
             const SizedBox(height: 16),
 
-            // Target Attribute (Mental)
-            DropdownButtonFormField<String>(
-              initialValue: viewModel.engineerTarget,
-              decoration: const InputDecoration(
-                labelText: 'To (Mental)',
-                border: OutlineInputBorder(),
-              ),
-              items:
-                  const [
-                    'intellect',
-                    'dexterity',
-                  ].where((attr) => attr != viewModel.engineerSource).map((
-                    attr,
-                  ) {
-                    return DropdownMenuItem(
-                      value: attr,
-                      child: Text(attr[0].toUpperCase() + attr.substring(1)),
-                    );
-                  }).toList(),
-              onChanged: (value) => onIntent(
-                CharacterCreationIntent.updateEngineerModifiers(
-                  source: viewModel.engineerSource,
-                  target: value,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Left side: Combat Statistics
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Combat Statistics:',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Attack Row
+                      Row(
+                        children: [
+                          const Text('Attack:'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '${baseAttack + attackValue}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: (!transferBegin && !transferFinish)
+                                ? () {
+                                    onIntent(
+                                      CharacterCreationIntent.updateEngineerModifiers(
+                                        statistics: {
+                                          ...viewModel.statistics,
+                                          'attack': attackValue - 1,
+                                        },
+                                        transferBegin: true,
+                                        originalStats: viewModel.statistics,
+                                      ),
+                                    );
+                                  }
+                                : null,
+                          ),
+                        ],
+                      ),
+
+                      // Parry Row
+                      Row(
+                        children: [
+                          const Text('Parry:'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '${baseParry + parryValue}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: (!transferBegin && !transferFinish)
+                                ? () {
+                                    onIntent(
+                                      CharacterCreationIntent.updateEngineerModifiers(
+                                        statistics: {
+                                          ...viewModel.statistics,
+                                          'parry': parryValue - 1,
+                                        },
+                                        transferBegin: true,
+                                        originalStats: viewModel.statistics,
+                                      ),
+                                    );
+                                  }
+                                : null,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
+
+                const SizedBox(width: 16),
+
+                // Right side: Engineer Statistics
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Engineer Statistics:',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Intellect Row
+                      Row(
+                        children: [
+                          const Text('Intellect:'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$intellectValue',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: (transferBegin && !transferFinish)
+                                ? () {
+                                    onIntent(
+                                      CharacterCreationIntent.updateEngineerModifiers(
+                                        statistics: {
+                                          ...viewModel.statistics,
+                                          'intellect': intellectValue + 1,
+                                          'attack': attackValue,
+                                        },
+                                        transferFinish: true,
+                                      ),
+                                    );
+                                  }
+                                : null,
+                          ),
+                        ],
+                      ),
+
+                      // Dexterity Row
+                      Row(
+                        children: [
+                          const Text('Dexterity:'),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$dexterityValue',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: (transferBegin && !transferFinish)
+                                ? () {
+                                    onIntent(
+                                      CharacterCreationIntent.updateEngineerModifiers(
+                                        statistics: {
+                                          ...viewModel.statistics,
+                                          'dexterity': dexterityValue + 1,
+                                          'parry': parryValue,
+                                        },
+                                        transferFinish: true,
+                                      ),
+                                    );
+                                  }
+                                : null,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: () =>
+                    onIntent(CharacterCreationIntent.resetEngineerModifier()),
+                icon: const Icon(Icons.refresh, size: 18),
+                label: const Text('Reset Engineer Modifiers'),
               ),
             ),
           ],
@@ -629,11 +873,13 @@ class Step4Modifiers extends StatelessWidget {
     final attackWithoutDex =
         baseAttack +
         viewModel.ogreAttackModifier +
-        viewModel.fighterAttackModifier;
+        viewModel.fighterAttackModifier +
+        (viewModel.isEngineer ? (viewModel.statistics['attack'] ?? 0) : 0);
     final parryWithoutDex =
         baseParry +
         viewModel.ogreParryModifier +
-        viewModel.fighterParryModifier;
+        viewModel.fighterParryModifier +
+        (viewModel.isEngineer ? (viewModel.statistics['parry'] ?? 0) : 0);
 
     // Get dexterity modifier values
     final dexterityModifier = viewModel.dexterityModifier;
@@ -673,6 +919,7 @@ class Step4Modifiers extends StatelessWidget {
                   'Attack: $baseAttack '
                   '${viewModel.ogreAttackModifier != 0 ? '${viewModel.ogreAttackModifier > 0 ? '+' : ''}${viewModel.ogreAttackModifier} (Ogre) ' : ''}'
                   '${viewModel.fighterAttackModifier != 0 ? '${viewModel.fighterAttackModifier > 0 ? '+' : ''}${viewModel.fighterAttackModifier} (Fighter) ' : ''}'
+                  '${viewModel.isEngineer ? '+${viewModel.statistics['attack'] ?? 0} (Engineer) ' : ''}'
                   '${viewModel.dexterityModifierAttribute == 'attack' ? '${viewModel.dexterityModifier > 0 ? '+' : ''}${viewModel.dexterityModifier} (Dex) ' : ''}'
                   '= $totalAttack',
                 ),
@@ -680,6 +927,7 @@ class Step4Modifiers extends StatelessWidget {
                   'Parry: $baseParry '
                   '${viewModel.ogreParryModifier != 0 ? '${viewModel.ogreParryModifier > 0 ? '+' : ''}${viewModel.ogreParryModifier} (Ogre) ' : ''}'
                   '${viewModel.fighterParryModifier != 0 ? '${viewModel.fighterParryModifier > 0 ? '+' : ''}${viewModel.fighterParryModifier} (Fighter) ' : ''}'
+                  '${viewModel.isEngineer ? '+${viewModel.statistics['parry'] ?? 0} (Engineer) ' : ''}'
                   '${viewModel.dexterityModifierAttribute == 'parry' ? '${viewModel.dexterityModifier > 0 ? '+' : ''}${viewModel.dexterityModifier} (Dex) ' : ''}'
                   '= $totalParry',
                 ),

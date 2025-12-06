@@ -95,14 +95,65 @@ class _CharacterCreationScreenMVIState
         );
       case CharacterCreationAction.updateDealerModifiers:
         _handleUpdateDealerModifiers(
-          source: intent.payload['dealerSource'] as String?,
-          target: intent.payload['dealerTarget'] as String?,
+          statistics: Map<String, int>.from(
+            intent.payload['statistics'] as Map,
+          ),
+          transferBegin: intent.payload['transferBegin'] as bool? ?? false,
+          transferFinish: intent.payload['transferFinish'] as bool? ?? false,
+          originalStats: intent.payload['originalStats'] != null
+              ? Map<String, int>.from(
+                  intent.payload['originalStats'] as Map,
+                )
+              : null,
         );
+
+      case CharacterCreationAction.resetDealerModifier:
+        _handleResetDealerModifier();
       case CharacterCreationAction.updateEngineerModifiers:
         _handleUpdateEngineerModifiers(
-          source: intent.payload['engineerSource'] as String?,
-          target: intent.payload['engineerTarget'] as String?,
+          statistics: intent.payload['statistics'] as Map<String, int>,
+          transferBegin: intent.payload['transferBegin'] as bool? ?? false,
+          transferFinish: intent.payload['transferFinish'] as bool? ?? false,
+          originalStats: intent.payload['originalStats'] as Map<String, int>?,
         );
+
+      case CharacterCreationAction.updateEngineerAttribute:
+        _handleUpdateEngineerAttribute(intent);
+
+      case CharacterCreationAction.selectEngineerSource:
+        final attribute = intent.payload['attribute'] as String?;
+        final updatedModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+        updatedModifiers['engineerSource'] = attribute;
+        updateViewModel(viewModel.copyWith(modifiers: updatedModifiers));
+
+      case CharacterCreationAction.selectEngineerTarget:
+        final currentStats = Map<String, int>.from(viewModel.statistics);
+        final attribute = intent.payload['attribute'] as String?;
+        if (attribute != null && viewModel.engineerSource != null) {
+          // Move a point from source to target
+          currentStats[viewModel.engineerSource!] =
+              (currentStats[viewModel.engineerSource] ?? 0) - 1;
+          currentStats[attribute] = (currentStats[attribute] ?? 0) + 1;
+          _handleUpdateEngineerModifiers(
+            statistics: currentStats,
+          );
+        }
+        // Update the target in modifiers
+        final updatedModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+        updatedModifiers['engineerTarget'] = attribute;
+        updateViewModel(viewModel.copyWith(modifiers: updatedModifiers));
+
+      case CharacterCreationAction.increaseEngineerAttribute:
+        final attribute = intent.payload['attribute'] as String;
+        _handleIncreaseEngineerAttribute(attribute);
+
+      case CharacterCreationAction.decreaseEngineerAttribute:
+        final attribute = intent.payload['attribute'] as String;
+        _handleDecreaseEngineerAttribute(attribute);
+
+      case CharacterCreationAction.resetEngineerModifier:
+        _handleResetEngineerModifier();
+
       case CharacterCreationAction.resetModifiers:
         _handleResetModifiers();
       case CharacterCreationAction.applyDexterityModifier:
@@ -380,10 +431,15 @@ class _CharacterCreationScreenMVIState
 
     // If originalStats is provided, use it, otherwise keep existing or initialize
     if (originalStats != null) {
-      updatedModifiers['rangerOriginalStats'] = Map<String, int>.from(originalStats);
-    } else if (transferBegin && !updatedModifiers.containsKey('rangerOriginalStats')) {
+      updatedModifiers['rangerOriginalStats'] = Map<String, int>.from(
+        originalStats,
+      );
+    } else if (transferBegin &&
+        !updatedModifiers.containsKey('rangerOriginalStats')) {
       // Only save original stats if we're beginning a transfer and don't have them already
-      updatedModifiers['rangerOriginalStats'] = Map<String, int>.from(viewModel.statistics);
+      updatedModifiers['rangerOriginalStats'] = Map<String, int>.from(
+        viewModel.statistics,
+      );
     }
 
     updateViewModel(
@@ -427,8 +483,9 @@ class _CharacterCreationScreenMVIState
     }
 
     // Don't clean up the source and original stats to allow retrying
-    updatedModifiers..remove('rangerTarget')
-    ..remove('rangerTransferFinish');
+    updatedModifiers
+      ..remove('rangerTarget')
+      ..remove('rangerTransferFinish');
 
     updateViewModel(
       viewModel.copyWith(
@@ -438,48 +495,178 @@ class _CharacterCreationScreenMVIState
   }
 
   void _handleUpdateDealerModifiers({
-    required String? source,
-    required String? target,
+    required Map<String, int> statistics,
+    bool transferBegin = false,
+    bool transferFinish = false,
+    Map<String, int>? originalStats,
   }) {
-    if ((source == 'attack' || source == 'parry') &&
-        (target == 'intellect' || target == 'charisma')) {
-      updateViewModel(
-        viewModel.copyWith(
-          dealerSource: source,
-          dealerTarget: target,
-        ),
-      );
+    final newModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+
+    if (transferBegin) {
+      newModifiers['dealerTransferBegin'] = true;
+      newModifiers['dealerOriginalStats'] = originalStats;
     }
+
+    if (transferFinish) {
+      newModifiers['dealerTransferBegin'] = false;
+      newModifiers['dealerTransferFinish'] = true;
+    }
+
+    updateViewModel(
+      viewModel.copyWith(
+        statistics: statistics,
+        modifiers: newModifiers,
+      ),
+    );
+  }
+
+  void _handleResetDealerModifier() {
+    final newModifiers = Map<String, dynamic>.from(viewModel.modifiers)
+    ..remove('dealerTransferBegin')
+    ..remove('dealerTransferFinish')
+    ..remove('dealerOriginalStats');
+
+    final newStats = Map<String, int>.from(viewModel.statistics);
+    // Reset any dealer-specific stats if needed
+
+    updateViewModel(
+      viewModel.copyWith(
+        statistics: newStats,
+        modifiers: newModifiers,
+      ),
+    );
   }
 
   void _handleUpdateEngineerModifiers({
-    required String? source,
-    required String? target,
+    required Map<String, int> statistics,
+    bool transferBegin = false,
+    bool transferFinish = false,
+    Map<String, int>? originalStats,
   }) {
-    if ((source == 'attack' || source == 'parry') &&
-        (target == 'intellect' || target == 'dexterity')) {
-      updateViewModel(
-        viewModel.copyWith(
-          engineerSource: source,
-          engineerTarget: target,
-        ),
+    final updatedModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+
+    if (originalStats != null) {
+      updatedModifiers['engineerOriginalStats'] = Map<String, int>.from(
+        originalStats,
       );
+    } else if (transferBegin &&
+        !updatedModifiers.containsKey('engineerOriginalStats')) {
+      updatedModifiers['engineerOriginalStats'] = Map<String, int>.from(
+        viewModel.statistics,
+      );
+    }
+
+    updateViewModel(
+      viewModel.copyWith(
+        statistics: statistics,
+        modifiers: {
+          ...updatedModifiers,
+          'engineerTransferBegin': transferBegin,
+          'engineerTransferFinish': transferFinish,
+        },
+      ),
+    );
+  }
+
+  void _handleUpdateEngineerAttribute(CharacterCreationIntent intent) {
+    final attribute = intent.payload['attribute'] as String;
+    final increment = intent.payload['increment'] as int;
+    final currentValue = viewModel.statistics[attribute] ?? 0;
+    final newValue = currentValue + increment;
+
+    // Update the statistics
+    final newStats = Map<String, int>.from(viewModel.statistics);
+    newStats[attribute] = newValue;
+
+    // Update the view model with new stats and engineer points
+    final newModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+
+    updateViewModel(
+      viewModel.copyWith(
+        statistics: newStats,
+        modifiers: newModifiers,
+      ),
+    );
+  }
+
+  void _handleIncreaseEngineerAttribute(String attribute) {
+    final stats = Map<String, int>.from(viewModel.statistics);
+
+    // Find which combat stat to decrease
+    String? combatStatToDecrease;
+    if (stats['attack'] != null && stats['attack']! > 0) {
+      combatStatToDecrease = 'attack';
+    } else if (stats['parry'] != null && stats['parry']! > 0) {
+      combatStatToDecrease = 'parry';
+    }
+
+    if (combatStatToDecrease != null) {
+      // Decrease combat stat
+      stats[combatStatToDecrease] = stats[combatStatToDecrease]! - 1;
+
+      // Increase engineer stat
+      stats[attribute] = (stats[attribute] ?? 0) + 1;
+
+      // Update the statistics using the proper MVI pattern
+      updateViewModel(viewModel.copyWith(statistics: stats));
     }
   }
 
-  void _handleResetModifiers() {
+  void _handleDecreaseEngineerAttribute(String attribute) {
+    final stats = Map<String, int>.from(viewModel.statistics);
+
+    // Check if we can find a combat stat to increase
+    if (stats[attribute] != null && stats[attribute]! > 0) {
+      // Decrease engineer stat
+      stats[attribute] = stats[attribute]! - 1;
+
+      // Increase attack by default, or parry if attack is already at base
+      if (stats['attack'] != null && stats['attack']! < viewModel.baseAttack) {
+        stats['attack'] = stats['attack']! + 1;
+      } else if (stats['parry'] != null &&
+          stats['parry']! < viewModel.baseParry) {
+        stats['parry'] = stats['parry']! + 1;
+      } else {
+        // If we can't increase any combat stat, revert the change
+        return;
+      }
+
+      // Update the statistics using the proper MVI pattern
+      updateViewModel(viewModel.copyWith(statistics: stats));
+    }
+  }
+
+  void _handleResetEngineerModifier() {
+    final updatedModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+    final originalStats = viewModel.engineerOriginalStats;
+
+    if (originalStats != null) {
+      updateViewModel(
+        viewModel.copyWith(
+          statistics: Map<String, int>.from(originalStats),
+          modifiers: {
+            ...updatedModifiers,
+            'engineerTransferFinish': false,
+            'engineerTarget': null,
+          },
+        ),
+      );
+    } else {
+      updateViewModel(
+        viewModel.copyWith(
+          engineerTransferBegin: false,
+          engineerTransferFinish: false,
+        ),
+      );
+    }
+
+    updatedModifiers
+      ..remove('engineerTarget')
+      ..remove('engineerTransferFinish');
+
     updateViewModel(
       viewModel.copyWith(
-        ogreAttackModifier: 0,
-        ogreParryModifier: 0,
-        fighterAttackModifier: 0,
-        fighterParryModifier: 0,
-        rangerSource: null,
-        rangerTarget: null,
-        dealerSource: null,
-        dealerTarget: null,
-        engineerSource: null,
-        engineerTarget: null,
+        modifiers: updatedModifiers,
       ),
     );
   }
@@ -579,6 +766,30 @@ class _CharacterCreationScreenMVIState
         updateViewModel(viewModel.copyWith(isLoading: false));
       }
     }
+  }
+
+  void _handleResetModifiers() {
+    final newModifiers = Map<String, dynamic>.from(viewModel.modifiers);
+
+    // Reset all modifier values
+    newModifiers['ogreAttackModifier'] = 0;
+    newModifiers['ogreParryModifier'] = 0;
+    newModifiers['fighterAttackModifier'] = 0;
+    newModifiers['fighterParryModifier'] = 0;
+    newModifiers['rangerSource'] = null;
+    newModifiers['rangerTarget'] = null;
+    newModifiers['dealerSource'] = null;
+    newModifiers['dealerTarget'] = null;
+    newModifiers['engineerSource'] = null;
+    newModifiers['engineerTarget'] = null;
+    newModifiers['dexterityModifier'] = 0;
+    newModifiers['dexterityModifierAttribute'] = null;
+
+    updateViewModel(
+      viewModel.copyWith(
+        modifiers: newModifiers,
+      ),
+    );
   }
 
   @override

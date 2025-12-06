@@ -22,7 +22,14 @@ enum CharacterCreationAction {
   updateOgreModifiers,
   updateFighterModifiers,
   updateDealerModifiers,
+  resetDealerModifier,
   updateEngineerModifiers,
+  updateEngineerAttribute,
+  selectEngineerSource,
+  selectEngineerTarget,
+  increaseEngineerAttribute,
+  decreaseEngineerAttribute,
+  resetEngineerModifier,
   resetModifiers,
   applyDexterityModifier,
 }
@@ -194,28 +201,76 @@ class CharacterCreationIntent extends MviIntent {
   }
 
   factory CharacterCreationIntent.updateDealerModifiers({
-    required String? source,
-    required String? target,
+    required Map<String, int> statistics,
+    bool transferBegin = false,
+    bool transferFinish = false,
+    Map<String, int>? originalStats,
   }) {
     return CharacterCreationIntent._(
       CharacterCreationAction.updateDealerModifiers,
       {
-        'dealerSource': source,
-        'dealerTarget': target,
+        'statistics': statistics,
+        'transferBegin': transferBegin,
+        'transferFinish': transferFinish,
+        'originalStats': originalStats,
       },
     );
   }
 
+  factory CharacterCreationIntent.resetDealerModifier() {
+    return const CharacterCreationIntent._(
+      CharacterCreationAction.resetDealerModifier,
+    );
+  }
+
   factory CharacterCreationIntent.updateEngineerModifiers({
-    required String? source,
-    required String? target,
+    required Map<String, int> statistics,
+    bool transferBegin = false,
+    bool transferFinish = false,
+    Map<String, int>? originalStats,
   }) {
     return CharacterCreationIntent._(
       CharacterCreationAction.updateEngineerModifiers,
       {
-        'engineerSource': source,
-        'engineerTarget': target,
+        'statistics': statistics,
+        'transferBegin': transferBegin,
+        'transferFinish': transferFinish,
+        'originalStats': originalStats,
       },
+    );
+  }
+
+  factory CharacterCreationIntent.selectEngineerSource(String? attribute) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.selectEngineerSource,
+      {'attribute': attribute},
+    );
+  }
+
+  factory CharacterCreationIntent.selectEngineerTarget(String? attribute) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.selectEngineerTarget,
+      {'attribute': attribute},
+    );
+  }
+
+  factory CharacterCreationIntent.increaseEngineerAttribute(String attribute) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.increaseEngineerAttribute,
+      {'attribute': attribute},
+    );
+  }
+
+  factory CharacterCreationIntent.decreaseEngineerAttribute(String attribute) {
+    return CharacterCreationIntent._(
+      CharacterCreationAction.decreaseEngineerAttribute,
+      {'attribute': attribute},
+    );
+  }
+
+  factory CharacterCreationIntent.resetEngineerModifier() {
+    return const CharacterCreationIntent._(
+      CharacterCreationAction.resetEngineerModifier,
     );
   }
 

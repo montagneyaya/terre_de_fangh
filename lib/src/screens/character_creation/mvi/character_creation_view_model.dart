@@ -79,10 +79,22 @@ class CharacterCreationViewModel extends MviViewModel {
   // Dealer modifiers
   String? get dealerSource => modifiers['dealerSource'] as String?;
   String? get dealerTarget => modifiers['dealerTarget'] as String?;
+  bool get dealerTransferBegin => (modifiers['dealerTransferBegin'] as bool?) ?? false;
+  bool get dealerTransferFinish => (modifiers['dealerTransferFinish'] as bool?) ?? false;
+  Map<String, int>? get dealerOriginalStats {
+    final stats = modifiers['dealerOriginalStats'];
+    return stats != null ? Map<String, int>.from(stats as Map) : null;
+  }
 
   // Engineer modifiers
   String? get engineerSource => modifiers['engineerSource'] as String?;
   String? get engineerTarget => modifiers['engineerTarget'] as String?;
+  bool get engineerTransferBegin => (modifiers['engineerTransferBegin'] as bool?) ?? false;
+  bool get engineerTransferFinish => (modifiers['engineerTransferFinish'] as bool?) ?? false;
+  Map<String, int>? get engineerOriginalStats {
+    final stats = modifiers['engineerOriginalStats'];
+    return stats != null ? Map<String, int>.from(stats as Map) : null;
+  }
 
   // Dexterity modifier
   int get dexterityModifier => (modifiers['dexterityModifier'] as int?) ?? 0;
@@ -113,11 +125,19 @@ class CharacterCreationViewModel extends MviViewModel {
 
     // Engineer validation
     if (isEngineer) {
+      // Check if source and target are selected
       if (engineerSource == null || engineerTarget == null) return false;
+
+      // Source must be attack or parry
       if (engineerSource != 'attack' && engineerSource != 'parry') return false;
+
+      // Target must be intellect or dexterity
       if (engineerTarget != 'intellect' && engineerTarget != 'dexterity') {
         return false;
       }
+
+      // Source must have at least 1 point to transfer
+      if ((statistics[engineerSource] ?? 0) <= 0) return false;
     }
 
     // Ranger validation
@@ -290,6 +310,9 @@ class CharacterCreationViewModel extends MviViewModel {
     String? dealerTarget,
     String? engineerSource,
     String? engineerTarget,
+    bool? engineerTransferBegin,
+    bool? engineerTransferFinish,
+    Map<String, int>? engineerOriginalStats,
     int? dexterityModifier,
     String? dexterityModifierAttribute,
   }) {
@@ -324,6 +347,15 @@ class CharacterCreationViewModel extends MviViewModel {
     if (dealerTarget != null) newModifiers['dealerTarget'] = dealerTarget;
     if (engineerSource != null) newModifiers['engineerSource'] = engineerSource;
     if (engineerTarget != null) newModifiers['engineerTarget'] = engineerTarget;
+    if (engineerTransferBegin != null) {
+      newModifiers['engineerTransferBegin'] = engineerTransferBegin;
+    }
+    if (engineerTransferFinish != null) {
+      newModifiers['engineerTransferFinish'] = engineerTransferFinish;
+    }
+    if (engineerOriginalStats != null) {
+      newModifiers['engineerOriginalStats'] = engineerOriginalStats;
+    }
     if (dexterityModifier != null) {
       newModifiers['dexterityModifier'] = dexterityModifier;
     }
